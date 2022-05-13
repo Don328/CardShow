@@ -7,32 +7,35 @@
         {
             <div class="col" style="margin-bottom:2em">
                 <ViewSet SelectedSet=@set />
-                <button 
-                    id=@set.Id
-                    type="button"
-                    class="btn-outline-success"
-                    style="font-size:x-small;
-                        margin-left:5em;"
-                    @onclick=@(e => ViewSet(e, set.Id))>
-                    View
-                </button>
+                <div class="col" style="margin:0;width:min-content">
+                    <button id=@set.Id
+                        type="button"
+                        class="btn-outline-success"
+                        style="font-size:x-small;
+                            margin:0;
+                            padding:0;
+                            padding-left:.3em;
+                            padding-right:.3em;"
+                        @onclick=@(e => ViewSet(e, set.Id))>
+                        View
+                    </button>
+                </div>
             </div>
         }
     </div>
     <div class="col">
         <div class="row">
             [Add Set Button]
+            @* Add set button *@
         </div>
         <div class="row" style="margin-top:2em">
             @if (SelectedSet.Id > 0)
             {
                 <h3>Selected Set</h3>
                 <ViewSet SelectedSet=SelectedSet />
+                <p>[delete set button]</p>
+                @* Delete Set button *@
             }
         </div>
     </div>
-</div>
-<div>
-    @* Add set button *@
-    @* View set button *@
 </div>
