@@ -1,0 +1,12 @@
+﻿@using Microsoft.AspNetCore.Components.Forms;
+
+<h3>New Card Set</h3>
+<EditForm Model=NewSet OnSubmit=SubmitNewSet>
+    <InputNumber id="year" @bind-Value=NewSet.Year />
+    <InputText id="name" @bind-bind-Value=NewSet.Name />
+    <button type="submit">Submit</button>
+</EditForm>
+
+@code {
+
+}

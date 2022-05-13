@@ -7,11 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Shared\CardShow.Shared.csproj" />
+    <Compile Remove="Endpoints\**" />
+    <Content Remove="Endpoints\**" />
+    <EmbeddedResource Remove="Endpoints\**" />
+    <None Remove="Endpoints\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Endpoints\" />
+    <ProjectReference Include="..\Shared\CardShow.Shared.csproj" />
   </ItemGroup>
 
   <ItemGroup>

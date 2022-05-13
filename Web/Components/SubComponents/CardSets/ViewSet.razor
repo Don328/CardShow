@@ -1,0 +1,19 @@
+﻿@if (SelectedSet.Id > 0)
+{
+        <div class="row">
+            @SelectedSet.Year
+            <span style="width:1em" />
+            @SelectedSet.Name
+        </div>
+        <div class="row" style="font-size:x-small">
+            Id: @SelectedSet.Id
+            <span style="width:1em" />
+        </div>
+}
+
+@* List<Card> (from selected set set)*@
+@*      - When a set has cards attached,
+            delete should be gaurded with
+            a warning and confirm/cancel
+            option. All orphaned cards will
+            be deleted. *@
