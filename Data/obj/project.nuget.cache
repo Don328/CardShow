@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "dgSpecHash": "nUMVR4trDQCgm3wb6E2GhTBY9KPuL7QXO30VbLMbX39jTCA8qzBl+RbIcqED+6gjBTbzpEfxWwy7wrVgNNJzHQ==",
+  "success": true,
+  "projectFilePath": "L:\\source\\repos\\CardShow\\Data\\CardShow.Data.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Don\\.nuget\\packages\\microsoft.data.sqlite\\6.0.5\\microsoft.data.sqlite.6.0.5.nupkg.sha512",
+    "C:\\Users\\Don\\.nuget\\packages\\microsoft.data.sqlite.core\\6.0.5\\microsoft.data.sqlite.core.6.0.5.nupkg.sha512",
+    "C:\\Users\\Don\\.nuget\\packages\\sqlitepclraw.bundle_e_sqlite3\\2.0.6\\sqlitepclraw.bundle_e_sqlite3.2.0.6.nupkg.sha512",
+    "C:\\Users\\Don\\.nuget\\packages\\sqlitepclraw.core\\2.0.6\\sqlitepclraw.core.2.0.6.nupkg.sha512",
+    "C:\\Users\\Don\\.nuget\\packages\\sqlitepclraw.lib.e_sqlite3\\2.0.6\\sqlitepclraw.lib.e_sqlite3.2.0.6.nupkg.sha512",
+    "C:\\Users\\Don\\.nuget\\packages\\sqlitepclraw.provider.e_sqlite3\\2.0.6\\sqlitepclraw.provider.e_sqlite3.2.0.6.nupkg.sha512",
+    "C:\\Users\\Don\\.nuget\\packages\\system.memory\\4.5.3\\system.memory.4.5.3.nupkg.sha512"
+  ],
+  "logs": []
+}

@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "CardShow.Core": {
+      "commandName": "Project",
+      "launchBrowser": false,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:51860;http://localhost:51861"
+    }
+  }
+}

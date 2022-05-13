@@ -1,0 +1,21 @@
+﻿@page
+@model CardShow.Web.Pages.SetsModel
+@{
+    ViewData["Title"] = "Sets";
+}
+<h2>Sets</h2>
+<div>
+    @foreach(var set in Model.Sets)
+    {
+        <div class="col" style="margin:1em">
+            <div class="row">
+                @set.Year
+                <span style="width:1em"/>
+                @set.Name
+            </div>
+            <div class="row" style="font-size:x-small">
+                Id: @set.Id
+            </div>             
+        </div>
+    }
+</div>

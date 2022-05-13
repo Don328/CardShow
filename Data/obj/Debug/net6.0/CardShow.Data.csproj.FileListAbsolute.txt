@@ -1,0 +1,12 @@
+l:\source\repos\CardShow\Data\bin\Debug\net6.0\CardShow.Data.deps.json
+l:\source\repos\CardShow\Data\bin\Debug\net6.0\CardShow.Data.dll
+l:\source\repos\CardShow\Data\bin\Debug\net6.0\CardShow.Data.pdb
+l:\source\repos\CardShow\Data\obj\Debug\net6.0\CardShow.Data.csproj.AssemblyReference.cache
+l:\source\repos\CardShow\Data\obj\Debug\net6.0\CardShow.Data.GeneratedMSBuildEditorConfig.editorconfig
+l:\source\repos\CardShow\Data\obj\Debug\net6.0\CardShow.Data.AssemblyInfoInputs.cache
+l:\source\repos\CardShow\Data\obj\Debug\net6.0\CardShow.Data.AssemblyInfo.cs
+l:\source\repos\CardShow\Data\obj\Debug\net6.0\CardShow.Data.csproj.CoreCompileInputs.cache
+l:\source\repos\CardShow\Data\obj\Debug\net6.0\CardShow.Data.dll
+l:\source\repos\CardShow\Data\obj\Debug\net6.0\refint\CardShow.Data.dll
+l:\source\repos\CardShow\Data\obj\Debug\net6.0\CardShow.Data.pdb
+l:\source\repos\CardShow\Data\obj\Debug\net6.0\ref\CardShow.Data.dll

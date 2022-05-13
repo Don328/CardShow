@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "CardShow.Core/1.0.0": {
+        "dependencies": {
+          "CardShow.Data": "1.0.0"
+        },
+        "runtime": {
+          "CardShow.Core.dll": {}
+        }
+      },
+      "CardShow.Data/1.0.0": {
+        "runtime": {
+          "CardShow.Data.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "CardShow.Core/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "CardShow.Data/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
