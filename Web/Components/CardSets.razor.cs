@@ -20,7 +20,7 @@ namespace CardShow.Web.Components
 
         protected async override Task OnParametersSetAsync()
         {
-            Sets = await CardSetService.GetAll();
+            Sets = await CardSetAPIService.GetAll();
         }
 
         private void ViewSet(int id)
@@ -38,13 +38,13 @@ namespace CardShow.Web.Components
 
         private async void AddSet(CardSet set)
         {
-            using var response = await CardSetService.Add(set);
+            using var response = await CardSetAPIService.Add(set);
 
             if (response.IsSuccessStatusCode)
             {
                 var content = await response.Content.ReadAsStringAsync();
                 var id = Int32.Parse(content);
-                Sets = await CardSetService.GetAll();
+                Sets = await CardSetAPIService.GetAll();
                 showAddSet = false;
                 SelectedSet = Sets.Where(s =>
                     s.Id == id).First();
@@ -55,12 +55,11 @@ namespace CardShow.Web.Components
         private async Task DeleteSet()
         {
             var id = SelectedSet.Id;
-            using var response = await CardSetService.Delete(id);
-
+            using var response = await CardSetAPIService.Delete(id);
 
             if (response.IsSuccessStatusCode)
             {
-                Sets = await CardSetService.GetAll();
+                Sets = await CardSetAPIService.GetAll();
                 SelectedSet = new();
                 StateHasChanged();
             }

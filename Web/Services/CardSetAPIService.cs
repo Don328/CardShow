@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 
 namespace CardShow.Web.Services
 {
-    internal static class CardSetService
+    internal static class CardSetAPIService
     {
         internal static async Task<IEnumerable<CardSet>> GetAll()
         {
