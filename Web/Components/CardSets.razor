@@ -38,14 +38,16 @@
             }
         </div>
         <div class="row" style="margin-top:2em">
+            <div class="col">
             @if (SelectedSet.Id > 0)
             {
                 <h3>Selected Set</h3>
                 <ViewSet SelectedSet=SelectedSet />
-                <button type="button" class="btn-outline-danger" style="width:fit-content;height:fit-content;font-size:xx-small;" @onclick=DeleteSet>
+                <button type="button" class="btn-outline-danger" style="width:fit-content;height:fit-content;font-size:xx-small;margin-left:10em;" @onclick=DeleteSet>
                     Delete
                 </button>
             }
+            </div>
         </div>
         @if (showAddSet)
         {
