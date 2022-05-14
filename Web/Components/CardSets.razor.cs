@@ -66,7 +66,7 @@ namespace CardShow.Web.Components
             }
         }
 
-        private void ViewSet(EventArgs e, int id)
+        private void ViewSet(int id)
         {
             showAddSet = false;
             SelectedSet = Sets.Where(s =>

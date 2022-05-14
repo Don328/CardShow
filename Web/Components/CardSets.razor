@@ -2,27 +2,9 @@
 @using CardShow.Web.Components.SubComponents.CardSets;
 
 <div class="row">
-    <div class="col" style="margin:1em">
-        @foreach (var set in Sets)
-        {
-            <div class="col" style="margin-bottom:2em">
-                <ViewSet SelectedSet=@set />
-                <div class="col" style="margin:0;width:min-content">
-                    <button id=@set.Id
-                        type="button"
-                        class="btn-outline-success"
-                        style="font-size:x-small;
-                            margin:0;
-                            padding:0;
-                            padding-left:.3em;
-                            padding-right:.3em;"
-                        @onclick=@(e => ViewSet(e, set.Id))>
-                        View
-                    </button>
-                </div>
-            </div>
-        }
-    </div>
+    <SetList Sets=Sets
+        OnViewSet=ViewSet/>
+
     <div class="col">
         <div class="row">
             @if (!showAddSet)
