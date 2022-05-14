@@ -1,5 +1,6 @@
 ﻿using CardShow.Shared.Constants.API;
 using CardShow.Shared.Models;
+using CardShow.Web.Services;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Newtonsoft.Json;
@@ -19,42 +20,7 @@ namespace CardShow.Web.Components
 
         protected async override Task OnParametersSetAsync()
         {
-            await GetCardSets();
-        }
-
-        private async Task GetCardSets()
-        {
-            var url = UrlStrings.baseUrl +
-                UrlStrings.sets;
-
-            using var client = new HttpClient();
-            using var response = await client.GetAsync(url);
-            if (response.IsSuccessStatusCode &&
-                response.Content.Headers
-                    .ContentType?.MediaType
-                    == "application/json")
-            {
-                var stream = await response
-                    .Content.ReadAsStreamAsync();
-
-                using var streamReader = new StreamReader(stream);
-                using var jsonReader = new JsonTextReader(streamReader);
-                var serializer = new JsonSerializer();
-
-                try
-                {
-                    Sets = serializer
-                        .Deserialize<IEnumerable<CardSet>>(jsonReader);
-                }
-                catch
-                {
-                    Console.WriteLine("Invalid Json");
-                }
-                finally
-                {
-                    await Task.CompletedTask;
-                }
-            }
+            Sets = await CardSetService.GetAll();
         }
 
         private void ViewSet(int id)
@@ -72,16 +38,13 @@ namespace CardShow.Web.Components
 
         private async void AddSet(CardSet set)
         {
-
-            var url = UrlStrings.baseUrl + UrlStrings.sets;
-            using var client = new HttpClient();
-            using var response = await client.PostAsJsonAsync<CardSet>(url, set);
+            using var response = await CardSetService.Add(set);
 
             if (response.IsSuccessStatusCode)
             {
                 var content = await response.Content.ReadAsStringAsync();
                 var id = Int32.Parse(content);
-                await GetCardSets();
+                Sets = await CardSetService.GetAll();
                 showAddSet = false;
                 SelectedSet = Sets.Where(s =>
                     s.Id == id).First();
@@ -92,15 +55,12 @@ namespace CardShow.Web.Components
         private async Task DeleteSet()
         {
             var id = SelectedSet.Id;
-            var url = $"{UrlStrings.baseUrl}" +
-                $"{UrlStrings.sets}/delete";
+            using var response = await CardSetService.Delete(id);
 
-            using var client = new HttpClient();
-            using var response = await client.PostAsJsonAsync<int>(url, id);
 
             if (response.IsSuccessStatusCode)
             {
-                await GetCardSets();
+                Sets = await CardSetService.GetAll();
                 SelectedSet = new();
                 StateHasChanged();
             }
