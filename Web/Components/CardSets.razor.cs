@@ -27,8 +27,8 @@ namespace CardShow.Web.Components
             var url = UrlStrings.baseUrl +
                 UrlStrings.sets;
 
-            var client = new HttpClient();
-            var response = await client.GetAsync(url);
+            using var client = new HttpClient();
+            using var response = await client.GetAsync(url);
             if (response.IsSuccessStatusCode &&
                 response.Content.Headers
                     .ContentType?.MediaType
@@ -83,9 +83,9 @@ namespace CardShow.Web.Components
         {
 
             var url = UrlStrings.baseUrl + UrlStrings.sets;
-            var client = new HttpClient();
-            var response = await client.PostAsJsonAsync<CardSet>(url, set);
-         
+            using var client = new HttpClient();
+            using var response = await client.PostAsJsonAsync<CardSet>(url, set);
+
             if (response.IsSuccessStatusCode)
             {
                 var content = await response.Content.ReadAsStringAsync();
@@ -104,8 +104,8 @@ namespace CardShow.Web.Components
             var url = $"{UrlStrings.baseUrl}" +
                 $"{UrlStrings.sets}/delete";
 
-            var client = new HttpClient();
-            var response = await client.PostAsJsonAsync<int>(url, id);
+            using var client = new HttpClient();
+            using var response = await client.PostAsJsonAsync<int>(url, id);
 
             if (response.IsSuccessStatusCode)
             {
