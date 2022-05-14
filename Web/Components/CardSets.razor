@@ -24,14 +24,25 @@
             </button>
         </div>
         <div class="row" style="margin-top:2em">
-            <div class="col">
+            <div class="col" style="max-width:fit-content;">
                 @if (SelectedSet.Id > 0)
                 {
                     <h3>Selected Set</h3>
                     <div class="col" style="max-width:fit-content;margin-bottom:2em;">
                         <ViewSet SelectedSet=SelectedSet />
                     </div>
-                    <h4>Cards</h4>
+                    <div class="row">
+                        <div class="col">
+                            <h4>Cards</h4>
+                        </div>
+                        <div class="col">
+                            <button type="button" 
+                                class="btn-sm btn-outline-primary"
+                                style="font-size:x-small;padding:.3em;padding-top:.1em;padding-bottom:.1em">
+                                New
+                            </button>    
+                        </div>
+                    </div>
                     <CardList Cards=Cards/>
                 }
             </div>

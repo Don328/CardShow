@@ -1,4 +1,17 @@
 ﻿@foreach (var card in Cards)
 {
-    <ViewCard Card=@card />
+    <div class="row">
+        <div class="col">
+            <ViewCard Card=@card />
+        </div>
+        <div class="col">
+            <button type="button"
+                class="btn-sm btn-outline-danger"
+                style="font-size:xx-small;
+                    margin-top:2em;
+                    padding:.1em;">
+                Delete
+            </button>
+        </div>
+    </div>
 }
