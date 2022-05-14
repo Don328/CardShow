@@ -28,7 +28,12 @@ namespace CardShow.Core.Data
             return Context.Sets;
         }
 
-        public void DeleteSet(int id)
+        public async Task CreateSet(_CardSet set)
+        {
+            await Context.CreateSet(set);
+        }
+
+        public async Task DeleteSet(int id)
         {
             var set = (from s in Context.Sets
                     where s.Id == id
@@ -36,7 +41,7 @@ namespace CardShow.Core.Data
 
             if (set != null)
             {
-                Context.DeleteSet(id);
+                await Context.DeleteSet(id);
             }
         }
 

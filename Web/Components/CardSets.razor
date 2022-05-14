@@ -25,17 +25,32 @@
     </div>
     <div class="col">
         <div class="row">
-            [Add Set Button]
-            @* Add set button *@
+            @if (!showAddSet)
+            {
+                <button type="button"
+                    class="btn-outline-primary"
+                    style="width:fit-content;
+                        font-size:small;
+                        margin-left:15em;"
+                    @onclick=ShowAddSetForm>
+                    Add Set
+                </button>
+            }
         </div>
         <div class="row" style="margin-top:2em">
             @if (SelectedSet.Id > 0)
             {
                 <h3>Selected Set</h3>
                 <ViewSet SelectedSet=SelectedSet />
-                <p>[delete set button]</p>
-                @* Delete Set button *@
+                <button type="button" class="btn-outline-danger" style="width:fit-content;height:fit-content;font-size:xx-small;" @onclick=DeleteSet>
+                    Delete
+                </button>
             }
         </div>
+        @if (showAddSet)
+        {
+            <h3>Add New Set</h3>
+            <AddSet OnSubmit=AddSet/>
+        }
     </div>
 </div>

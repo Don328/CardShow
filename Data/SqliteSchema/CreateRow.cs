@@ -8,7 +8,7 @@ namespace CardShow.Data.SqliteSchema
 {
     internal static class CreateRow
     {
-        const string Set =
+        internal const string Set =
         @"INSERT INTO CardSets(
             Year, Name)
         VALUES(

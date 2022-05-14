@@ -7,8 +7,11 @@ public partial class AddSet : ComponentBase
 {
     private CardSet NewSet = new();
 
-    private void SubmitNewSet()
-    {
+    [Parameter]
+    public EventCallback<CardSet> OnSubmit { get; set;  }
 
+    private async Task SubmitNewSet()
+    {
+        await OnSubmit.InvokeAsync(NewSet);
     }
 }

@@ -5,7 +5,8 @@ namespace CardShow.Core.Data
     public interface ICardShowDbFixture
     {
         IEnumerable<_CardSet> GetAllCardSets();
-        void DeleteSet(int id);
+        Task CreateSet(_CardSet set);
+        Task DeleteSet(int id);
 
         void Dispose();
     }

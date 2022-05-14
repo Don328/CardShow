@@ -23,11 +23,19 @@ namespace CardShow.Core.Controllers
             return fixture.GetAllCardSets();
         }
 
-        [HttpDelete]
-        [Route("/{id}")]
-        public void Get(int id)
+        [HttpPost]
+        public async Task<IActionResult> Create([FromBody]_CardSet set)
         {
-            fixture.DeleteSet(id);
+            await fixture.CreateSet(set);
+            return StatusCode(200);
+        }
+
+        [HttpPost]
+        [Route("delete")]
+        public async Task<IActionResult> Delete([FromBody]int id)
+        {
+            await fixture.DeleteSet(id);
+            return StatusCode(200);
         }
     }
 }

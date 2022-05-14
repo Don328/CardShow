@@ -8,8 +8,8 @@ namespace CardShow.Web.Components
 {
     public partial class CardSets : ComponentBase
     {
-        public string testMessage = string.Empty;
-        
+        private bool showAddSet = false;
+
         [Parameter]
         public IEnumerable<CardSet> Sets { get; set; }
             = new List<CardSet>();
@@ -66,22 +66,49 @@ namespace CardShow.Web.Components
             }
         }
 
-        private async Task OnDelete()
+        private void ViewSet(EventArgs e, int id)
         {
-            var id = SelectedSet.Id;
-
-            // Call to delete selected Set
-
-            testMessage = $"Deleting " +
-                $"{SelectedSet.Year} " +
-                $"{SelectedSet.Name} " +
-                $"[Id: {SelectedSet.Id}]";
-        }
-
-        private void ViewSet(MouseEventArgs e, int id)
-        {
+            showAddSet = false;
             SelectedSet = Sets.Where(s =>
                 s.Id == id).First();
+        }
+
+        private void ShowAddSetForm()
+        {
+            SelectedSet = new();
+            showAddSet = true;
+        }
+
+        private async void AddSet(CardSet set)
+        {
+
+            var url = UrlStrings.baseUrl + UrlStrings.sets;
+            var client = new HttpClient();
+            var response = await client.PostAsJsonAsync<CardSet>(url, set);
+         
+            if (response.IsSuccessStatusCode)
+            {
+                await GetCardSets();
+                showAddSet = false;
+                StateHasChanged();
+            }
+        }
+
+        private async Task DeleteSet()
+        {
+            var id = SelectedSet.Id;
+            var url = $"{UrlStrings.baseUrl}" +
+                $"{UrlStrings.sets}/delete";
+
+            var client = new HttpClient();
+            var response = await client.PostAsJsonAsync<int>(url, id);
+
+            if (response.IsSuccessStatusCode)
+            {
+                await GetCardSets();
+                SelectedSet = new();
+                StateHasChanged();
+            }
         }
     }
 }
