@@ -52,15 +52,6 @@ namespace CardShow.Web.Components
                 }
                 finally
                 {
-                    foreach (var set in Sets)
-                    {
-                        Console.WriteLine();
-                        Console.WriteLine(set.Year);
-                        Console.WriteLine(set.Name);
-                        Console.WriteLine("Id: " + set.Id);
-                        Console.WriteLine();
-                    }
-
                     await Task.CompletedTask;
                 }
             }
