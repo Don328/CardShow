@@ -10,6 +10,7 @@ namespace CardShow.Web.Components
     public partial class CardSets : ComponentBase
     {
         private bool showAddSet = false;
+        private bool hideDeleteSet = true;
 
         [Parameter]
         public IEnumerable<CardSet> Sets { get; set; }
@@ -30,6 +31,7 @@ namespace CardShow.Web.Components
         private async Task ViewSet(int id)
         {
             showAddSet = false;
+            hideDeleteSet = false;
             SelectedSet = Sets.Where(s =>
                 s.Id == id).First();
             await GetCards();
@@ -39,6 +41,7 @@ namespace CardShow.Web.Components
         {
             SelectedSet = new();
             showAddSet = true;
+            hideDeleteSet = true;
         }
 
         private async void AddSet(CardSet set)
@@ -51,6 +54,7 @@ namespace CardShow.Web.Components
                 var id = Int32.Parse(content);
                 Sets = await CardSetAPIService.GetAll();
                 showAddSet = false;
+                hideDeleteSet = false;
                 SelectedSet = Sets.Where(s =>
                     s.Id == id).First();
                 StateHasChanged();
