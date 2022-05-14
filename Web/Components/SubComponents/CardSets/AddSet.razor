@@ -1,9 +1,16 @@
-﻿@using Microsoft.AspNetCore.Components.Web;
+﻿@using CardShow.Shared.Enums
+@using Microsoft.AspNetCore.Components.Web;
 @using Microsoft.AspNetCore.Components.Forms;
 
 <h3>New Card Set</h3>
 <EditForm Model=NewSet OnSubmit=SubmitNewSet>
     <InputNumber id="year" @bind-Value=NewSet.Year />
     <InputText id="name" @bind-Value=NewSet.Name />
+    <InputSelect id="sport" @bind-Value=NewSet.Sport>
+        @foreach(var sport in Enum.GetValues(typeof(Sport)))
+        {
+            <option value=@sport>@sport</option>
+        }
+    </InputSelect>
     <button id="newSet" type="submit" class="btn-success" @onsubmit=SubmitNewSet>Submit</button>
 </EditForm>

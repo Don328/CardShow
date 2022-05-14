@@ -13,6 +13,7 @@ namespace CardShow.Data.SqliteSchema
                 CardSets(
                     Id      INTEGER PRIMARY KEY,
                     Year    INTEGER NOT NULL,
-                    Name    VARCHAR(255) NOT NULL)";
+                    Name    VARCHAR(255) NOT NULL,
+                    Sport   INTEGER NOT NULL)";
     }
 }

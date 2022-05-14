@@ -12,7 +12,8 @@ namespace CardShow.Data.SqliteSchema
             @"SELECT
             Id,
             Year,
-            Name
+            Name,
+            Sport 
             From CardSets";
     }
 }

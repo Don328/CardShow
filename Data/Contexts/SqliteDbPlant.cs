@@ -22,6 +22,8 @@ namespace CardShow.Data.Contexts
             (new SqliteCommand(SeedData.CardSet_1, conn)).ExecuteNonQuery();
             (new SqliteCommand(SeedData.CardSet_2, conn)).ExecuteNonQuery();
             (new SqliteCommand(SeedData.CardSet_3, conn)).ExecuteNonQuery();
+            (new SqliteCommand(SeedData.CardSet_4, conn)).ExecuteNonQuery();
+            (new SqliteCommand(SeedData.CardSet_5, conn)).ExecuteNonQuery();
         }
     }
 }

@@ -10,12 +10,13 @@ namespace CardShow.Data.Factories
     public class CardSetFactory
     {
         public _CardSet CreateSet(
-            int year, string name)
+            int year, string name, int sport)
         {
             return new _CardSet()
             {
                 Year = year,
-                Name = name
+                Name = name,
+                Sport = sport
             };
         }
 

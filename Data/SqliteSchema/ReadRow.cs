@@ -11,8 +11,9 @@ namespace CardShow.Data.SqliteSchema
         const string CardSet =
             @"SELECT 
             Id,
-            Year
-            Name
+            Year,
+            Name,
+            Sport 
             FROM CardSets
             WHERE Id=@id";
     }

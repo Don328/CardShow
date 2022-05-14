@@ -21,6 +21,7 @@ namespace CardShow.Data.Contexts.Tables
                 cmd.CommandText = CreateRow.Set;
                 AddParameter(cmd, "@year", set.Year);
                 AddParameter(cmd, "@name", set.Name);
+                AddParameter(cmd, "@sport", set.Sport);
                 long setId = (long)cmd.ExecuteScalar();
                 set.Id = (int)setId;
             }
@@ -71,6 +72,7 @@ namespace CardShow.Data.Contexts.Tables
                             Id = reader.GetInt32(0),
                             Year = reader.GetInt32(1),
                             Name = reader.GetString(2),
+                            Sport = reader.GetInt32(3)
                         });
                     }
                 };

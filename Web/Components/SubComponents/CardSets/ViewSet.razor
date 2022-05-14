@@ -1,17 +1,20 @@
 ﻿@if (SelectedSet.Id > 0)
 {
-        <div class="row">
-            @SelectedSet.Year
-            <span style="width:1em" />
-            @SelectedSet.Name
+    <div class="row">
+        @SelectedSet.Year
+        <span style="width:1em" />
+        @SelectedSet.Name
+    </div>
+    <div class="row">
+        <div class="col">
+            @SelectedSet.Sport
         </div>
-        <div
-          class="col" 
-          style="font-size:xx-small;
-                width:fit-content;">
+        <span style="width:1em" />
+        <div class="col" style="font-size:xx-small;width:fit-content;">
             Id: @SelectedSet.Id
             <span style="width:1em" />
         </div>
+    </div>
 }
 
 @* List<Card> (from selected set set)*@

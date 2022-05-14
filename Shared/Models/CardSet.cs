@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CardShow.Shared.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,5 +13,6 @@ namespace CardShow.Shared.Models
         public int Year { get; set; }
         public string Name { get; set; }
             = string.Empty;
+        public Sport Sport { get; set; }
     }
 }

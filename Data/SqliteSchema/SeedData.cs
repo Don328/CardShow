@@ -12,30 +12,60 @@ namespace CardShow.Data.SqliteSchema
             @"INSERT INTO CardSets(
                 Id,
                 Year,
-                Name)
+                Name,
+                Sport)
             VALUES(
                 1,
                 1990,
-                'Topps')";
+                'Topps',
+                1)";
 
         public const string CardSet_2 =
             @"INSERT INTO CardSets(
                 Id,
                 Year,
-                Name)
+                Name,
+                Sport)
             VALUES(
                 2,
                 1991,
-                'Donruss')";
+                'Donruss',
+                1)";
 
         public const string CardSet_3 =
             @"INSERT INTO CardSets(
                 Id,
                 Year,
-                Name)
+                Name,
+                Sport)
             VALUES(
                 3,
                 1990,
-                'Fleer')";
+                'Fleer',
+                1)";
+        
+        public const string CardSet_4 =
+            @"INSERT INTO CardSets(
+                Id,
+                Year,
+                Name,
+                Sport)
+            VALUES(
+                4,
+                1990,
+                'NBA Hoops',
+                2)";
+
+        public const string CardSet_5 =
+            @"INSERT INTO CardSets(
+                Id,
+                Year,
+                Name,
+                Sport)
+            VALUES(
+                5,
+                1990,
+                'Pro Set',
+                3)";
     }
 }

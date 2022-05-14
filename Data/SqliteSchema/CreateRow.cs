@@ -10,9 +10,9 @@ namespace CardShow.Data.SqliteSchema
     {
         internal const string Set =
         @"INSERT INTO CardSets(
-            Year, Name)
+            Year, Name, Sport)
         VALUES(
-            @year, @name);
+            @year, @name, @sport);
         SELECT last_insert_rowid();";
     }
 }

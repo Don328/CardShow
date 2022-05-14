@@ -16,8 +16,8 @@ namespace CardShow.Core.Data
 
         public SqliteFixture(IConfiguration config)
         {
-            // var connStr = "Data Source=:memory:";
-            var connStr = config.GetConnectionString("Sqlite_File");
+            var connStr = "Data Source=:memory:";
+            // var connStr = config.GetConnectionString("Sqlite_File");
 
             this.conn = new SqliteConnection(connStr);
             Context = new SqliteContext(conn);
