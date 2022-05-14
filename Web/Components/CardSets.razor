@@ -31,17 +31,14 @@
                     <div class="col" style="max-width:fit-content;margin-bottom:2em;">
                         <ViewSet SelectedSet=SelectedSet />
                     </div>
-                    <h4>Cards from Set</h4>
-                    @foreach (var card in Cards)
-                    {
-                        <ViewCard Card=@card />
-                    }
+                    <h4>Cards</h4>
+                    <CardList Cards=Cards/>
                 }
             </div>
         </div>
         @if (showAddSet)
         {
-            <h3>Add New Set</h3>
+            <h3>New Set</h3>
             <AddSet OnSubmit=AddSet />
         }
     </div>
