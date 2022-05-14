@@ -8,12 +8,21 @@ namespace CardShow.Data.SqliteSchema
 {
     internal static class ReadTable
     {
-        public static readonly string CardSets =
+        internal const string CardSets =
             @"SELECT
             Id,
             Year,
             Name,
             Sport 
             From CardSets";
+
+        internal const string CardsFromSet =
+            @"SELECT
+                Id,
+                SetId,
+                Name,
+                SetIndex
+            FROM Cards
+            WHERE SetId=@setId";
     }
 }

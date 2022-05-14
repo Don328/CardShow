@@ -14,6 +14,7 @@ namespace CardShow.Web.Services
 
             using var client = new HttpClient();
             using var response = await client.GetAsync(url);
+
             if (response.IsSuccessStatusCode &&
                 response.Content.Headers
                     .ContentType?.MediaType

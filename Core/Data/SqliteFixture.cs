@@ -51,6 +51,11 @@ namespace CardShow.Core.Data
                 s.Id == id).Any();
         }
 
+        public IEnumerable<_Card> GetCardsBySet(int setId)
+        {
+            return Context.GetCardsBySetId(setId);
+        }
+
         public void Dispose()
         {
             if (Context != null)

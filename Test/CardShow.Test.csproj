@@ -23,6 +23,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Core\CardShow.Core.csproj" />
     <ProjectReference Include="..\Data\CardShow.Data.csproj" />
+    <ProjectReference Include="..\Shared\CardShow.Shared.csproj" />
   </ItemGroup>
 
 </Project>

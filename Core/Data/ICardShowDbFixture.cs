@@ -9,6 +9,8 @@ namespace CardShow.Core.Data
         Task DeleteSet(int id);
         bool SetIsDeleted(int id);
 
+        IEnumerable<_Card> GetCardsBySet(int setId);
+
         void Dispose();
     }
 }

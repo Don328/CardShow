@@ -8,7 +8,7 @@ namespace CardShow.Data.SqliteSchema
 {
     internal static class SeedData
     {
-        public const string CardSet_1 =
+        internal const string CardSet_1 =
             @"INSERT INTO CardSets(
                 Id,
                 Year,
@@ -16,11 +16,11 @@ namespace CardShow.Data.SqliteSchema
                 Sport)
             VALUES(
                 1,
-                1990,
+                1988,
                 'Topps',
                 1)";
 
-        public const string CardSet_2 =
+        internal const string CardSet_2 =
             @"INSERT INTO CardSets(
                 Id,
                 Year,
@@ -29,7 +29,7 @@ namespace CardShow.Data.SqliteSchema
             VALUES(
                 2,
                 1991,
-                'Donruss',
+                'Upper Deck',
                 1)";
 
         public const string CardSet_3 =
@@ -40,9 +40,9 @@ namespace CardShow.Data.SqliteSchema
                 Sport)
             VALUES(
                 3,
-                1990,
-                'Fleer',
-                1)";
+                2001,
+                'Upper Deck',
+                5)";
         
         public const string CardSet_4 =
             @"INSERT INTO CardSets(
@@ -64,8 +64,152 @@ namespace CardShow.Data.SqliteSchema
                 Sport)
             VALUES(
                 5,
-                1990,
-                'Pro Set',
+                1991,
+                'Topps',
                 3)";
+
+        public const string Card_1 =
+            @"INSERT INTO Cards(
+                Id,
+                SetId,
+                Name,
+                SetIndex)
+            VALUES(
+                1,
+                4,
+                'Michael Jordan',
+                '65')";
+
+        public const string Card_2 =
+            @"INSERT INTO Cards(
+                Id,
+                SetId,
+                Name,
+                SetIndex)
+            VALUES(
+                2,
+                2,
+                'Ken Griffey Jr.',
+                '424')";
+
+        public const string Card_3 =
+            @"INSERT INTO Cards(
+                Id,
+                SetId,
+                Name,
+                SetIndex)
+            VALUES(
+                3,
+                3,
+                'Tiger Woods',
+                'GG4')";
+
+        public const string Card_4 =
+            @"INSERT INTO Cards(
+                Id,
+                SetId,
+                Name,
+                SetIndex)
+            VALUES(
+                4,
+                1,
+                'Greg Maddux',
+                '361')";
+
+        public const string Card_5 =
+            @"INSERT INTO Cards(
+                Id,
+                SetId,
+                Name,
+                SetIndex)
+            VALUES(
+                5,
+                1,
+                'George Brett',
+                '700')";
+
+        public const string Card_6 =
+            @"INSERT INTO Cards(
+                Id,
+                SetId,
+                Name,
+                SetIndex)
+            VALUES(
+                6,
+                1,
+                'Mike Schmidt',
+                '600')";
+
+        public const string Card_7 =
+            @"INSERT INTO Cards(
+                Id,
+                SetId,
+                Name,
+                SetIndex)
+            VALUES(
+                7,
+                1,
+                'Jose Canseco',
+                '370')";
+
+        public const string Card_8 =
+            @"INSERT INTO Cards(
+                Id,
+                SetId,
+                Name,
+                SetIndex)
+            VALUES(
+                8,
+                5,
+                'Joe Montana',
+                '73')";
+
+        public const string Card_9 =
+            @"INSERT INTO Cards(
+                Id,
+                SetId,
+                Name,
+                SetIndex)
+            VALUES(
+                9,
+                5,
+                'Troy Aikman',
+                '371')";
+
+        public const string Card_10 =
+            @"INSERT INTO Cards(
+                Id,
+                SetId,
+                Name,
+                SetIndex)
+            VALUES(
+                10,
+                5,
+                'Cortez Kennedy',
+                '287')";
+
+        public const string Card_11 =
+            @"INSERT INTO Cards(
+                Id,
+                SetId,
+                Name,
+                SetIndex)
+            VALUES(
+                11,
+                5,
+                'Dan Marino',
+                '112')";
+
+        public const string Card_12 =
+            @"INSERT INTO Cards(
+                Id,
+                SetId,
+                Name,
+                SetIndex)
+            VALUES(
+                12,
+                5,
+                'Barry Sanders',
+                '415')";
     }
 }

@@ -14,6 +14,7 @@ namespace CardShow.Data.Contexts
             SqliteConnection conn)
         {
             (new SqliteCommand(CreateTable.CardSets, conn)).ExecuteNonQuery();
+            (new SqliteCommand(CreateTable.Cards, conn)).ExecuteNonQuery();
         }
 
         internal static void SeedData_CardSets(
@@ -24,6 +25,19 @@ namespace CardShow.Data.Contexts
             (new SqliteCommand(SeedData.CardSet_3, conn)).ExecuteNonQuery();
             (new SqliteCommand(SeedData.CardSet_4, conn)).ExecuteNonQuery();
             (new SqliteCommand(SeedData.CardSet_5, conn)).ExecuteNonQuery();
+            
+            (new SqliteCommand(SeedData.Card_1, conn)).ExecuteNonQuery();
+            (new SqliteCommand(SeedData.Card_2, conn)).ExecuteNonQuery();
+            (new SqliteCommand(SeedData.Card_3, conn)).ExecuteNonQuery();
+            (new SqliteCommand(SeedData.Card_4, conn)).ExecuteNonQuery();
+            (new SqliteCommand(SeedData.Card_5, conn)).ExecuteNonQuery();
+            (new SqliteCommand(SeedData.Card_6, conn)).ExecuteNonQuery();
+            (new SqliteCommand(SeedData.Card_7, conn)).ExecuteNonQuery();
+            (new SqliteCommand(SeedData.Card_8, conn)).ExecuteNonQuery();
+            (new SqliteCommand(SeedData.Card_9, conn)).ExecuteNonQuery();
+            (new SqliteCommand(SeedData.Card_10, conn)).ExecuteNonQuery();
+            (new SqliteCommand(SeedData.Card_11, conn)).ExecuteNonQuery();
+            (new SqliteCommand(SeedData.Card_12, conn)).ExecuteNonQuery();
         }
     }
 }

@@ -7,6 +7,8 @@ namespace CardShow.Data.Contexts
         IEnumerable<_CardSet> Sets { get; }
         Task<int> CreateSet(_CardSet set);
         Task DeleteSet(int id);
+        
+        IEnumerable<_Card> GetCardsBySetId(int setId);
 
         void Dispose();
     }

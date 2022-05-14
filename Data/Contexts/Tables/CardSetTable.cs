@@ -19,9 +19,9 @@ namespace CardShow.Data.Contexts.Tables
             using (var cmd = conn.CreateCommand())
             {
                 cmd.CommandText = CreateRow.Set;
-                AddParameter(cmd, "@year", set.Year);
-                AddParameter(cmd, "@name", set.Name);
-                AddParameter(cmd, "@sport", set.Sport);
+                ParamBuilder.Build(cmd, "@year", set.Year);
+                ParamBuilder.Build(cmd, "@name", set.Name);
+                ParamBuilder.Build(cmd, "@sport", set.Sport);
                 long setId = (long)cmd.ExecuteScalar();
                 set.Id = (int)setId;
             }
@@ -34,7 +34,7 @@ namespace CardShow.Data.Contexts.Tables
         {
             var cmd = conn.CreateCommand();
             cmd.CommandText = DeleteRow.Set;
-            AddParameter(cmd, "@id", id);
+            ParamBuilder.Build(cmd, "@id", id);
             cmd.ExecuteNonQuery();
 
             await Task.CompletedTask;
@@ -79,32 +79,6 @@ namespace CardShow.Data.Contexts.Tables
             }
 
             return sets;
-        }
-
-        private static void AddParameter(
-            DbCommand cmd,
-            string name,
-            object value)
-        {
-            var p = cmd.CreateParameter();
-            if (value == null)
-            {
-                throw new ArgumentNullException("Parameter value cannot be null");
-            }
-
-            var type = value.GetType();
-            if (type == typeof(int))
-                p.DbType = DbType.Int32;
-            else if (type == typeof(string))
-                p.DbType = DbType.String;
-            else
-                throw new ArgumentException(
-                    $"Unrecognized Type: {type}");
-
-            p.Direction = ParameterDirection.Input;
-            p.ParameterName = name;
-            p.Value = value;
-            cmd.Parameters.Add(p);
         }
     }
 }

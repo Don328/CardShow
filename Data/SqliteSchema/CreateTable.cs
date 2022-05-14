@@ -15,5 +15,15 @@ namespace CardShow.Data.SqliteSchema
                     Year    INTEGER NOT NULL,
                     Name    VARCHAR(255) NOT NULL,
                     Sport   INTEGER NOT NULL)";
+
+        internal const string Cards =
+            @"CREATE TABLE IF NOT EXISTS
+                Cards(
+                    Id          INTEGER PRIMARY KEY,
+                    SetId       INTEGER NOT NULL,
+                    Name        VARCHAR(255) NOT NULL,
+                    SetIndex    VARCHAR(255),
+                    FOREIGN KEY(SetId)
+                        REFERENCES CardSets(Id))";
     }
 }

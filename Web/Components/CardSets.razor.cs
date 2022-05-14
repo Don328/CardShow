@@ -16,6 +16,10 @@ namespace CardShow.Web.Components
             = new List<CardSet>();
 
         [Parameter]
+        public IEnumerable<Card> Cards { get; set; }
+            = new List<Card>();
+
+        [Parameter]
         public CardSet SelectedSet { get; set; } = new();
 
         protected async override Task OnParametersSetAsync()
@@ -23,11 +27,12 @@ namespace CardShow.Web.Components
             Sets = await CardSetAPIService.GetAll();
         }
 
-        private void ViewSet(int id)
+        private async Task ViewSet(int id)
         {
             showAddSet = false;
             SelectedSet = Sets.Where(s =>
                 s.Id == id).First();
+            await GetCards();
         }
 
         private void ShowAddSetForm()
@@ -63,6 +68,14 @@ namespace CardShow.Web.Components
                 SelectedSet = new();
                 StateHasChanged();
             }
+        }
+
+        private async Task GetCards()
+        {
+            Cards = new List<Card>();
+            var cards = await CardAPIService.GetBySet(SelectedSet.Id);
+            Cards = cards;
+            await Task.CompletedTask;
         }
     }
 }

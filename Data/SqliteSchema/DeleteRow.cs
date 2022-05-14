@@ -11,5 +11,9 @@ namespace CardShow.Data.SqliteSchema
         internal const string Set =
             @"DELETE FROM CardSets
             WHERE Id=@id";
+
+        internal const string Card =
+            @"DELETE FROM CardSets
+            WHERE Id=@id";
     }
 }

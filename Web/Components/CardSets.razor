@@ -20,13 +20,30 @@
                 @if (SelectedSet.Id > 0)
                 {
                     <h3>Selected Set</h3>
-                    <div class="col" style="max-width:fit-content;">
+                    <div class="col" style="max-width:fit-content;margin-bottom:2em;">
                         <ViewSet SelectedSet=SelectedSet />
                         <button type="button" class="btn-outline-danger" style="width:fit-content;height:fit-content;font-size:xx-small;float:right;"
                             @onclick=DeleteSet>
                             Delete
                         </button>
                     </div>
+                    <h4>Cards from Set</h4>
+                    @foreach (var card in Cards)
+                    {
+                        <div class="col" style="margin-bottom:1em;max-width:fit-content;">
+                            <div class="row">
+                                @card.Name
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    #@card.SetIndex
+                                    <div class="col" style="font-size:xx-small;float:right;margin-left:2em;">
+                                        Id: @card.Id
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
                 }
             </div>
         </div>

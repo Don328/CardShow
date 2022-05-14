@@ -46,6 +46,11 @@ namespace CardShow.Data.Contexts
             Sets = CardSetTable.ReadSets(conn);
         }
 
+        public IEnumerable<_Card> GetCardsBySetId(int setId)
+        {
+            return CardTable.GetCardsBySetId(conn, setId);
+        }
+
         public void Dispose()
         {
             if (conn != null)
