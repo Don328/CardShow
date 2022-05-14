@@ -24,6 +24,21 @@ namespace CardShow.Data.Contexts
             Sets = TryReadSets();
         }
 
+        public async Task<int> CreateSet(_CardSet set)
+        {
+            using (var cmd = conn.CreateCommand())
+            {
+                cmd.CommandText = CreateRow.Set;
+                AddParameter(cmd, "@year", set.Year);
+                AddParameter(cmd, "@name", set.Name);
+                long setId = (long)cmd.ExecuteScalar();
+                set.Id = (int)setId;
+            }
+
+            RefreshSetsList();
+            return await Task.FromResult(set.Id);
+        }
+
         public async Task DeleteSet(int id)
         {
             var cmd = conn.CreateCommand();
@@ -71,23 +86,6 @@ namespace CardShow.Data.Contexts
             }
 
             return sets;
-        }
-
-        public async Task CreateSet(_CardSet set)
-        {
-            using (var cmd = conn.CreateCommand())
-            {
-                cmd.CommandText = CreateRow.Set;
-                AddParameter(cmd, "@year", set.Year);
-                AddParameter(cmd, "@name", set.Name);
-                cmd.ExecuteNonQuery();
-            }
-
-            // Should get and return the id from
-            // the created record
-            
-            RefreshSetsList();
-            await Task.CompletedTask;
         }
 
         private void RefreshSetsList()

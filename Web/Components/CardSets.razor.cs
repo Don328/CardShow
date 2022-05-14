@@ -88,8 +88,12 @@ namespace CardShow.Web.Components
          
             if (response.IsSuccessStatusCode)
             {
+                var content = await response.Content.ReadAsStringAsync();
+                var id = Int32.Parse(content);
                 await GetCardSets();
                 showAddSet = false;
+                SelectedSet = Sets.Where(s =>
+                    s.Id == id).First();
                 StateHasChanged();
             }
         }

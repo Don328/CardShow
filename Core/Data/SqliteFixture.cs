@@ -28,9 +28,9 @@ namespace CardShow.Core.Data
             return Context.Sets;
         }
 
-        public async Task CreateSet(_CardSet set)
+        public async Task<int> CreateSet(_CardSet set)
         {
-            await Context.CreateSet(set);
+            return await Context.CreateSet(set);
         }
 
         public async Task DeleteSet(int id)
@@ -43,6 +43,12 @@ namespace CardShow.Core.Data
             {
                 await Context.DeleteSet(id);
             }
+        }
+
+        public bool SetIsDeleted(int id)
+        {
+            return !Context.Sets.Where(s =>
+                s.Id == id).Any();
         }
 
         public void Dispose()

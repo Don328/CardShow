@@ -24,10 +24,17 @@ namespace CardShow.Core.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody]_CardSet set)
+        public async Task<ActionResult<int>> Create([FromBody]_CardSet set)
         {
-            await fixture.CreateSet(set);
-            return StatusCode(200);
+            try
+            {
+                var id = await fixture.CreateSet(set);
+                return StatusCode(200, id);
+            }
+            catch
+            {
+                return StatusCode(500);
+            }
         }
 
         [HttpPost]
@@ -35,7 +42,13 @@ namespace CardShow.Core.Controllers
         public async Task<IActionResult> Delete([FromBody]int id)
         {
             await fixture.DeleteSet(id);
-            return StatusCode(200);
+
+            if(fixture.SetIsDeleted(id))
+            {
+                return StatusCode(200);
+            }
+
+            return StatusCode(500);
         }
     }
 }
