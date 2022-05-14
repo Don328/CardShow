@@ -1,18 +1,19 @@
 ﻿@if (SelectedSet.Id > 0)
 {
     <div class="row">
-        @SelectedSet.Year
-        <span style="width:1em" />
-        @SelectedSet.Name
+        <div class="col" style="max-width:fit-content">
+            @SelectedSet.Year
+        </div>
+        <div class="col">
+            @SelectedSet.Name
+        </div>
     </div>
     <div class="row">
-        <div class="col">
+        <div class="col" style="max-width:fit-content">
             @SelectedSet.Sport
         </div>
-        <span style="width:1em" />
-        <div class="col" style="font-size:xx-small;width:fit-content;">
+        <div class="col" style="font-size:xx-small;width:fit-content;margin-top:.5em;float:right">
             Id: @SelectedSet.Id
-            <span style="width:1em" />
         </div>
     </div>
 }

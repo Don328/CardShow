@@ -14,5 +14,6 @@ namespace CardShow.Shared.Enums
         Football,
         Hockey,
         Golf,
+        MultiSport
     }
 }

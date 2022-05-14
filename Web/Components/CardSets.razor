@@ -3,7 +3,7 @@
 
 <div class="row">
     <SetList Sets=Sets
-        OnViewSet=ViewSet/>
+             OnViewSet=ViewSet />
 
     <div class="col">
         <div class="row">
@@ -17,21 +17,23 @@
         </div>
         <div class="row" style="margin-top:2em">
             <div class="col">
-            @if (SelectedSet.Id > 0)
-            {
-                <h3>Selected Set</h3>
-                <ViewSet SelectedSet=SelectedSet />
-                <button type="button" class="btn-outline-danger" style="width:fit-content;height:fit-content;font-size:xx-small;margin-left:10em;" 
-                    @onclick=DeleteSet>
-                    Delete
-                </button>
-            }
+                @if (SelectedSet.Id > 0)
+                {
+                    <h3>Selected Set</h3>
+                    <div class="col" style="max-width:fit-content;">
+                        <ViewSet SelectedSet=SelectedSet />
+                        <button type="button" class="btn-outline-danger" style="width:fit-content;height:fit-content;font-size:xx-small;float:right;"
+                            @onclick=DeleteSet>
+                            Delete
+                        </button>
+                    </div>
+                }
             </div>
         </div>
         @if (showAddSet)
         {
             <h3>Add New Set</h3>
-            <AddSet OnSubmit=AddSet/>
+            <AddSet OnSubmit=AddSet />
         }
     </div>
 </div>
