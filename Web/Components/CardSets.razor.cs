@@ -1,6 +1,6 @@
 ﻿using CardShow.Shared.Constants.API;
 using CardShow.Shared.Models;
-using CardShow.Web.Services;
+using CardShow.Shared.APIServices;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Newtonsoft.Json;

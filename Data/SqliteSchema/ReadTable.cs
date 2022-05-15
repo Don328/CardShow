@@ -10,10 +10,10 @@ namespace CardShow.Data.SqliteSchema
     {
         internal const string CardSets =
             @"SELECT
-            Id,
-            Year,
-            Name,
-            Sport 
+                Id,
+                Year,
+                Name,
+                Sport 
             From CardSets";
 
         internal const string CardsFromSet =
@@ -24,5 +24,14 @@ namespace CardShow.Data.SqliteSchema
                 SetIndex
             FROM Cards
             WHERE SetId=@setId";
+
+        internal const string CardsByPlayer =
+            @"SELECT
+                Id,
+                SetId,
+                Name,
+                SetIndex
+            FROM Cards
+            WHERE Name=@name";
     }
 }

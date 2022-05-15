@@ -1,12 +1,13 @@
 ﻿using CardShow.Shared.Constants.API;
 using CardShow.Shared.Models;
 using Newtonsoft.Json;
+using System.Net.Http.Json;
 
-namespace CardShow.Web.Services
+namespace CardShow.Shared.APIServices
 {
-    internal static class CardSetsAPIService
+    public static class CardSetsAPIService
     {
-        internal static async Task<IEnumerable<CardSet>> GetAll()
+        public static async Task<IEnumerable<CardSet>> GetAll()
         {
             IEnumerable<CardSet> sets;
             var url = UrlStrings.baseUrl +
@@ -46,15 +47,15 @@ namespace CardShow.Web.Services
             }
         }
 
-        internal static async Task<HttpResponseMessage> Add(CardSet set)
+        public static async Task<HttpResponseMessage> Add(CardSet set)
         {
             var url = UrlStrings.baseUrl + UrlStrings.sets;
             using var client = new HttpClient();
             return await client
-                .PostAsJsonAsync<CardSet>(url, set);
+                .PostAsJsonAsync(url, set);
         }
 
-        internal static async Task<HttpResponseMessage> Delete(int id)
+        public static async Task<HttpResponseMessage> Delete(int id)
         {
             var url = $"{UrlStrings.baseUrl}" +
                     $"{UrlStrings.sets}/delete";

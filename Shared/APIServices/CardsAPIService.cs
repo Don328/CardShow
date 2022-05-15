@@ -1,18 +1,19 @@
 ﻿using CardShow.Shared.Constants.API;
 using CardShow.Shared.Models;
 using Newtonsoft.Json;
+using System.Net.Http.Json;
 
-namespace CardShow.Web.Services
+namespace CardShow.Shared.APIServices
 {
-    internal static class CardsAPIService
+    public static class CardsAPIService
     {
-        internal static async Task<IEnumerable<Card>> GetBySet(int setId)
+        public static async Task<IEnumerable<Card>> GetBySet(int setId)
         {
             IEnumerable<Card> cards;
 
             var url = UrlStrings.baseUrl + UrlStrings.cards + $"/{setId}";
             var client = new HttpClient();
-            using var response =  await client.GetAsync(url);
+            using var response = await client.GetAsync(url);
 
             if (response.IsSuccessStatusCode &&
                 response.Content.Headers
@@ -49,12 +50,13 @@ namespace CardShow.Web.Services
         {
             var url = UrlStrings.baseUrl + UrlStrings.cards;
             var client = new HttpClient();
-            return await client.PostAsJsonAsync(url, card);
+            return await client
+                .PostAsJsonAsync(url, card);
         }
 
         public static async Task<HttpResponseMessage> Delete(int id)
         {
-            var url = UrlStrings.baseUrl + 
+            var url = UrlStrings.baseUrl +
                 UrlStrings.cards + "/delete";
 
             using var client = new HttpClient();
