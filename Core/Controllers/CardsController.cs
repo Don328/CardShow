@@ -37,10 +37,9 @@ namespace CardShow.Core.Controllers
         public async Task<IActionResult> Delete([FromBody]int id)
         {
             await fixture.DeleteCard(id);
-
-            if(fixture.CardIsDeleted(id))
+            if (fixture.CardIsDeleted(id))
                 return StatusCode(200);
-            
+
             return StatusCode(500);
         }
     }

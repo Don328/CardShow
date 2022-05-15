@@ -74,9 +74,14 @@ namespace CardShow.Data.Contexts.Tables
         {
             using var cmd = conn.CreateCommand();
             ParamBuilder.Build(cmd, "@id", id);
-            cmd.CommandText = ReadRow.CardExists;
-            bool exists = (bool)cmd.ExecuteReader().Read();
-            return exists;
+            cmd.CommandText = ReadRow.Card;
+            using var reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                return true;
+            }
+            
+            return false;
         }
     }
 }
