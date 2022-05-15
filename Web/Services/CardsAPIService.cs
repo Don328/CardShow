@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 
 namespace CardShow.Web.Services
 {
-    internal static class CardAPIService
+    internal static class CardsAPIService
     {
         internal static async Task<IEnumerable<Card>> GetBySet(int setId)
         {
@@ -43,6 +43,23 @@ namespace CardShow.Web.Services
             {
                 return new List<Card>();
             }
+        }
+
+        public static async Task<HttpResponseMessage> Add(Card card)
+        {
+            var url = UrlStrings.baseUrl + UrlStrings.cards;
+            var client = new HttpClient();
+            return await client.PostAsJsonAsync(url, card);
+        }
+
+        public static async Task<HttpResponseMessage> Delete(int id)
+        {
+            var url = UrlStrings.baseUrl + 
+                UrlStrings.cards + "/delete";
+
+            using var client = new HttpClient();
+            return await client
+                .PostAsJsonAsync(url, id);
         }
     }
 }

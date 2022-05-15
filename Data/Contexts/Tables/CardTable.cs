@@ -37,5 +37,46 @@ namespace CardShow.Data.Contexts.Tables
 
             return cards;
         }
+
+        internal static async Task<int> Create(
+            SqliteConnection conn,
+            _Card card)
+        {
+            using (var cmd = conn.CreateCommand())
+            {
+                cmd.CommandText = CreateRow.Card;
+                ParamBuilder.Build(cmd, "@setId", card.SetId);
+                ParamBuilder.Build(cmd, "@name", card.Name);
+                ParamBuilder.Build(cmd, "@setIndex", card.SetIndex);
+
+                long cardId = (long)cmd.ExecuteScalar();
+                card.Id = (int)cardId;
+
+            }
+            
+            return await Task.FromResult(card.Id);
+        }
+
+        internal static async Task Delete(
+            SqliteConnection conn, int id)
+        {
+            using var cmd = conn.CreateCommand();
+            cmd.CommandText = DeleteRow.Card;
+            ParamBuilder.Build(cmd, "@id", id);
+            cmd.ExecuteNonQuery();
+            
+            await Task.CompletedTask;
+        }
+
+        internal static bool Exists(
+            SqliteConnection conn,
+            int id)
+        {
+            using var cmd = conn.CreateCommand();
+            ParamBuilder.Build(cmd, "@id", id);
+            cmd.CommandText = ReadRow.CardExists;
+            bool exists = (bool)cmd.ExecuteReader().Read();
+            return exists;
+        }
     }
 }

@@ -13,7 +13,7 @@ namespace CardShow.Data.SqliteSchema
             WHERE Id=@id";
 
         internal const string Card =
-            @"DELETE FROM CardSets
+            @"DELETE FROM Cards
             WHERE Id=@id";
     }
 }

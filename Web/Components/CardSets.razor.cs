@@ -9,9 +9,6 @@ namespace CardShow.Web.Components
 {
     public partial class CardSets : ComponentBase
     {
-        private bool showAddSet = false;
-        private bool hideDeleteSet = true;
-
         [Parameter]
         public IEnumerable<CardSet> Sets { get; set; }
             = new List<CardSet>();
@@ -23,9 +20,16 @@ namespace CardShow.Web.Components
         [Parameter]
         public CardSet SelectedSet { get; set; } = new();
 
+        private bool showAddSet = false;
+        private bool hideDeleteSet = true;
+
+        private bool showAddCard = false;
+        private void ShowNewCardForm() => showAddCard = true;
+        private void HideNewCardForm() => showAddCard = false;
+
         protected async override Task OnParametersSetAsync()
         {
-            Sets = await CardSetAPIService.GetAll();
+            Sets = await CardSetsAPIService.GetAll();
         }
 
         private async Task ViewSet(int id)
@@ -46,13 +50,13 @@ namespace CardShow.Web.Components
 
         private async void AddSet(CardSet set)
         {
-            using var response = await CardSetAPIService.Add(set);
+            using var response = await CardSetsAPIService.Add(set);
 
             if (response.IsSuccessStatusCode)
             {
                 var content = await response.Content.ReadAsStringAsync();
                 var id = Int32.Parse(content);
-                Sets = await CardSetAPIService.GetAll();
+                Sets = await CardSetsAPIService.GetAll();
                 showAddSet = false;
                 hideDeleteSet = false;
                 SelectedSet = Sets.Where(s =>
@@ -64,11 +68,11 @@ namespace CardShow.Web.Components
         private async Task DeleteSet()
         {
             var id = SelectedSet.Id;
-            using var response = await CardSetAPIService.Delete(id);
+            using var response = await CardSetsAPIService.Delete(id);
 
             if (response.IsSuccessStatusCode)
             {
-                Sets = await CardSetAPIService.GetAll();
+                Sets = await CardSetsAPIService.GetAll();
                 SelectedSet = new();
                 StateHasChanged();
             }
@@ -77,8 +81,31 @@ namespace CardShow.Web.Components
         private async Task GetCards()
         {
             Cards = new List<Card>();
-            var cards = await CardAPIService.GetBySet(SelectedSet.Id);
+            var cards = await CardsAPIService.GetBySet(SelectedSet.Id);
             Cards = cards;
+            await Task.CompletedTask;
+        }
+
+
+        private async Task CreateNewCard(Card card)
+        {
+            card.SetId = SelectedSet.Id;
+            await CardsAPIService.Add(card);
+            await RefreshCardsList();
+        }
+
+        private async Task DeleteCard(int id)
+        {
+            await CardsAPIService.Delete(id);
+            await RefreshCardsList();
+        }
+
+        private async Task RefreshCardsList()
+        {
+            Cards = new List<Card>();
+            await GetCards();
+            showAddCard = false;
+            StateHasChanged();
             await Task.CompletedTask;
         }
     }

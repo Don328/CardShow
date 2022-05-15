@@ -8,5 +8,8 @@ namespace CardShow.Web.Components.SubComponents.Cards
         [Parameter]
         public IEnumerable<Card> Cards { get; set; }
             = new List<Card>();
+
+        [Parameter]
+        public EventCallback<int> OnDelete { get; set; }
     }
 }

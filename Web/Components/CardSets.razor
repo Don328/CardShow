@@ -8,16 +8,16 @@
 
     <div class="col">
         <div class="btn-group-sm">
-            <button type="button" 
-                    class="btn-outline-primary" 
-                    style="width:fit-content;height:fit-content;font-size:small;" 
+            <button type="button"
+                    class="btn-outline-primary"
+                    style="width:fit-content;height:fit-content;font-size:small;"
                     disabled=@showAddSet
                     @onclick=ShowAddSetForm>
                 Add Set
             </button>
-            <button type="button" 
-                    class="btn-outline-danger" 
-                    style="width:fit-content;height:fit-content;font-size:small;" 
+            <button type="button"
+                    class="btn-outline-danger"
+                    style="width:fit-content;height:fit-content;font-size:small;"
                     disabled=@hideDeleteSet
                     @onclick=DeleteSet>
                 Delete
@@ -35,15 +35,38 @@
                         <div class="col">
                             <h4>Cards</h4>
                         </div>
-                        <div class="col">
-                            <button type="button" 
-                                class="btn-sm btn-outline-primary"
-                                style="font-size:x-small;padding:.3em;padding-top:.1em;padding-bottom:.1em">
-                                New
-                            </button>    
-                        </div>
+                        @if (!showAddCard)
+                        {
+                            <div class="col">
+                                <button type="button"
+                                        class="btn-sm btn-outline-primary"
+                                        style="font-size:x-small;padding:.3em;padding-top:.1em;padding-bottom:.1em"
+                                        @onclick=ShowNewCardForm>
+                                    New
+                                </button>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="col">
+                                <button type="button"
+                                        class="btn-sm btn-outline-secondary"
+                                        style="font-size:x-small;padding:.3em;padding-top:.1em;padding-bottom:.1em"
+                                        @onclick=HideNewCardForm>
+                                    Cancel
+                                </button>
+                            </div>
+                        }
                     </div>
-                    <CardList Cards=Cards/>
+                    if (showAddCard)
+                    {
+                        <AddCard CreateCard=CreateNewCard />
+                    }
+                    else
+                    {
+                        <CardList Cards=Cards
+                            OnDelete=DeleteCard/>
+                    }
                 }
             </div>
         </div>

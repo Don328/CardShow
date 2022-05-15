@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 
 namespace CardShow.Web.Services
 {
-    internal static class CardSetAPIService
+    internal static class CardSetsAPIService
     {
         internal static async Task<IEnumerable<CardSet>> GetAll()
         {
@@ -61,7 +61,7 @@ namespace CardShow.Web.Services
 
             using var client = new HttpClient();
             return await client
-                .PostAsJsonAsync<int>(url, id);
+                .PostAsJsonAsync(url, id);
         }
     }
 }

@@ -56,6 +56,21 @@ namespace CardShow.Core.Data
             return Context.GetCardsBySetId(setId);
         }
 
+        public async Task<int> CreateCard(_Card card)
+        {
+            return await Context.CreateCard(card);
+        }
+
+        public async Task DeleteCard(int id)
+        {
+            await Context.DeleteCard(id);
+        }
+
+        public bool CardIsDeleted(int id)
+        {
+            return !Context.CardExists(id);
+        }
+
         public void Dispose()
         {
             if (Context != null)

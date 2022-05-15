@@ -51,6 +51,22 @@ namespace CardShow.Data.Contexts
             return CardTable.GetCardsBySetId(conn, setId);
         }
 
+        public async Task<int> CreateCard(_Card card)
+        {
+            return await CardTable.Create(conn, card);
+        }
+
+        public async Task DeleteCard(int id)
+        {
+            await CardTable.Delete(conn, id);
+        }
+
+        public bool CardExists(int id)
+        {
+            var exists = CardTable.Exists(conn, id);
+            return exists;
+        }
+
         public void Dispose()
         {
             if (conn != null)

@@ -9,6 +9,9 @@ namespace CardShow.Data.Contexts
         Task DeleteSet(int id);
         
         IEnumerable<_Card> GetCardsBySetId(int setId);
+        Task<int> CreateCard(_Card card);
+        Task DeleteCard(int id);
+        bool CardExists(int id);
 
         void Dispose();
     }

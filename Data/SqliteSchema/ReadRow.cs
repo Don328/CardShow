@@ -25,5 +25,11 @@ namespace CardShow.Data.SqliteSchema
                 SetIndex
             FROM Cards
             WHERE Id=@id";
+
+        internal const string CardExists =
+            @"SELECT EXISTS(
+                SELECT 1 
+                FROM Cards
+                WHERE Id=@id);";
     }
 }

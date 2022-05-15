@@ -8,5 +8,13 @@ namespace CardShow.Web.Components.SubComponents.Cards
         [Parameter]
         public Card Card { get; set; }
             = new();
+
+        [Parameter]
+        public EventCallback<int> DeleteCard { get; set; }
+
+        public async Task Delete()
+        {
+            await DeleteCard.InvokeAsync(Card.Id);
+        }
     }
 }
