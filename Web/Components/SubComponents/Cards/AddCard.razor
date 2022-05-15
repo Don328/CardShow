@@ -4,9 +4,25 @@
 <EditForm Model=NewCard OnValidSubmit=OnCreate>
     <DataAnnotationsValidator/>
     <ValidationSummary />
-    <InputText id="name" @bind-Value=NewCard.Name />
-    <InputText id="setIndex" @bind-Value=NewCard.SetIndex />
-    <button id="newCard" type="submit" class="btn-success" @onsubmit=OnCreate>
-        Submit
-    </button>
+    <div class="row">
+        <div class="col" style="max-width:8em;">
+            <label>Player Name</label>
+        </div>
+        <div class="col">
+            <InputText id="name" @bind-Value=NewCard.Name />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col" style="max-width:8em;">
+            <label># In Set</label>
+        </div>
+        <div class="col">
+            <InputText id="setIndex" @bind-Value=NewCard.SetIndex />
+        </div>
+    </div>
+    <div class="row" style="max-width:fit-content;">
+        <button id="newCard" type="submit" class="btn-success" @onsubmit=OnCreate>
+            Submit
+        </button>
+    </div>
 </EditForm>
