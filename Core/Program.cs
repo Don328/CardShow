@@ -1,5 +1,4 @@
 ﻿using CardShow.Core.Data;
-using CardShow.Data.Factories;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;

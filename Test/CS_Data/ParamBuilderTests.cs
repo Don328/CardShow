@@ -1,5 +1,4 @@
 using Xunit;
-using CardShow.Data.Factories;
 using CardShow.Shared.Enums;
 using Microsoft.Data.Sqlite;
 using CardShow.Data.Sqlite;
