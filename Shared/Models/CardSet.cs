@@ -23,12 +23,14 @@ namespace CardShow.Shared.Models
         public int Id { get; set; }
 
         [Required]
+        [Display(Name = "Year")]
         [Range(minYear, maxYear, ErrorMessage = 
             $"Year must be between " +
             $"{minYrStr} and {maxYrStr}")]
         public int Year { get; set; }
 
         [Required]
+        [Display(Name = "Set Name")]
         [MinLength(minName, ErrorMessage = 
             $"Name must be at least " +
             $"{minNameStr} characters")]
@@ -39,7 +41,7 @@ namespace CardShow.Shared.Models
             = string.Empty;
 
         [Required]
-        [Range(1, 10, ErrorMessage = 
+        [Range(1, 7, ErrorMessage = 
             "You must select a Sport")]
         public Sport Sport { get; set; }
     }

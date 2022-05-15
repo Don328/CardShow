@@ -5,13 +5,31 @@
 <EditForm Model=NewSet OnValidSubmit=SubmitNewSet>
     <DataAnnotationsValidator />
     <ValidationSummary />
-    <InputNumber id="year" @bind-Value=NewSet.Year />
-    <InputText id="name" @bind-Value=NewSet.Name />
-    <InputSelect id="sport" @bind-Value=NewSet.Sport>
-        @foreach(var sport in Enum.GetValues(typeof(Sport)))
-        {
-            <option value=@sport>@sport</option>
-        }
-    </InputSelect>
-    <button id="newSet" type="submit" class="btn-success" @onsubmit=SubmitNewSet>Submit</button>
+    <div class="row">
+        <InputSelect id="sport" style="max-width:8em;" @bind-Value=NewSet.Sport>
+            @foreach(var sport in Enum.GetValues(typeof(Sport)))
+            {
+                <option value=@sport>@sport</option>
+            }
+        </InputSelect>
+    </div>
+    <div class="row">
+        <div class="col" style="max-width:3em;">
+            <label>Year</label>
+        </div>
+        <div class="col">
+            <InputNumber id="year" @bind-Value=NewSet.Year style="width:4em"/>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col" style="max-width:3em;">
+            <label>Name</label>
+        </div>
+        <div class="col">
+            <InputText id="name" @bind-Value=NewSet.Name style="width:20em;"/>
+        </div>
+    </div>
+    <div class="row" style="max-width:fit-content">
+        <button id="newSet" type="submit" class="btn-success" @onsubmit=SubmitNewSet>Submit</button>
+    </div>
 </EditForm>

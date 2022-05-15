@@ -5,11 +5,7 @@ namespace CardShow.Web.Components.SubComponents.CardSets;
 
 public partial class AddSet : ComponentBase
 {
-    private CardSet NewSet = new() 
-    { 
-        Year=1980,
-        Name="Set Name"
-    };
+    private CardSet NewSet = new();
 
     [Parameter]
     public EventCallback<CardSet> OnSubmit { get; set;  }

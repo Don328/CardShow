@@ -8,7 +8,7 @@ namespace CardShow.Shared.Enums
 {
     public enum Sport
     {
-        NotSet,
+        Sport,
         Baseball,
         Basketball,
         Football,
