@@ -69,6 +69,22 @@ namespace CardShow.Data.Sqlite.Tables
             await Task.CompletedTask;
         }
 
+        internal static bool Any(
+            SqliteConnection conn,
+            int setId)
+        {
+            using var cmd = conn.CreateCommand();
+            cmd.CommandText = ReadTable.CardsFromSet;
+            ParamBuilder.Build(cmd, "@setId", setId);
+            using var reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                return true;
+            }
+
+            return false;
+        }
+
         internal static bool Exists(
             SqliteConnection conn,
             int id)

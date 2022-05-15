@@ -33,10 +33,13 @@ namespace CardShow.Data.Sqlite.Tables
         internal static async Task DeleteSet(
             SqliteConnection conn, int id)
         {
-            using var cmd = conn.CreateCommand();
-            cmd.CommandText = DeleteRow.Set;
-            ParamBuilder.Build(cmd, "@id", id);
-            cmd.ExecuteNonQuery();
+            if (!CardTable.Any(conn, id))
+            {
+                using var cmd = conn.CreateCommand();
+                cmd.CommandText = DeleteRow.Set;
+                ParamBuilder.Build(cmd, "@id", id);
+                cmd.ExecuteNonQuery();
+            }
 
             await Task.CompletedTask;
         }
