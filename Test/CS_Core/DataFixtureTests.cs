@@ -7,11 +7,11 @@ using Xunit;
 
 namespace CardShow.Test.CS_Core
 {
-    public class DataFixtureTest
+    public class DataFixtureTests
     {
         private readonly DbFixture fixture;
 
-        public DataFixtureTest()
+        public DataFixtureTests()
         {
             var connString = new Dictionary<string, string>()
             { ["ConnectionString"] = "Data Source=:memory:" };

@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace CardShow.Data.Sqlite
 {
-    internal static class ParamBuilder
+    public static class ParamBuilder
     {
-        internal static void Build(
+        public static void Build(
             DbCommand cmd,
             string name,
             object value)
