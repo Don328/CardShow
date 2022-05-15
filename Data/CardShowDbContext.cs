@@ -1,24 +1,17 @@
-﻿using System;
-using System.Data.Common;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.Data.Sqlite;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CardShow.Data.Contexts;
 using CardShow.Data.Models;
-using CardShow.Data.SqliteSchema;
-using System.Data;
-using CardShow.Data.Contexts.Tables;
+using CardShow.Data.Sqlite.Tables;
+using Microsoft.Data.Sqlite;
 
-namespace CardShow.Data.Contexts
+namespace CardShow.Data
 {
-    public class SqliteContext : IDisposable, ICardShowDbContext
+    public class CardShowDbContext : IDisposable, ICardShowDbContext
     {
         private readonly SqliteConnection conn;
 
         public IEnumerable<_CardSet> Sets { get; private set; }
 
-        public SqliteContext(SqliteConnection conn)
+        public CardShowDbContext(SqliteConnection conn)
         {
             this.conn = conn;
             conn.Open();

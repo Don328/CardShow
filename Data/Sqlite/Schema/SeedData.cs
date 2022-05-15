@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CardShow.Data.SqliteSchema
+namespace CardShow.Data.Sqlite.Schema
 {
     internal static class SeedData
     {
@@ -43,7 +43,7 @@ namespace CardShow.Data.SqliteSchema
                 2001,
                 'Upper Deck',
                 5)";
-        
+
         public const string CardSet_4 =
             @"INSERT INTO CardSets(
                 Id,

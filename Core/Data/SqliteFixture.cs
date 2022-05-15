@@ -1,4 +1,4 @@
-﻿using CardShow.Data.Contexts;
+﻿using CardShow.Data;
 using CardShow.Data.Models;
 using Microsoft.Data.Sqlite;
 using Microsoft.Extensions.Configuration;
@@ -20,7 +20,7 @@ namespace CardShow.Core.Data
             // var connStr = config.GetConnectionString("Sqlite_File");
 
             this.conn = new SqliteConnection(connStr);
-            Context = new SqliteContext(conn);
+            Context = new CardShowDbContext(conn);
         }
 
         public IEnumerable<_CardSet> GetAllCardSets()

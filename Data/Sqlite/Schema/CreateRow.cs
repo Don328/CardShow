@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CardShow.Data.SqliteSchema
+namespace CardShow.Data.Sqlite.Schema
 {
     internal static class CreateRow
     {

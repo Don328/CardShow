@@ -1,4 +1,5 @@
 ﻿using CardShow.Data.Models;
+using CardShow.Data.Sqlite.Schema;
 using CardShow.Data.SqliteSchema;
 using Microsoft.Data.Sqlite;
 using System;
@@ -7,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CardShow.Data.Contexts.Tables
+namespace CardShow.Data.Sqlite.Tables
 {
     internal class CardTable
     {
@@ -18,11 +19,11 @@ namespace CardShow.Data.Contexts.Tables
             using (var command = conn.CreateCommand())
             {
                 command.CommandText = ReadTable.CardsFromSet;
-                ParamBuilder.Build(command, "@setId", setId);
+                SqliteParameter.Build(command, "@setId", setId);
 
                 using (var reader = command.ExecuteReader())
                 {
-                    while(reader.Read())
+                    while (reader.Read())
                     {
                         cards.Add(new _Card()
                         {
@@ -45,15 +46,15 @@ namespace CardShow.Data.Contexts.Tables
             using (var cmd = conn.CreateCommand())
             {
                 cmd.CommandText = CreateRow.Card;
-                ParamBuilder.Build(cmd, "@setId", card.SetId);
-                ParamBuilder.Build(cmd, "@name", card.Name);
-                ParamBuilder.Build(cmd, "@setIndex", card.SetIndex);
+                SqliteParameter.Build(cmd, "@setId", card.SetId);
+                SqliteParameter.Build(cmd, "@name", card.Name);
+                SqliteParameter.Build(cmd, "@setIndex", card.SetIndex);
 
                 long cardId = (long)cmd.ExecuteScalar();
                 card.Id = (int)cardId;
 
             }
-            
+
             return await Task.FromResult(card.Id);
         }
 
@@ -62,9 +63,9 @@ namespace CardShow.Data.Contexts.Tables
         {
             using var cmd = conn.CreateCommand();
             cmd.CommandText = DeleteRow.Card;
-            ParamBuilder.Build(cmd, "@id", id);
+            SqliteParameter.Build(cmd, "@id", id);
             cmd.ExecuteNonQuery();
-            
+
             await Task.CompletedTask;
         }
 
@@ -73,14 +74,14 @@ namespace CardShow.Data.Contexts.Tables
             int id)
         {
             using var cmd = conn.CreateCommand();
-            ParamBuilder.Build(cmd, "@id", id);
+            SqliteParameter.Build(cmd, "@id", id);
             cmd.CommandText = ReadRow.Card;
             using var reader = cmd.ExecuteReader();
             while (reader.Read())
             {
                 return true;
             }
-            
+
             return false;
         }
     }

@@ -1,13 +1,13 @@
 ﻿using CardShow.Data.Models;
 
-namespace CardShow.Data.Contexts
+namespace CardShow.Data
 {
     public interface ICardShowDbContext
     {
         IEnumerable<_CardSet> Sets { get; }
         Task<int> CreateSet(_CardSet set);
         Task DeleteSet(int id);
-        
+
         IEnumerable<_Card> GetCardsBySetId(int setId);
         Task<int> CreateCard(_Card card);
         Task DeleteCard(int id);

@@ -1,4 +1,5 @@
 ﻿using CardShow.Data.Models;
+using CardShow.Data.Sqlite.Schema;
 using CardShow.Data.SqliteSchema;
 using Microsoft.Data.Sqlite;
 using System;
@@ -9,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CardShow.Data.Contexts.Tables
+namespace CardShow.Data.Sqlite.Tables
 {
     internal static class CardSetTable
     {
@@ -19,9 +20,9 @@ namespace CardShow.Data.Contexts.Tables
             using (var cmd = conn.CreateCommand())
             {
                 cmd.CommandText = CreateRow.Set;
-                ParamBuilder.Build(cmd, "@year", set.Year);
-                ParamBuilder.Build(cmd, "@name", set.Name);
-                ParamBuilder.Build(cmd, "@sport", set.Sport);
+                SqliteParameter.Build(cmd, "@year", set.Year);
+                SqliteParameter.Build(cmd, "@name", set.Name);
+                SqliteParameter.Build(cmd, "@sport", set.Sport);
                 long setId = (long)cmd.ExecuteScalar();
                 set.Id = (int)setId;
             }
@@ -34,13 +35,13 @@ namespace CardShow.Data.Contexts.Tables
         {
             using var cmd = conn.CreateCommand();
             cmd.CommandText = DeleteRow.Set;
-            ParamBuilder.Build(cmd, "@id", id);
+            SqliteParameter.Build(cmd, "@id", id);
             cmd.ExecuteNonQuery();
 
             await Task.CompletedTask;
         }
 
-        internal static  IEnumerable<_CardSet> TryReadSets(
+        internal static IEnumerable<_CardSet> TryReadSets(
             SqliteConnection conn)
         {
             try

@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CardShow.Data.Contexts
+namespace CardShow.Data.Sqlite
 {
-    internal static class ParamBuilder
+    internal static class SqliteParameter
     {
         internal static void Build(
             DbCommand cmd,
