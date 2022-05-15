@@ -1,5 +1,4 @@
-﻿using CardShow.Data.Contexts;
-using CardShow.Data.Models;
+﻿using CardShow.Data.Models;
 using CardShow.Data.Sqlite.Tables;
 using Microsoft.Data.Sqlite;
 

@@ -20,9 +20,9 @@ namespace CardShow.Data.Sqlite.Tables
             using (var cmd = conn.CreateCommand())
             {
                 cmd.CommandText = CreateRow.Set;
-                SqliteParameter.Build(cmd, "@year", set.Year);
-                SqliteParameter.Build(cmd, "@name", set.Name);
-                SqliteParameter.Build(cmd, "@sport", set.Sport);
+                ParamBuilder.Build(cmd, "@year", set.Year);
+                ParamBuilder.Build(cmd, "@name", set.Name);
+                ParamBuilder.Build(cmd, "@sport", set.Sport);
                 long setId = (long)cmd.ExecuteScalar();
                 set.Id = (int)setId;
             }
@@ -35,7 +35,7 @@ namespace CardShow.Data.Sqlite.Tables
         {
             using var cmd = conn.CreateCommand();
             cmd.CommandText = DeleteRow.Set;
-            SqliteParameter.Build(cmd, "@id", id);
+            ParamBuilder.Build(cmd, "@id", id);
             cmd.ExecuteNonQuery();
 
             await Task.CompletedTask;
@@ -50,8 +50,8 @@ namespace CardShow.Data.Sqlite.Tables
             }
             catch
             {
-                SqliteDbPlant.CreateTable_CardSets(conn);
-                SqliteDbPlant.SeedData_CardSets(conn);
+                DbPlant.CreateTable_CardSets(conn);
+                DbPlant.SeedData_CardSets(conn);
                 return ReadSets(conn);
             }
         }

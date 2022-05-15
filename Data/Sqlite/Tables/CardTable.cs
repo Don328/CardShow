@@ -19,7 +19,7 @@ namespace CardShow.Data.Sqlite.Tables
             using (var command = conn.CreateCommand())
             {
                 command.CommandText = ReadTable.CardsFromSet;
-                SqliteParameter.Build(command, "@setId", setId);
+                ParamBuilder.Build(command, "@setId", setId);
 
                 using (var reader = command.ExecuteReader())
                 {
@@ -46,9 +46,9 @@ namespace CardShow.Data.Sqlite.Tables
             using (var cmd = conn.CreateCommand())
             {
                 cmd.CommandText = CreateRow.Card;
-                SqliteParameter.Build(cmd, "@setId", card.SetId);
-                SqliteParameter.Build(cmd, "@name", card.Name);
-                SqliteParameter.Build(cmd, "@setIndex", card.SetIndex);
+                ParamBuilder.Build(cmd, "@setId", card.SetId);
+                ParamBuilder.Build(cmd, "@name", card.Name);
+                ParamBuilder.Build(cmd, "@setIndex", card.SetIndex);
 
                 long cardId = (long)cmd.ExecuteScalar();
                 card.Id = (int)cardId;
@@ -63,7 +63,7 @@ namespace CardShow.Data.Sqlite.Tables
         {
             using var cmd = conn.CreateCommand();
             cmd.CommandText = DeleteRow.Card;
-            SqliteParameter.Build(cmd, "@id", id);
+            ParamBuilder.Build(cmd, "@id", id);
             cmd.ExecuteNonQuery();
 
             await Task.CompletedTask;
@@ -74,7 +74,7 @@ namespace CardShow.Data.Sqlite.Tables
             int id)
         {
             using var cmd = conn.CreateCommand();
-            SqliteParameter.Build(cmd, "@id", id);
+            ParamBuilder.Build(cmd, "@id", id);
             cmd.CommandText = ReadRow.Card;
             using var reader = cmd.ExecuteReader();
             while (reader.Read())

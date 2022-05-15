@@ -2,7 +2,7 @@
 
 namespace CardShow.Core.Data
 {
-    public interface ICardShowDbFixture
+    public interface IDbFixture
     {
         IEnumerable<_CardSet> GetAllCardSets();
         Task<int> CreateSet(_CardSet set);

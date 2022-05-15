@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CardShow.Shared.Constants.API
+namespace CardShow.Shared.Constants
 {
     public class UrlStrings
     {

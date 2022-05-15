@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CardShow.Data.Sqlite
 {
-    internal static class SqliteDbPlant
+    internal static class DbPlant
     {
         internal static void CreateTable_CardSets(
             SqliteConnection conn)

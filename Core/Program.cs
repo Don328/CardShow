@@ -1,5 +1,4 @@
 ﻿using CardShow.Core.Data;
-using CardShow.Data.Contexts;
 using CardShow.Data.Factories;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -21,7 +20,7 @@ public class Program
         var builder = WebApplication.CreateBuilder(args);
         builder.Services.AddControllers();
         builder.Services.AddEndpointsApiExplorer();
-        builder.Services.AddSingleton<ICardShowDbFixture, SqliteFixture>();
+        builder.Services.AddSingleton<IDbFixture, DbFixture>();
 
         var app = builder.Build();
         app.MapControllers();

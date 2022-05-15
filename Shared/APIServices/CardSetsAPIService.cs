@@ -1,4 +1,4 @@
-﻿using CardShow.Shared.Constants.API;
+﻿using CardShow.Shared.Constants;
 using CardShow.Shared.Models;
 using Newtonsoft.Json;
 using System.Net.Http.Json;

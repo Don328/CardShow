@@ -8,10 +8,10 @@ namespace CardShow.Core.Controllers
     [ApiController]
     public class CardsController : ControllerBase
     {
-        private readonly ICardShowDbFixture fixture;
+        private readonly IDbFixture fixture;
 
         public CardsController(
-            ICardShowDbFixture fixture)
+            IDbFixture fixture)
         {
             this.fixture = fixture;
         }

@@ -5,7 +5,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace CardShow.Core.Data
 {
-    public class SqliteFixture : IDisposable, ICardShowDbFixture
+    public class DbFixture : IDisposable, IDbFixture
     {
         private SqliteConnection conn;
         private readonly IConfiguration config;
@@ -14,7 +14,7 @@ namespace CardShow.Core.Data
 
 
 
-        public SqliteFixture(IConfiguration config)
+        public DbFixture(IConfiguration config)
         {
             var connStr = "Data Source=:memory:";
             // var connStr = config.GetConnectionString("Sqlite_File");
