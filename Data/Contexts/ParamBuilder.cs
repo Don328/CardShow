@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CardShow.Data.Contexts.Tables
+namespace CardShow.Data.Contexts
 {
     internal static class ParamBuilder
     {
