@@ -1,7 +1,9 @@
 ﻿@using Microsoft.AspNetCore.Components.Forms;
 @using Microsoft.AspNetCore.Components.Web;
 
-<EditForm Model=NewCard OnSubmit=OnCreate>
+<EditForm Model=NewCard OnValidSubmit=OnCreate>
+    <DataAnnotationsValidator/>
+    <ValidationSummary />
     <InputText id="name" @bind-Value=NewCard.Name />
     <InputText id="setIndex" @bind-Value=NewCard.SetIndex />
     <button id="newCard" type="submit" class="btn-success" @onsubmit=OnCreate>

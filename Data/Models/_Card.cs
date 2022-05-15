@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CardShow.Data.Models
+﻿namespace CardShow.Data.Models
 {
     public class _Card
     {

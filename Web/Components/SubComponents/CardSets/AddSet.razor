@@ -2,7 +2,9 @@
 @using Microsoft.AspNetCore.Components.Web;
 @using Microsoft.AspNetCore.Components.Forms;
 
-<EditForm Model=NewSet OnSubmit=SubmitNewSet>
+<EditForm Model=NewSet OnValidSubmit=SubmitNewSet>
+    <DataAnnotationsValidator />
+    <ValidationSummary />
     <InputNumber id="year" @bind-Value=NewSet.Year />
     <InputText id="name" @bind-Value=NewSet.Name />
     <InputSelect id="sport" @bind-Value=NewSet.Sport>
