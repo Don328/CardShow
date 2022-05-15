@@ -68,6 +68,18 @@ namespace CardShow.Data.Sqlite.Schema
                 'Topps',
                 3)";
 
+        public const string CardSet_6 =
+            @"INSERT INTO CardSets(
+                Id,
+                Year,
+                Name,
+                Sport)
+            VALUES(
+                6,
+                1991,
+                'Score',
+                4)";
+
         public const string Card_1 =
             @"INSERT INTO Cards(
                 Id,
