@@ -8,11 +8,14 @@ namespace CardShow.Core.Controllers
     [ApiController]
     public class CardsController : ControllerBase
     {
+        private readonly ILogger<CardsController> logger;
         private readonly IDbFixture fixture;
 
         public CardsController(
+            ILogger<CardsController> logger,
             IDbFixture fixture)
         {
+            this.logger = logger;
             this.fixture = fixture;
         }
 
@@ -20,6 +23,9 @@ namespace CardShow.Core.Controllers
         [Route("{setId}")]
         public IEnumerable<_Card> GetBySet([FromRoute]int setId)
         {
+            logger.LogInformation(
+                $"Recieved request to get Card " +
+                $"list for set (id:{setId})");
             var cards = fixture.GetCardsBySet(setId);
             return cards;
         }
@@ -27,7 +33,11 @@ namespace CardShow.Core.Controllers
         [HttpPost]
         public async Task<ActionResult<int>> Create([FromBody]_Card card)
         {
+            logger.LogInformation(
+                $"Recieved a request to " +
+                $"create a new Card for {card.Name}");
             var createdCardId = await fixture.CreateCard(card);
+            logger.LogInformation($"Card Created (id:{createdCardId}) Returning 200 OK");
 
             return StatusCode(200, createdCardId);
         }
@@ -36,10 +46,17 @@ namespace CardShow.Core.Controllers
         [Route("delete")]
         public async Task<IActionResult> Delete([FromBody]int id)
         {
+            logger.LogInformation($"Recieved a request to delete Card (id:{id})");
             await fixture.DeleteCard(id);
-            if (fixture.CardIsDeleted(id))
-                return StatusCode(200);
 
+            logger.LogInformation($"Checking that Card was deleted");
+            if (fixture.CardIsDeleted(id))
+            {
+                logger.LogInformation("Delete successful. Returning 200 OK");
+                return StatusCode(200);
+            }
+
+            logger.LogInformation("Card was not deleleted. Returning 500");
             return StatusCode(500);
         }
     }
