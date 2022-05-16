@@ -8,28 +8,33 @@ namespace CardShow.Core.Data
     public class DbFixture : IDisposable, IDbFixture
     {
         private SqliteConnection conn;
-        private readonly IConfiguration config;
 
         internal ICardShowDbContext Context { get; private set; }
+        private ILogger<DbFixture> logger;
 
 
-
-        public DbFixture(IConfiguration config)
+        public DbFixture(
+            ILogger<DbFixture> logger,
+            IConfiguration config)
         {
+            this.logger = logger;
             var connStr = "Data Source=:memory:";
             // var connStr = config.GetConnectionString("Sqlite_File");
 
             this.conn = new SqliteConnection(connStr);
+            logger.LogInformation("Creating db context");
             Context = new CardShowDbContext(conn);
         }
 
         public IEnumerable<_CardSet> GetAllCardSets()
         {
+            logger.LogInformation("Getting Card Sets");
             return Context.Sets;
         }
 
         public async Task<int> CreateSet(_CardSet set)
         {
+            logger.LogInformation($"Creating new Card Set [{set.Year} {set.Name}]");
             return await Context.CreateSet(set);
         }
 
@@ -41,34 +46,46 @@ namespace CardShow.Core.Data
 
             if (set != null)
             {
+                logger.LogInformation($"Attempting to delete set (id:{id})");
                 await Context.DeleteSet(id);
             }
         }
 
         public bool SetIsDeleted(int id)
         {
-            return !Context.Sets.Where(s =>
+            logger.LogInformation($"Checking if Set (id:{id}) is deleted");
+            var isDeleted = !Context.Sets.Where(s =>
                 s.Id == id).Any();
+            logger.LogInformation($"set (id:{id}) isDeleted:{isDeleted}");
+
+            return isDeleted;
         }
 
         public IEnumerable<_Card> GetCardsBySet(int setId)
         {
+            logger.LogInformation($"Requesting Cards from set (id:{setId})");
             return Context.GetCardsBySetId(setId);
         }
 
         public async Task<int> CreateCard(_Card card)
         {
+            logger.LogInformation($"Creating new Card for: {card.Name}");
             return await Context.CreateCard(card);
         }
 
         public async Task DeleteCard(int id)
         {
+            logger.LogInformation($"Deleting Card (id:{id})");
             await Context.DeleteCard(id);
         }
 
         public bool CardIsDeleted(int id)
         {
-            return !Context.CardExists(id);
+            logger.LogInformation($"Checking if Card (id:{id}) is deleted");
+            var isDeleted = !Context.CardExists(id);
+
+            logger.LogInformation($"Card (id:{id}) isDeleted:{isDeleted}");
+            return isDeleted;
         }
 
         public void Dispose()
