@@ -1,6 +1,7 @@
 ﻿using CardShow.Core.Data;
 using CardShow.Data.Models;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 using System.Linq;
 using Xunit;
@@ -13,13 +14,16 @@ namespace CardShow.Test.CS_Core
 
         public DataFixtureTests()
         {
+            var logFactory = new LoggerFactory();
+            var logger = new Logger<DbFixture>(logFactory);
+
             var connString = new Dictionary<string, string>()
             { ["ConnectionString"] = "Data Source=:memory:" };
             var builder = new ConfigurationBuilder();
             builder.AddInMemoryCollection(connString);
             var config = builder.Build();
 
-            fixture = new DbFixture(config);
+            fixture = new DbFixture(logger, config);
         }
 
         [Fact]
