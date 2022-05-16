@@ -37,8 +37,8 @@ public class Program
     {
         builder.Host.UseSerilog((ctx, lc) => lc
             .WriteTo.Console()
-            .WriteTo.File(
-        $"../.logs/" +
-        $"{DateTime.Now:yyMMdd}_core.txt"));
+            .WriteTo.File("../.logs/" +
+                $"{DateTime.Now:yyMMdd}" +
+                $"_core.txt"));
     }
 }

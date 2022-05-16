@@ -1,27 +1,53 @@
-var builder = WebApplication.CreateBuilder(args);
+using Serilog;
 
-// Add services to the container.
-builder.Services.AddRazorPages();
-builder.Services.AddServerSideBlazor();
+namespace CardShow.Web;
 
-var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
+public class Program
 {
-    app.UseExceptionHandler("/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-    app.UseHsts();
+    public static void Main(string[] args)
+    {
+        var builder = WebApplication.CreateBuilder(args);
+
+        AddLogging(builder);
+
+        builder.Services.AddRazorPages();
+        builder.Services.AddServerSideBlazor();
+
+        var app = builder.Build();
+
+        // Configure the HTTP request pipeline.
+        if (!app.Environment.IsDevelopment())
+        {
+            app.UseExceptionHandler("/Error");
+            // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+            app.UseHsts();
+        }
+
+        app.UseHttpsRedirection();
+        app.UseStaticFiles();
+
+        app.UseRouting();
+
+        app.UseAuthorization();
+
+        app.MapRazorPages();
+        app.MapBlazorHub();
+
+        var logger = app.Services
+            .GetRequiredService<
+            ILogger<Program>>();
+        logger.LogInformation($"Starting CardShow Web at {DateTime.Now}");
+
+        app.Run();
+    }
+
+    private static void AddLogging(WebApplicationBuilder builder)
+    {
+        builder.Host.UseSerilog((ctx, lc) => lc
+            .WriteTo.Console()
+            .WriteTo.File("../.logs/" +
+                $"{DateTime.Now:yyMMdd}" +
+                $"_web.txt"));
+    }
 }
 
-app.UseHttpsRedirection();
-app.UseStaticFiles();
-
-app.UseRouting();
-
-app.UseAuthorization();
-
-app.MapRazorPages();
-app.MapBlazorHub();
-
-app.Run();
