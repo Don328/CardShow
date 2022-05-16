@@ -88,6 +88,33 @@ namespace CardShow.Core.Data
             return isDeleted;
         }
 
+        public IEnumerable<_Assessment> GetCardAssessments(int cardId)
+        {
+            logger.LogInformation($"Requesting assessments for card (id:{cardId})");
+            return Context.GetCardAssessments(cardId);
+        }
+
+        public async Task<int> CreateAssessment(_Assessment assessment)
+        {
+            logger.LogInformation($"Creating new assessment for card (id:{assessment.CardId})");
+            return await Context.CreateAssessment(assessment);
+        }
+
+        public async Task DeleteAssessment(int id)
+        {
+            logger.LogInformation($"Deleting Assessment (id:{id})");
+            await Context.DeleteAssessment(id);
+        }
+
+        public bool AssessmentIsDeleted(int id)
+        {
+            logger.LogInformation($"Checking if Assessment (id:{id}) is deleted");
+            var isDeleted = !Context.AssessmentExists(id);
+
+            logger.LogInformation($"Assessment (id:{id}) isDeleted:{isDeleted}");
+            return isDeleted;
+        }
+
         public void Dispose()
         {
             if (Context != null)

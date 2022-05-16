@@ -55,8 +55,27 @@ namespace CardShow.Data
 
         public bool CardExists(int id)
         {
-            var exists = CardTable.Exists(conn, id);
-            return exists;
+            return CardTable.Exists(conn, id);
+        }
+
+        public IEnumerable<_Assessment> GetCardAssessments(int cardId)
+        {
+            return AssessmentTable.GetCardAssesments(conn, cardId);
+        }
+
+        public async Task<int> CreateAssessment(_Assessment assessment)
+        {
+            return await AssessmentTable.Create(conn, assessment);
+        }
+
+        public async Task DeleteAssessment(int id)
+        {
+            await AssessmentTable.Delete(conn, id);
+        }
+
+        public bool AssessmentExists(int id)
+        {
+            return AssessmentTable.Exists(conn, id);
         }
 
         public void Dispose()

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace CardShow.Data.Sqlite.Tables
 {
-    internal class CardTable
+    internal static class CardTable
     {
         internal static IEnumerable<_Card> GetCardsBySetId(SqliteConnection conn, int setId)
         {
@@ -50,9 +50,8 @@ namespace CardShow.Data.Sqlite.Tables
                 ParamBuilder.Build(cmd, "@name", card.Name);
                 ParamBuilder.Build(cmd, "@setIndex", card.SetIndex);
 
-                long cardId = (long)cmd.ExecuteScalar();
-                card.Id = (int)cardId;
-
+                long rowid = (long)cmd.ExecuteScalar();
+                card.Id = (int)rowid;
             }
 
             return await Task.FromResult(card.Id);

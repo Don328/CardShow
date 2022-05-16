@@ -21,5 +21,16 @@ namespace CardShow.Data.Sqlite.Schema
             VALUES(
                 @setId, @name, @setIndex);
             SELECT last_insert_rowid();";
+
+        internal const string Assessment =
+            @"INSERT INTO Assessments(
+                CardId, Date, HighGrade,
+                LowGrade, Text, Corners,
+                Edges, Centering, Surface)
+            VALUES(
+                @cardId, @date, @highGrade,
+                @lowGrade, @text, @corners,
+                @edges, @centering, @surface);
+            SELECT last_insert_rowid();";
     }
 }

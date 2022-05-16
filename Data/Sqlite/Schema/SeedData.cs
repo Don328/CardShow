@@ -223,5 +223,29 @@ namespace CardShow.Data.Sqlite.Schema
                 5,
                 'Barry Sanders',
                 '415')";
+
+        public const string Assesment_1 =
+            @$"INSERT INTO Assesments(
+                Id,
+                CardId,
+                Date,
+                HighGrade,
+                LowGrade,
+                Text,
+                Corners,
+                Edges,
+                Centering,
+                Surface)
+            VALUES(
+                1,
+                1,
+                '5/16/2022 2:31:19 PM',
+                10,
+                9,
+                'Great looking card',
+                '4 sharp corners'
+                'Crisp edges. No chipping.'
+                'Great centering'
+                'Great color. No marks or dents.')";
     }
 }

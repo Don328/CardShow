@@ -25,5 +25,21 @@ namespace CardShow.Data.Sqlite.Schema
                     SetIndex    VARCHAR(255),
                     FOREIGN KEY(SetId)
                         REFERENCES CardSets(Id))";
+
+        internal const string Assessments =
+            @"CREATE TABLE IF NOT EXISTS
+                Assessments(
+                    Id          INTEGER PRIMARY KEY,
+                    CardId      INTEGER NOT NULL,
+                    Date        DATETIME NOT NULL,
+                    HighGrade   INTEGER,
+                    LowGrade    INTEGER,
+                    Text        VARCHAR(255) NOT NULL,
+                    Corners     VARCHAR(255),
+                    Edges       VARCHAR(255),
+                    Centering   VARCHAR(255),
+                    Surface     VARCHAR(255),
+                    FOREIGN KEY(CardId)
+                        REFERENCES Card(Id))";
     }
 }

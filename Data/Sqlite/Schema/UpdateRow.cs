@@ -8,9 +8,6 @@ namespace CardShow.Data.SqliteSchema
 {
     internal static class UpdateRow
     {
-        //const string Card =
-        //    @"UPDATE Cards
-        //    SET Status=@status
-        //    WHERE Id=@id";
+
     }
 }

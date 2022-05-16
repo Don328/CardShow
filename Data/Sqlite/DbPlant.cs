@@ -15,6 +15,7 @@ namespace CardShow.Data.Sqlite
         {
             new SqliteCommand(CreateTable.CardSets, conn).ExecuteNonQuery();
             new SqliteCommand(CreateTable.Cards, conn).ExecuteNonQuery();
+            new SqliteCommand(CreateTable.Assessments, conn).ExecuteNonQuery();
         }
 
         internal static void SeedData_CardSets(
@@ -39,6 +40,8 @@ namespace CardShow.Data.Sqlite
             new SqliteCommand(SeedData.Card_10, conn).ExecuteNonQuery();
             new SqliteCommand(SeedData.Card_11, conn).ExecuteNonQuery();
             new SqliteCommand(SeedData.Card_12, conn).ExecuteNonQuery();
+            
+            new SqliteCommand(SeedData.Assesment_1, conn).ExecuteNonQuery();
         }
     }
 }

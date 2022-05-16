@@ -25,5 +25,20 @@ namespace CardShow.Data.Sqlite.Schema
                 SetIndex
             FROM Cards
             WHERE Id=@id";
+
+        internal const string Assessment =
+            @"SELECT
+                Id,
+                CardId,
+                Date,
+                HighGrade,
+                LowGrade,
+                Text,
+                Corners,
+                Edges,
+                Centering,
+                Surface
+            FROM Assessments
+            WHERE Id=@id";
     }
 }
