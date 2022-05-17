@@ -9,5 +9,11 @@ namespace CardShow.Web.Components.SubComponents.Assessments
         public Assessment Assessment { get; set; }
             = new();
 
+        private bool showDetails = false;
+
+        private void ToggleDetails()
+        {
+            showDetails = !showDetails;
+        }
     }
 }
