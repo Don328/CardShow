@@ -41,7 +41,7 @@ namespace CardShow.Data.Sqlite
             new SqliteCommand(SeedData.Card_11, conn).ExecuteNonQuery();
             new SqliteCommand(SeedData.Card_12, conn).ExecuteNonQuery();
             
-            new SqliteCommand(SeedData.Assesment_1, conn).ExecuteNonQuery();
+            new SqliteCommand(SeedData.Assessment_1, conn).ExecuteNonQuery();
         }
     }
 }

@@ -11,5 +11,6 @@ namespace CardShow.Shared.Constants
         public const string baseUrl = "http://localhost:51861";
         public const string sets = "/api/sets";
         public const string cards = "/api/cards";
+        public const string assessments = "/api/assessments";
     }
 }

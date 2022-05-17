@@ -224,8 +224,8 @@ namespace CardShow.Data.Sqlite.Schema
                 'Barry Sanders',
                 '415')";
 
-        public const string Assesment_1 =
-            @$"INSERT INTO Assesments(
+        public const string Assessment_1 =
+            @$"INSERT INTO Assessments(
                 Id,
                 CardId,
                 Date,
@@ -243,9 +243,9 @@ namespace CardShow.Data.Sqlite.Schema
                 10,
                 9,
                 'Great looking card',
-                '4 sharp corners'
-                'Crisp edges. No chipping.'
-                'Great centering'
+                '4 sharp corners',
+                'Crisp edges. No chipping.',
+                'Great centering',
                 'Great color. No marks or dents.')";
     }
 }

@@ -1,0 +1,39 @@
+﻿@using Microsoft.AspNetCore.Components;
+@using Microsoft.AspNetCore.Components.Web;
+
+<div class="col">
+    <div class="row">
+        <div class="col">
+            @Assessment.Date.ToString("MMM dd, yyyy")
+        </div>    
+        <div class="col">
+            <div class="row" style="color:green">
+                @Assessment.HighGrade
+            </div>
+            <div class="row" style="color:red">
+                @Assessment.LowGrade
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="row">
+                Corners: @Assessment.Corners
+            </div>
+            <div class="row">
+                Edges: @Assessment.Edges
+            </div>
+        </div>
+        <div class="col">
+            <div class="row">
+                Centering: @Assessment.Centering
+            </div>
+            <div class="row">
+                Surface: @Assessment.Surface
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        Notes: @Assessment.Text
+    </div>
+</div>

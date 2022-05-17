@@ -34,5 +34,8 @@ namespace CardShow.Shared.Models
             $"SetIndex must be 5 characters or less")]
         public string SetIndex { get; set; }
             = string.Empty;
+
+        public IEnumerable<Assessment> Assessments { get; set; }
+            = new List<Assessment>();
     }
 }

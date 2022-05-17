@@ -27,6 +27,7 @@ namespace CardShow.Core.Controllers
                 $"Recieved request to get Card " +
                 $"list for set (id:{setId})");
             var cards = fixture.GetCardsBySet(setId);
+
             return cards;
         }
 

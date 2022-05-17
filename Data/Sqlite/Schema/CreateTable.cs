@@ -40,6 +40,6 @@ namespace CardShow.Data.Sqlite.Schema
                     Centering   VARCHAR(255),
                     Surface     VARCHAR(255),
                     FOREIGN KEY(CardId)
-                        REFERENCES Card(Id))";
+                        REFERENCES Cards(Id))";
     }
 }

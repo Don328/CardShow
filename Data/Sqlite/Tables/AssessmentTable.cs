@@ -15,7 +15,7 @@ namespace CardShow.Data.Sqlite.Tables
         internal static IEnumerable<_Assessment> GetCardAssesments(
             SqliteConnection conn, int cardId)
         {
-            var assesments = new List<_Assessment>();
+            var assessments = new List<_Assessment>();
 
             using (var cmd = conn.CreateCommand())
             {
@@ -26,7 +26,7 @@ namespace CardShow.Data.Sqlite.Tables
                 {
                     while (reader.Read())
                     {
-                        assesments.Add(new _Assessment()
+                        assessments.Add(new _Assessment()
                         {
                             Id = reader.GetInt32(0),
                             CardId = reader.GetInt32(1),
@@ -43,31 +43,31 @@ namespace CardShow.Data.Sqlite.Tables
                 }
             }
 
-            return assesments;
+            return assessments;
         }
 
         internal static async Task<int> Create(
             SqliteConnection conn,
-            _Assessment assesment)
+            _Assessment assessment)
         {
             using (var cmd = conn.CreateCommand())
             {
                 cmd.CommandText = CreateRow.Assessment;
-                ParamBuilder.Build(cmd, "@cardId", assesment.CardId);
-                ParamBuilder.Build(cmd, "@date", assesment.Date);
-                ParamBuilder.Build(cmd, "@highGrade", assesment.HighGrade);
-                ParamBuilder.Build(cmd, "@lowGrade", assesment.LowGrade);
-                ParamBuilder.Build(cmd, "@text", assesment.Text);
-                ParamBuilder.Build(cmd, "@corners", assesment.Corners);
-                ParamBuilder.Build(cmd, "@edges", assesment.Edges);
-                ParamBuilder.Build(cmd, "@centering", assesment.Centering);
-                ParamBuilder.Build(cmd, "@surface", assesment.Surface);
+                ParamBuilder.Build(cmd, "@cardId", assessment.CardId);
+                ParamBuilder.Build(cmd, "@date", assessment.Date);
+                ParamBuilder.Build(cmd, "@highGrade", assessment.HighGrade);
+                ParamBuilder.Build(cmd, "@lowGrade", assessment.LowGrade);
+                ParamBuilder.Build(cmd, "@text", assessment.Text);
+                ParamBuilder.Build(cmd, "@corners", assessment.Corners);
+                ParamBuilder.Build(cmd, "@edges", assessment.Edges);
+                ParamBuilder.Build(cmd, "@centering", assessment.Centering);
+                ParamBuilder.Build(cmd, "@surface", assessment.Surface);
 
                 long rowid = (long)cmd.ExecuteScalar();
-                assesment.Id = (int)rowid;
+                assessment.Id = (int)rowid;
             }
 
-            return await Task.FromResult(assesment.Id);
+            return await Task.FromResult(assessment.Id);
         }
 
         internal static async Task Delete(
