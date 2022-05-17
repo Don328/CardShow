@@ -9,19 +9,39 @@
     <div class="col">
         <div class="btn-group-sm">
             <button type="button"
-                    class="btn-outline-primary"
+                    class="badge btn-outline-primary"
                     style="width:fit-content;height:fit-content;font-size:small;"
                     disabled=@showAddSet
                     @onclick=ShowAddSetForm>
                 Add Set
             </button>
-            <button type="button"
-                    class="btn-outline-danger"
-                    style="width:fit-content;height:fit-content;font-size:small;"
-                    disabled=@hideDeleteSet
-                    @onclick=DeleteSet>
-                Delete
-            </button>
+            @if (deleteEnabled)
+            {
+                <button type="button"
+                        class="badge btn-outline-secondary"
+                        style="width:fit-content;height:fit-content;font-size:small;"
+                        @onclick=EnableDelete>
+                    Cancel
+                </button>                
+                <button type="button"
+                        class="badge btn-outline-danger"
+                        style="width:fit-content;height:fit-content;font-size:small;"
+                        @onclick=DeleteSet>
+                    Confirm
+                </button>
+            }
+            else
+            {
+                <button type="button"
+                        class="badge btn-outline-warning"
+                        style="width:fit-content;height:fit-content;font-size:small;"
+                        @onclick=EnableDelete>
+                    Delete
+                </button>
+            }
+        </div>
+        <div class="row" style="min-height:2em;color:red">
+            @errorMessage
         </div>
         <div class="row" style="margin-top:2em">
             <div class="col" style="max-width:fit-content;">

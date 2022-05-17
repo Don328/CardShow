@@ -3,10 +3,7 @@
 
 <div class="col">
     <div class="row">
-        <div class="col">
-            @Assessment.Date.ToString("MMM dd, yyyy")
-        </div>
-        <div class="col">
+        <div class="col" style="width:fit-content">
             <div class="row" style="color:green">
                 @Assessment.HighGrade
             </div>
@@ -14,34 +11,37 @@
                 @Assessment.LowGrade
             </div>
         </div>
+        <div class="col" style="min-width:fit-content">
+            @Assessment.Date.ToString("MMM dd, yyyy")
+        </div>
     </div>
     @if (showDetails)
     {
         <div class="row">
-            <button type="button" class="btn-sm btn-outline-secondary" @onclick=ToggleDetails>
+            <button type="button" class="badge btn-outline-secondary" style="width:fit-content" @onclick=ToggleDetails>
                 Hide
             </button>
         </div>
-        <div class="row">
-            Corners: @Assessment.Corners
+        <div class="row" style="margin-bottom:.5em;font-size:small;">
+            <strong>Corners: </strong>@Assessment.Corners
         </div>
-        <div class="row">
-            Edges: @Assessment.Edges
+        <div class="row" style="margin-bottom:.5em;font-size:small;">
+            <strong>Edges: </strong>@Assessment.Edges
         </div>
-        <div class="row">
-            Centering: @Assessment.Centering
+        <div class="row" style="margin-bottom:.5em;font-size:small;">
+            <strong>Centering: </strong>@Assessment.Centering
         </div>
-        <div class="row">
-            Surface: @Assessment.Surface
+        <div class="row" style="margin-bottom:.5em;font-size:small;">
+            <strong>Surface: </strong>@Assessment.Surface
         </div>
-        <div class="row">
-            Notes: @Assessment.Text
+        <div class="row" style="margin-bottom:.5em;font-size:small;">
+            <strong>Notes: </strong>@Assessment.Text
         </div>
     }
     else
     {
         <div class="row">
-            <button type="button" class="btn-sm btn-outline-secondary" @onclick=ToggleDetails>
+            <button type="button" class="badge btn-outline-secondary" style="width:fit-content" @onclick=ToggleDetails>
                 Details
             </button>
         </div>

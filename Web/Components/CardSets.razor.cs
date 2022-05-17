@@ -22,13 +22,17 @@ namespace CardShow.Web.Components
         [Parameter]
         public CardSet SelectedSet { get; set; } = new();
 
+        private string errorMessage = string.Empty;
+
         private bool showAddSet = false;
-        private bool hideDeleteSet = true;
+        private bool hasOrphans = true;
+        private bool deleteEnabled = false;
 
         private bool showAddCard = false;
         private void ShowNewCardForm() => showAddCard = true;
         private void HideNewCardForm() => showAddCard = false;
 
+        
         protected async override Task OnParametersSetAsync()
         {
             Sets = await CardSetsAPIService.GetAll();
@@ -38,11 +42,12 @@ namespace CardShow.Web.Components
         {
             showAddSet = false;
             showAddCard = false;
-            hideDeleteSet = false;
+            hasOrphans = false;
             Logger.LogInformation("Getting Cards for selected set");
             SelectedSet = Sets.Where(s =>
                 s.Id == id).First();
             await GetCards();
+            hasOrphans = Cards.Any();
         }
 
         private void ShowAddSetForm()
@@ -50,7 +55,7 @@ namespace CardShow.Web.Components
             SelectedSet = new();
             showAddCard = false;
             showAddSet = true;
-            hideDeleteSet = true;
+            hasOrphans = true;
         }
 
         private async void AddSet(CardSet set)
@@ -65,12 +70,28 @@ namespace CardShow.Web.Components
                 var id = Int32.Parse(content);
                 Sets = await CardSetsAPIService.GetAll();
                 showAddSet = false;
-                hideDeleteSet = false;
+                hasOrphans = false;
                 SelectedSet = Sets.Where(s =>
                     s.Id == id).First();
                 StateHasChanged();
             }
         }
+
+        private async Task EnableDelete()
+        {
+            if (hasOrphans)
+            {
+                deleteEnabled = false;
+                await ShowErrorMessage(
+                    "Set is referenced by one " +
+                    "or more card. Cannot delete");
+            }
+            else
+            {
+                deleteEnabled = !deleteEnabled;
+            }
+        }
+
 
         private async Task DeleteSet()
         {
@@ -84,6 +105,8 @@ namespace CardShow.Web.Components
                 Logger.LogInformation("Set Deleted");
                 Sets = await CardSetsAPIService.GetAll();
                 SelectedSet = new();
+                showAddCard = false;
+                deleteEnabled = false;
                 StateHasChanged();
             }
         }
@@ -112,6 +135,7 @@ namespace CardShow.Web.Components
             Logger.LogInformation($"Requesting to delete card (id:{id})");
             await CardsAPIService.Delete(id);
             await RefreshCardsList();
+            hasOrphans = Cards.Any();
         }
 
         private async Task RefreshCardsList()
@@ -120,6 +144,14 @@ namespace CardShow.Web.Components
             await GetCards();
             showAddCard = false;
             StateHasChanged();
+            await Task.CompletedTask;
+        }
+
+        private async Task ShowErrorMessage(string text)
+        {
+            errorMessage = text;
+            await Task.Delay(2000);
+            errorMessage = string.Empty;
             await Task.CompletedTask;
         }
     }

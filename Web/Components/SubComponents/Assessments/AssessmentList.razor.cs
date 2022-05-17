@@ -8,5 +8,8 @@ namespace CardShow.Web.Components.SubComponents.Assessments
         [Parameter]
         public IEnumerable<Assessment> Assessments { get; set; }
             = new List<Assessment>();
+
+        [Parameter]
+        public int CardId { get; set; }
     }
 }

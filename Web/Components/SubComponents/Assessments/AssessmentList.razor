@@ -1,4 +1,10 @@
-﻿@foreach (var assessment in Assessments)
+﻿<div class="row">
+    <strong>Assessments </strong>
+</div>
+<div class="row">
+    <span style="font-size:x-small">Card Id: @CardId</span>
+</div>
+@foreach (var assessment in Assessments)
 {
     <div class="row">
         <AssessmentView Assessment=assessment />

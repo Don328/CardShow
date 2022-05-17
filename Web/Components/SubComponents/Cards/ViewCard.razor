@@ -14,18 +14,47 @@
             </div>
         </div>
     </div>
-    <div class="row">
-        <button id="delete"
-            type="button"
-                class="btn-sm btn-outline-danger"
-                style="font-size:xx-small;
-                        margin-top:2em;
-                        padding:.1em;"
-                @onclick=Delete>
-            Delete
-        </button>
+    <div class="row" style="float:right;">
+        @if (deleteEnabled)
+        {
+            <button id="delete"
+                type="button"
+                    class="badge btn-outline-danger"
+                    style="font-size:xx-small;
+                            padding:.2em;
+                            max-width:fit-content;"
+                    @onclick=Delete>
+                Confirm
+            </button>
+            <button id="cancel_delete"
+                type="button"
+                    class="badge btn-outline-secondary"
+                    style="font-size:xx-small;
+                            padding:.2em;
+                            max-width:fit-content;"
+                    @onclick=ToggleDeleteEnabled>
+                Cancel
+            </button>
+        }
+        else
+        {
+            <button id="enable_delete"
+                type="button"
+                    class="badge btn-outline-warning"
+                    style="font-size:xx-small;
+                            padding:.2em;
+                            max-width:fit-content;"
+                    @onclick=ToggleDeleteEnabled>
+                Delete
+            </button>
+        }
     </div>
-    <div class="row">
-        <AssessmentList Assessments=Card.Assessments/>
-    </div>
+    @if (Card.Assessments.Count() > 0)
+    {
+        <div class="row">
+            <AssessmentList 
+                Assessments=Card.Assessments
+                CardId=Card.Id/>
+        </div>
+    }
 </div>

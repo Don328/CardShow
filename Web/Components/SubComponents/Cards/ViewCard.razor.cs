@@ -12,6 +12,13 @@ namespace CardShow.Web.Components.SubComponents.Cards
         [Parameter]
         public EventCallback<int> DeleteCard { get; set; }
 
+        private bool deleteEnabled = false;
+
+        private void ToggleDeleteEnabled()
+        {
+            deleteEnabled = !deleteEnabled;
+        }
+
         public async Task Delete()
         {
             await DeleteCard.InvokeAsync(Card.Id);
