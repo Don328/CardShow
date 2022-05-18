@@ -247,5 +247,197 @@ namespace CardShow.Data.Sqlite.Schema
                 'Crisp edges. No chipping.',
                 'Great centering',
                 'Great color. No marks or dents.')";
+
+        public const string Assessment_2 =
+            @$"INSERT INTO Assessments(
+                Id,
+                CardId,
+                Date,
+                HighGrade,
+                LowGrade,
+                Text,
+                Corners,
+                Edges,
+                Centering,
+                Surface)
+            VALUES(
+                2,
+                1,
+                '5/14/2022 2:31:19 PM',
+                10,
+                9,
+                'Great looking card',
+                '4 sharp corners',
+                'Crisp edges. No chipping.',
+                'Great centering',
+                'Great color. No marks or dents.')";
+
+        public const string Assessment_3 =
+            @$"INSERT INTO Assessments(
+                Id,
+                CardId,
+                Date,
+                HighGrade,
+                LowGrade,
+                Text,
+                Corners,
+                Edges,
+                Centering,
+                Surface)
+            VALUES(
+                3,
+                2,
+                '5/15/2022 2:31:19 PM',
+                10,
+                9,
+                'Great looking card',
+                '4 sharp corners',
+                'Crisp edges. No chipping.',
+                'Great centering',
+                'Great color. No marks or dents.')";
+
+        public const string Assessment_4 =
+            @$"INSERT INTO Assessments(
+                Id,
+                CardId,
+                Date,
+                HighGrade,
+                LowGrade,
+                Text,
+                Corners,
+                Edges,
+                Centering,
+                Surface)
+            VALUES(
+                4,
+                3,
+                '5/15/2022 2:31:19 PM',
+                10,
+                9,
+                'Great looking card',
+                '4 sharp corners',
+                'Crisp edges. No chipping.',
+                'Great centering',
+                'Great color. No marks or dents.')";
+
+        public const string Assessment_5 =
+            @$"INSERT INTO Assessments(
+                Id,
+                CardId,
+                Date,
+                HighGrade,
+                LowGrade,
+                Text,
+                Corners,
+                Edges,
+                Centering,
+                Surface)
+            VALUES(
+                5,
+                7,
+                '5/13/2022 2:31:19 PM',
+                10,
+                9,
+                'Great looking card',
+                '4 sharp corners',
+                'Crisp edges. No chipping.',
+                'Great centering',
+                'Great color. No marks or dents.')";
+
+        public const string Assessment_6 =
+            @$"INSERT INTO Assessments(
+                Id,
+                CardId,
+                Date,
+                HighGrade,
+                LowGrade,
+                Text,
+                Corners,
+                Edges,
+                Centering,
+                Surface)
+            VALUES(
+                6,
+                7,
+                '5/12/2022 2:31:19 PM',
+                10,
+                9,
+                'Great looking card',
+                '4 sharp corners',
+                'Crisp edges. No chipping.',
+                'Great centering',
+                'Great color. No marks or dents.')";
+
+        public const string Assessment_7 =
+            @$"INSERT INTO Assessments(
+                Id,
+                CardId,
+                Date,
+                HighGrade,
+                LowGrade,
+                Text,
+                Corners,
+                Edges,
+                Centering,
+                Surface)
+            VALUES(
+                7,
+                9,
+                '5/15/2022 2:31:19 PM',
+                10,
+                9,
+                'Great looking card',
+                '4 sharp corners',
+                'Crisp edges. No chipping.',
+                'Great centering',
+                'Great color. No marks or dents.')";
+
+        public const string Assessment_8 =
+            @$"INSERT INTO Assessments(
+                Id,
+                CardId,
+                Date,
+                HighGrade,
+                LowGrade,
+                Text,
+                Corners,
+                Edges,
+                Centering,
+                Surface)
+            VALUES(
+                8,
+                9,
+                '5/16/2022 2:31:19 PM',
+                10,
+                9,
+                'Great looking card',
+                '4 sharp corners',
+                'Crisp edges. No chipping.',
+                'Great centering',
+                'Great color. No marks or dents.')";
+
+        public const string Assessment_9 =
+            @$"INSERT INTO Assessments(
+                Id,
+                CardId,
+                Date,
+                HighGrade,
+                LowGrade,
+                Text,
+                Corners,
+                Edges,
+                Centering,
+                Surface)
+            VALUES(
+                9,
+                11,
+                '5/15/2022 2:31:19 PM',
+                10,
+                9,
+                'Great looking card',
+                '4 sharp corners',
+                'Crisp edges. No chipping.',
+                'Great centering',
+                'Great color. No marks or dents.')";
     }
 }

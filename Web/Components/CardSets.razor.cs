@@ -125,7 +125,8 @@ namespace CardShow.Web.Components
             foreach (var card in Cards)
             {
                 var assessmentService = new APIService<Assessment>();
-                card.Assessments = await assessmentService.Get(card.Id);
+                var assessments = await assessmentService.Get(card.Id);
+                card.Assessments = assessments.ToList().OrderByDescending(a => a.Date);
             }
 
             await Task.CompletedTask;
