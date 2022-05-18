@@ -9,18 +9,39 @@
     </div>
     @if (showDetails)
     {
-        <div class="row">
-            <button type="button" class="badge btn-outline-secondary" style="width:fit-content" @onclick=ToggleDetails>
-                Hide
-            </button>
-        </div>
+        @if (deleteEnabled)
+        {
+            <div class="row">
+                <div class="btn-group-sm">
+                    <button type="button" class="badge btn-outline-secondary" @onclick=EnableDelete>
+                        Cancel
+                    </button>
+                    <button type="button" class="badge btn-outline-danger" @onclick=OnDelete>
+                        Delete
+                    </button>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="row">
+                <div class="btn-group-sm">
+                    <button type="button" class="badge btn-outline-secondary" style="width:fit-content" @onclick=ToggleDetails>
+                        Hide
+                    </button>
+                    <button type="button" class="badge btn-outline-warning" @onclick=EnableDelete>
+                        Delete
+                    </button>
+                </div>
+            </div>
+        }
         <div class="row">
             <div class="col" style="color:green;max-width:fit-content;">
-                    @Assessment.HighGrade
-                </div>
-                <div class="col" style="color:red;max-width:fit-content;">
-                    @Assessment.LowGrade
-                </div>
+                @Assessment.HighGrade
+            </div>
+            <div class="col" style="color:red;max-width:fit-content;">
+                @Assessment.LowGrade
+            </div>
         </div>
         <div class="row" style="margin-bottom:.5em;font-size:small;color:dimgray;">
             <strong>Corners: </strong>@Assessment.Corners

@@ -1,19 +1,21 @@
 ﻿@if (SelectedSet.Id > 0)
 {
-    <div class="row" style="width:fit-content">
-        <div class="col" style="width:fit-content">
-            @SelectedSet.Year
+    <div class="col">
+        <div class="row" style="width:fit-content">
+            <div class="col" style="width:fit-content">
+                @SelectedSet.Year
+            </div>
+            <div class="col" style="min-width:fit-content;">
+                @SelectedSet.Name
+            </div>
         </div>
-        <div class="col" style="min-width:fit-content;">
-            @SelectedSet.Name
-        </div>
-    </div>
-    <div class="row" style="width:fit-content;">
-        <div class="col" style="width:fit-content">
-            @SelectedSet.Sport
-        </div>
-        <div class="col" style="font-size:xx-small;width:fit-content;margin-top:.5em;float:right">
-            Id: @SelectedSet.Id
+        <div class="row" style="width:fit-content;">
+            <div class="col" style="width:fit-content">
+                @SelectedSet.Sport
+            </div>
+            <div class="col" style="font-size:xx-small;width:fit-content;margin-top:.5em;float:right">
+                Id: @SelectedSet.Id
+            </div>
         </div>
     </div>
 }

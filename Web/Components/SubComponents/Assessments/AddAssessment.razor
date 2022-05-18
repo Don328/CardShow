@@ -1,67 +1,69 @@
 ﻿@using Microsoft.AspNetCore.Components.Forms;
 @using Microsoft.AspNetCore.Components.Web;
 
-<EditForm Model=Assessment OnValidSubmit=OnCreate>
-    <DataAnnotationsValidator/>
-    <div class="row" style="margin:.1em;">
-        <div class="col" style="max-width:6em;">
-            <label>Grade (H)</label>
+<div class="col">
+    <EditForm Model=Assessment OnValidSubmit=OnCreate>
+        <DataAnnotationsValidator />
+        <div class="row" style="margin:.1em;">
+            <div class="col" style="max-width:6em;">
+                <label>Grade (H)</label>
+            </div>
+            <div class="col">
+                <InputNumber @bind-Value=Assessment.HighGrade style="max-width:3em" />
+            </div>
         </div>
-        <div class="col">
-            <InputNumber @bind-Value=Assessment.HighGrade style="max-width:3em"/>
+        <div class="row" style="margin:.1em;">
+            <div class="col" style="max-width:6em;">
+                <label>Grade (L)</label>
+            </div>
+            <div class="col">
+                <InputNumber @bind-Value=Assessment.LowGrade style="max-width:3em" />
+            </div>
         </div>
-    </div>
-    <div class="row" style="margin:.1em;">
-        <div class="col" style="max-width:6em;">
-            <label>Grade (L)</label>
+        <div class="row" style="margin:.1em;">
+            <div class="col" style="max-width:6em;">
+                <label>Corners</label>
+            </div>
+            <div class="col">
+                <InputText @bind-Value=Assessment.Corners />
+            </div>
         </div>
-        <div class="col">
-            <InputNumber @bind-Value=Assessment.LowGrade style="max-width:3em"/>
+        <div class="row" style="margin:.1em;">
+            <div class="col" style="max-width:6em;">
+                <label>Edges</label>
+            </div>
+            <div class="col">
+                <InputText @bind-Value=Assessment.Edges />
+            </div>
         </div>
-    </div>
-    <div class="row" style="margin:.1em;">
-        <div class="col" style="max-width:6em;">
-            <label>Corners</label>
+        <div class="row" style="margin:.1em;">
+            <div class="col" style="max-width:6em;">
+                <label>Centering</label>
+            </div>
+            <div class="col">
+                <InputText @bind-Value=Assessment.Centering />
+            </div>
         </div>
-        <div class="col">
-            <InputText @bind-Value=Assessment.Corners/>
+        <div class="row" style="margin:.1em;">
+            <div class="col" style="max-width:6em;">
+                <label>Surface</label>
+            </div>
+            <div class="col">
+                <InputText @bind-Value=Assessment.Surface />
+            </div>
         </div>
-    </div>
-    <div class="row" style="margin:.1em;">
-        <div class="col" style="max-width:6em;">
-            <label>Edges</label>
+        <div class="row" style="margin:.1em;">
+            <div class="col" style="max-width:6em;">
+                <label>Summary</label>
+            </div>
+            <div class="col">
+                <InputTextArea @bind-Value=Assessment.Text />
+            </div>
+
         </div>
-        <div class="col">
-            <InputText @bind-Value=Assessment.Edges/>
-        </div>
-    </div>
-    <div class="row" style="margin:.1em;">
-        <div class="col" style="max-width:6em;">
-            <label>Centering</label>
-        </div>
-        <div class="col">
-            <InputText @bind-Value=Assessment.Centering/>
-        </div>
-    </div>
-    <div class="row" style="margin:.1em;">
-        <div class="col" style="max-width:6em;">
-            <label>Surface</label>
-        </div>
-        <div class="col">
-            <InputText @bind-Value=Assessment.Surface/>
-        </div>
-    </div>    
-    <div class="row" style="margin:.1em;">
-        <div class="col" style="max-width:6em;">
-            <label>Summary</label>
-        </div>
-        <div class="col">
-            <InputTextArea @bind-Value=Assessment.Text/>
-        </div>
-        
-    </div>
-    <button type="submit" class="badge btn-outline-success">
-        Submit
-    </button>
-    <ValidationSummary/>
-</EditForm>
+        <button type="submit" class="badge btn-outline-success">
+            Submit
+        </button>
+        <ValidationSummary />
+    </EditForm>
+</div>

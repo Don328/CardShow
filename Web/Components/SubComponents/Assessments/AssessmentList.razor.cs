@@ -15,6 +15,9 @@ namespace CardShow.Web.Components.SubComponents.Assessments
         [Parameter]
         public EventCallback<Assessment> CreateAssessment { get; set; }
 
+        [Parameter]
+        public EventCallback<int> DeleteAssessment { get; set; }
+
         private bool showForm = false;
 
         private void ToggleForm()
@@ -26,6 +29,7 @@ namespace CardShow.Web.Components.SubComponents.Assessments
         {
             assessment.CardId = CardId;
             await CreateAssessment.InvokeAsync(assessment);
+            ToggleForm();
             await Task.CompletedTask;
         }
     }

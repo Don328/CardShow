@@ -15,6 +15,9 @@ namespace CardShow.Web.Components.SubComponents.Cards
         [Parameter]
         public EventCallback<Assessment> CreateAssessment { get; set; }
 
+        [Parameter]
+        public EventCallback<int> DeleteAssessment { get; set; }
+
         private bool deleteEnabled = false;
 
         private void ToggleDeleteEnabled()

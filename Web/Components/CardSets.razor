@@ -2,11 +2,11 @@
 @using Microsoft.AspNetCore.Components.Web;
 @using CardShow.Web.Components.SubComponents.CardSets;
 
-<div class="row">
+<div class="row" style="min-width:fit-content;">
     <SetList Sets=Sets
              OnViewSet=ViewSet />
 
-    <div class="col">
+    <div class="col" style="min-width:fit-content">
         @if (SelectedSet.Id < 1)
         {
             <div class="row">
@@ -99,7 +99,8 @@
                 {
                     <CardList Cards=Cards
                       OnDelete=DeleteCard
-                      CreateAssessment=CreateAssessment/>
+                      CreateAssessment=CreateAssessment
+                      DeleteAssessment=DeleteAssessment />
                 }
             </div>
         }

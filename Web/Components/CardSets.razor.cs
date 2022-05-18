@@ -152,6 +152,14 @@ namespace CardShow.Web.Components
             Logger.LogInformation($"Requesting to Create new Assessment for Card (Id: {assessment.CardId}");
             await AssessmentAPIService.Add(assessment);
             await RefreshCardsList();
+            await Task.CompletedTask;
+        }
+
+        private async Task DeleteAssessment(int id)
+        {
+            Logger.LogInformation($"Requesting to Delete Assessment (Id:{id})");
+            await AssessmentAPIService.Delete(id);
+            await RefreshCardsList();
         }
 
         private async Task ShowErrorMessage(string text)

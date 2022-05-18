@@ -19,20 +19,20 @@
         {
             <button id="delete"
                 type="button"
-                    class="badge btn-outline-danger"
-                    style="font-size:xx-small;
+                class="badge btn-outline-danger"
+                style="font-size:xx-small;
                             padding:.2em;
                             max-width:fit-content;"
-                    @onclick=Delete>
+                @onclick=Delete>
                 Confirm
             </button>
             <button id="cancel_delete"
                 type="button"
-                    class="badge btn-outline-secondary"
-                    style="font-size:xx-small;
+                class="badge btn-outline-secondary"
+                style="font-size:xx-small;
                             padding:.2em;
                             max-width:fit-content;"
-                    @onclick=ToggleDeleteEnabled>
+                @onclick=ToggleDeleteEnabled>
                 Cancel
             </button>
         }
@@ -40,22 +40,22 @@
         {
             <button id="enable_delete"
                 type="button"
-                    class="badge btn-outline-warning"
-                    style="font-size:xx-small;
+                class="badge btn-outline-warning"
+                style="font-size:xx-small;
                             padding:.2em;
                             max-width:fit-content;"
-                    @onclick=ToggleDeleteEnabled>
+                @onclick=ToggleDeleteEnabled>
                 Delete
             </button>
         }
     </div>
-    @if (Card.Assessments.Count() > 0)
-    {
-        <div class="row">
-            <AssessmentList 
-                CreateAssessment=CreateAssessment
-                Assessments=Card.Assessments
-                CardId=Card.Id/>
-        </div>
-    }
+</div>
+<div class="col">
+
+    <div class="row">
+        <AssessmentList Assessments=Card.Assessments
+                        CardId=Card.Id
+                        CreateAssessment=CreateAssessment
+                        DeleteAssessment=DeleteAssessment />
+    </div>
 </div>

@@ -1,13 +1,28 @@
 ﻿@using Microsoft.AspNetCore.Components.Web;
 
 <div class="row" style="margin-top:2em;">
-    <strong>Assessments </strong>
-</div>
-<div class="row">
-    <div class="col">
-        <span style="font-size:x-small">Card Id: @CardId</span>
+    <div class="col" style="max-width:fit-content;">
+        <div class="row">
+            <strong style="color:dimgray">Assessments </strong>
+        </div>
+        <div class="row">
+            <span style="font-size:x-small">Card Id: @CardId</span>
+        </div>
     </div>
-    <div class="col">
+    @if(showForm)
+    {
+    <div class="col" style="float:left;">
+        <button type="button" 
+                class="badge btn-outline-secondary"
+                style="font-size:x-small;"
+                @onclick=ToggleForm>
+            Cancel
+        </button>
+    </div>        
+    }
+    else
+    {
+    <div class="col" style="float:left;">
         <button type="button" 
                 class="badge btn-outline-primary"
                 style="font-size:x-small;"
@@ -15,17 +30,30 @@
             New
         </button>
     </div>
+        
+    }
 </div>
 @if(!showForm)
 {
-    @foreach (var assessment in Assessments)
+    @if(Assessments.Count() > 0)
     {
-        <div class="row">
-            <AssessmentView Assessment=assessment />
-        </div>
+        @foreach (var assessment in Assessments)
+        {
+            <div class="row">
+                <AssessmentView Assessment=assessment
+                    Delete=DeleteAssessment/>
+            </div>
+        }
     }
+    else
+    {
+        <span style="margin-bottom:1em;">none</span>
+    }
+
 }
 else
 {
-    <AddAssessment CreateAssessment=OnCreateAssessment />
+    <div class="row">
+        <AddAssessment CreateAssessment=OnCreateAssessment />
+    </div>
 }
