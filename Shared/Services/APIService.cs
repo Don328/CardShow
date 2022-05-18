@@ -21,12 +21,23 @@ namespace CardShow.Shared.Services
             type = typeof(T);
         }
 
-
         public async Task<IEnumerable<T>> Get(int? parentId)
         {
+
+            string url;
+
             IEnumerable<T> list;
             reqType = APIRequestType.Get;
-            var url = UrlBuilder.Build(type, reqType, parentId);
+
+            if (parentId == null)
+            { 
+                url = UrlBuilder.Build(type, reqType);
+            }
+            else 
+            {
+                url = UrlBuilder.Build(type, reqType, (int)parentId);
+            }
+
             using var client = new HttpClient();
             using var response = await client.GetAsync(url);
 
@@ -60,7 +71,7 @@ namespace CardShow.Shared.Services
         public async Task<HttpResponseMessage> Add(T newEntry)
         {
             reqType = APIRequestType.Add;
-            var url = UrlBuilder.Build(type, reqType, null);
+            var url = UrlBuilder.Build(type, reqType);
             using var client = new HttpClient();
 
             return await client.PostAsJsonAsync(url, newEntry);
@@ -69,7 +80,7 @@ namespace CardShow.Shared.Services
         public async Task<HttpResponseMessage> Delete(int id)
         {
             reqType = APIRequestType.Delete;
-            var url = UrlBuilder.Build(type, reqType, null);
+            var url = UrlBuilder.Build(type, reqType, id);
             using var client = new HttpClient();
             return await client.PostAsJsonAsync(url, id);
         }

@@ -22,25 +22,39 @@ namespace CardShow.Shared.Services
         private static string AssessmentsByCardUrl(int cardId) => UrlStrings.baseUrl + UrlStrings.assessments + $"/{cardId}";
         private static string DeleteAssessmentUrl() => UrlStrings.baseUrl + UrlStrings.assessments + "/delete";
 
-        internal static string Build(Type type, APIRequestType reqType, int? parentId)
+        internal static string Build(Type type, APIRequestType reqType)
         {
-            if (reqType == APIRequestType.Get
-                || reqType == APIRequestType.Add)
+            if (reqType == APIRequestType.Get)
+            {
+                if (type == typeof(CardSet))
+                    return SetsUrl();
+            }
+
+            if (reqType == APIRequestType.Add)
             {
                 if (type == typeof(CardSet))
                     return SetsUrl();
                 if (type == typeof(Card))
-                {
-                    if (parentId != null)
-                        return CardsBySetUrl((int)parentId);
                     return CardsUrl();
+                if (type == typeof(Assessment))
+                    return AssessmentsUrl();
+            }
+
+            return String.Empty;
+        }
+
+        internal static string Build(Type type, APIRequestType reqType, int parentId)
+        {
+            if (reqType == APIRequestType.Get)
+            {
+                if (type == typeof(Card))
+                {
+                    return CardsBySetUrl((int)parentId);
                 }
+            
                 if (type == typeof(Assessment))
                 {
-                    if (parentId != null)
-                        return AssessmentsByCardUrl((int)parentId);
-                    return AssessmentsUrl();
-
+                    return AssessmentsByCardUrl((int)parentId);
                 }
             }
 
