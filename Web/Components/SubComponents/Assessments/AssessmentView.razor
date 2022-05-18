@@ -3,14 +3,6 @@
 
 <div class="col">
     <div class="row">
-        <div class="col" style="width:fit-content">
-            <div class="row" style="color:green">
-                @Assessment.HighGrade
-            </div>
-            <div class="row" style="color:red">
-                @Assessment.LowGrade
-            </div>
-        </div>
         <div class="col" style="min-width:fit-content">
             @Assessment.Date.ToString("MMM dd, yyyy")
         </div>
@@ -22,19 +14,27 @@
                 Hide
             </button>
         </div>
-        <div class="row" style="margin-bottom:.5em;font-size:small;">
+        <div class="row">
+            <div class="col" style="color:green;max-width:fit-content;">
+                    @Assessment.HighGrade
+                </div>
+                <div class="col" style="color:red;max-width:fit-content;">
+                    @Assessment.LowGrade
+                </div>
+        </div>
+        <div class="row" style="margin-bottom:.5em;font-size:small;color:dimgray;">
             <strong>Corners: </strong>@Assessment.Corners
         </div>
-        <div class="row" style="margin-bottom:.5em;font-size:small;">
+        <div class="row" style="margin-bottom:.5em;font-size:small;color:dimgray;">
             <strong>Edges: </strong>@Assessment.Edges
         </div>
-        <div class="row" style="margin-bottom:.5em;font-size:small;">
+        <div class="row" style="margin-bottom:.5em;font-size:small;color:dimgray;">
             <strong>Centering: </strong>@Assessment.Centering
         </div>
-        <div class="row" style="margin-bottom:.5em;font-size:small;">
+        <div class="row" style="margin-bottom:.5em;font-size:small;color:dimgray;">
             <strong>Surface: </strong>@Assessment.Surface
         </div>
-        <div class="row" style="margin-bottom:.5em;font-size:small;">
+        <div class="row" style="margin-bottom:.5em;font-size:small;color:dimgray;">
             <strong>Notes: </strong>@Assessment.Text
         </div>
     }

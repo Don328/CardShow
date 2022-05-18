@@ -150,7 +150,7 @@ namespace CardShow.Web.Components
         private async Task ShowErrorMessage(string text)
         {
             errorMessage = text;
-            await Task.Delay(2000);
+            await Task.Delay(5000);
             errorMessage = string.Empty;
             await Task.CompletedTask;
         }

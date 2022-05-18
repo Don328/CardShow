@@ -7,93 +7,105 @@
              OnViewSet=ViewSet />
 
     <div class="col">
-        <div class="btn-group-sm">
-            <button type="button"
-                    class="badge btn-outline-primary"
-                    style="width:fit-content;height:fit-content;font-size:small;"
-                    disabled=@showAddSet
-                    @onclick=ShowAddSetForm>
-                Add Set
-            </button>
-            @if (deleteEnabled)
-            {
-                <button type="button"
+        @if (SelectedSet.Id < 1)
+        {
+            <div class="row">
+                <div class="btn-group-sm">
+                    <button type="button"
+                        class="badge btn-outline-primary"
+                        style="width:fit-content;height:fit-content;font-size:small;"
+                        disabled=@showAddSet
+                        @onclick=ShowAddSetForm>
+                        Add Set
+                    </button>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="row">
+                <div class="btn-group-sm">
+                    <button type="button"
+                        class="badge btn-outline-primary"
+                        style="width:fit-content;height:fit-content;font-size:small;"
+                        disabled=@showAddSet
+                        @onclick=ShowAddSetForm>
+                        Add Set
+                    </button>
+                    @if (deleteEnabled)
+                    {
+                        <button type="button"
                         class="badge btn-outline-secondary"
                         style="width:fit-content;height:fit-content;font-size:small;"
                         @onclick=EnableDelete>
-                    Cancel
-                </button>                
-                <button type="button"
+                            Cancel
+                        </button>
+                        <button type="button"
                         class="badge btn-outline-danger"
                         style="width:fit-content;height:fit-content;font-size:small;"
                         @onclick=DeleteSet>
-                    Confirm
-                </button>
-            }
-            else
-            {
-                <button type="button"
-                        class="badge btn-outline-warning"
-                        style="width:fit-content;height:fit-content;font-size:small;"
-                        @onclick=EnableDelete>
-                    Delete
-                </button>
-            }
-        </div>
-        <div class="row" style="min-height:2em;color:red">
-            @errorMessage
-        </div>
-        <div class="row" style="margin-top:2em">
-            <div class="col" style="max-width:fit-content;">
-                @if (SelectedSet.Id > 0)
-                {
-                    <h3>Selected Set</h3>
-                    <div class="col" style="max-width:fit-content;margin-bottom:2em;">
-                        <ViewSet SelectedSet=SelectedSet />
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <h4>Cards</h4>
-                        </div>
-                        @if (!showAddCard)
-                        {
-                            <div class="col">
-                                <button type="button"
-                                        class="btn-sm btn-outline-primary"
-                                        style="font-size:x-small;padding:.3em;padding-top:.1em;padding-bottom:.1em"
-                                        @onclick=ShowNewCardForm>
-                                    New
-                                </button>
-                            </div>
-                        }
-                        else
-                        {
-                            <div class="col">
-                                <button type="button"
-                                        class="btn-sm btn-outline-secondary"
-                                        style="font-size:x-small;padding:.3em;padding-top:.1em;padding-bottom:.1em"
-                                        @onclick=HideNewCardForm>
-                                    Cancel
-                                </button>
-                            </div>
-                        }
-                    </div>
-                    if (showAddCard)
-                    {
-                        <AddCard CreateCard=CreateNewCard />
+                            Confirm
+                        </button>
                     }
                     else
                     {
-                        <CardList Cards=Cards
-                            OnDelete=DeleteCard/>
+                        <button type="button"
+                        class="badge btn-outline-warning"
+                        style="width:fit-content;height:fit-content;font-size:small;"
+                        @onclick=EnableDelete>
+                            Delete
+                        </button>
                     }
+                </div>
+            </div>
+            <div class="row" style="min-height:2em;color:red">
+                @errorMessage
+            </div>
+            <div class="row" style="max-width:fit-content;">
+                <h3>Selected Set</h3>
+                <div class="col" style="max-width:fit-content;margin-bottom:2em;">
+                    <ViewSet SelectedSet=SelectedSet />
+                </div>
+                <div class="row">
+                    <div class="col" style="max-width:fit-content;">
+                        <h4>Cards</h4>
+                    </div>
+                    <div class="col">
+                        @if (!showAddCard)
+                        {
+                            <button type="button"
+                            class="btn-sm btn-outline-primary"
+                            style="font-size:x-small;padding:.3em;padding-top:.1em;padding-bottom:.1em"
+                            @onclick=ShowNewCardForm>
+                                New
+                            </button>
+                        }
+                        else
+                        {
+                            <button type="button"
+                            class="btn-sm btn-outline-secondary"
+                            style="font-size:x-small;padding:.3em;padding-top:.1em;padding-bottom:.1em"
+                            @onclick=HideNewCardForm>
+                                Cancel
+                            </button>
+                        }
+                    </div>
+                </div>
+                @if (showAddCard)
+                {
+                    <AddCard CreateCard=CreateNewCard />
+                }
+                else
+                {
+                    <CardList Cards=Cards
+                      OnDelete=DeleteCard />
                 }
             </div>
-        </div>
-        @if (showAddSet)
-        {
-            <h3>New Set</h3>
-            <AddSet OnSubmit=AddSet />
         }
     </div>
+    @if (showAddSet)
+    {
+        <h3>New Set</h3>
+        <AddSet OnSubmit=AddSet />
+    }
 </div>
