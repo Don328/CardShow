@@ -147,6 +147,13 @@ namespace CardShow.Web.Components
             await Task.CompletedTask;
         }
 
+        private async Task CreateAssessment(Assessment assessment)
+        {
+            Logger.LogInformation($"Requesting to Create new Assessment for Card (Id: {assessment.CardId}");
+            await AssessmentAPIService.Add(assessment);
+            await RefreshCardsList();
+        }
+
         private async Task ShowErrorMessage(string text)
         {
             errorMessage = text;

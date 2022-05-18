@@ -1,12 +1,31 @@
-﻿<div class="row" style="margin-top:2em;">
+﻿@using Microsoft.AspNetCore.Components.Web;
+
+<div class="row" style="margin-top:2em;">
     <strong>Assessments </strong>
 </div>
 <div class="row">
-    <span style="font-size:x-small">Card Id: @CardId</span>
-</div>
-@foreach (var assessment in Assessments)
-{
-    <div class="row">
-        <AssessmentView Assessment=assessment />
+    <div class="col">
+        <span style="font-size:x-small">Card Id: @CardId</span>
     </div>
+    <div class="col">
+        <button type="button" 
+                class="badge btn-outline-primary"
+                style="font-size:x-small;"
+                @onclick=ToggleForm>
+            New
+        </button>
+    </div>
+</div>
+@if(!showForm)
+{
+    @foreach (var assessment in Assessments)
+    {
+        <div class="row">
+            <AssessmentView Assessment=assessment />
+        </div>
+    }
+}
+else
+{
+    <AddAssessment CreateAssessment=OnCreateAssessment />
 }

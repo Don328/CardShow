@@ -11,5 +11,8 @@ namespace CardShow.Web.Components.SubComponents.Cards
 
         [Parameter]
         public EventCallback<int> OnDelete { get; set; }
+
+        [Parameter]
+        public EventCallback<Assessment> CreateAssessment { get; set; }
     }
 }

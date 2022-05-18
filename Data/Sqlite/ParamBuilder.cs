@@ -26,6 +26,8 @@ namespace CardShow.Data.Sqlite
                 p.DbType = DbType.Int32;
             else if (type == typeof(string))
                 p.DbType = DbType.String;
+            else if (type == typeof(DateTime))
+                p.DbType = DbType.DateTime;
             else
                 throw new ArgumentException(
                     $"Unrecognized Type: {type}");
