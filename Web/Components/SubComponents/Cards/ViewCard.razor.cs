@@ -18,11 +18,14 @@ namespace CardShow.Web.Components.SubComponents.Cards
         [Parameter]
         public EventCallback<int> DeleteAssessment { get; set; }
 
-        private bool deleteEnabled = false;
+        private bool deleteDisabled = true;
+
+        private const string deleteWarning =
+            "Deleting card will delete attached assessments";
 
         private void ToggleDeleteEnabled()
         {
-            deleteEnabled = !deleteEnabled;
+            deleteDisabled = !deleteDisabled;
         }
 
         public async Task Delete()

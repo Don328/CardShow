@@ -23,7 +23,6 @@ namespace CardShow.Shared.Services
 
         public async Task<IEnumerable<T>> Get(int? parentId)
         {
-
             string url;
 
             IEnumerable<T> list;

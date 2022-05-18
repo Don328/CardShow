@@ -14,8 +14,14 @@
             </div>
         </div>
     </div>
+    <div class="row" style="height:2em;">
+        @if (Card.Assessments.Count() > 0)
+        {
+            <lablel hidden=@deleteDisabled style="color:red">@deleteWarning</lablel>
+        }
+    </div>
     <div class="row">
-        @if (deleteEnabled)
+        @if (!deleteDisabled)
         {
             <button id="delete"
                 type="button"
