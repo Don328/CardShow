@@ -1,8 +1,8 @@
 ﻿using CardShow.Shared.Models;
-using CardShow.Shared.APIServices;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Newtonsoft.Json;
+using CardShow.Shared.Services;
 
 namespace CardShow.Web.Components
 {
@@ -35,7 +35,8 @@ namespace CardShow.Web.Components
         
         protected async override Task OnParametersSetAsync()
         {
-            Sets = await CardSetsAPIService.GetAll();
+            var apiService = new APIService<CardSet>();
+            Sets = await apiService.Get(null);
         }
 
         private async Task ViewSet(int id)
@@ -61,14 +62,15 @@ namespace CardShow.Web.Components
         private async void AddSet(CardSet set)
         {
             Logger.LogInformation($"Sending Request to add a new Set ({set.Year} {set.Name})");
-            using var response = await CardSetsAPIService.Add(set);
+            var apiService = new APIService<CardSet>();
+            using var response = await apiService.Add(set);
             Logger.LogInformation($"Request response status code: {response.StatusCode}");
             if (response.IsSuccessStatusCode)
             {
                 Logger.LogInformation("CardSet was created");
                 var content = await response.Content.ReadAsStringAsync();
                 var id = Int32.Parse(content);
-                Sets = await CardSetsAPIService.GetAll();
+                Sets = await apiService.Get(null);
                 showAddSet = false;
                 hasOrphans = false;
                 SelectedSet = Sets.Where(s =>
@@ -97,13 +99,14 @@ namespace CardShow.Web.Components
         {
             var id = SelectedSet.Id;
             Logger.LogInformation($"Sending request to delete Set (id:{id})");
-            using var response = await CardSetsAPIService.Delete(id);
+            var apiService = new APIService<CardSet>();
+            using var response = await apiService.Delete(id);
             Logger.LogInformation($"Response status code: {response.StatusCode}");
 
             if (response.IsSuccessStatusCode)
             {
                 Logger.LogInformation("Set Deleted");
-                Sets = await CardSetsAPIService.GetAll();
+                Sets = await apiService.Get(null);
                 SelectedSet = new();
                 showAddCard = false;
                 deleteEnabled = false;
@@ -116,8 +119,15 @@ namespace CardShow.Web.Components
             var id = SelectedSet.Id;
             Logger.LogInformation($"Requesting Cards for Selected Set (id:{id})");
             Cards = new List<Card>();
-            var cards = await CardsAPIService.GetBySet(id);
-            Cards = cards;
+            var cardService = new APIService<Card>();
+            Cards = await cardService.Get(id);
+            
+            foreach (var card in Cards)
+            {
+                var assessmentService = new APIService<Assessment>();
+                card.Assessments = await assessmentService.Get(card.Id);
+            }
+
             await Task.CompletedTask;
         }
 
@@ -126,14 +136,16 @@ namespace CardShow.Web.Components
         {
             card.SetId = SelectedSet.Id;
             Logger.LogInformation($"Requesting to Create new Card for {card.Name}");
-            await CardsAPIService.Add(card);
+            var apiService = new APIService<Card>();
+            await apiService.Add(card);
             await RefreshCardsList();
         }
 
         private async Task DeleteCard(int id)
         {
             Logger.LogInformation($"Requesting to delete card (id:{id})");
-            await CardsAPIService.Delete(id);
+            var apiService = new APIService<Card>();
+            await apiService.Delete(id);
             await RefreshCardsList();
             hasOrphans = Cards.Any();
         }
@@ -150,7 +162,8 @@ namespace CardShow.Web.Components
         private async Task CreateAssessment(Assessment assessment)
         {
             Logger.LogInformation($"Requesting to Create new Assessment for Card (Id: {assessment.CardId}");
-            await AssessmentAPIService.Add(assessment);
+            var apiService = new APIService<Assessment>();
+            await apiService.Add(assessment);
             await RefreshCardsList();
             await Task.CompletedTask;
         }
@@ -158,7 +171,8 @@ namespace CardShow.Web.Components
         private async Task DeleteAssessment(int id)
         {
             Logger.LogInformation($"Requesting to Delete Assessment (Id:{id})");
-            await AssessmentAPIService.Delete(id);
+            var apiService = new APIService<Assessment>();
+            await apiService.Delete(id);
             await RefreshCardsList();
         }
 
