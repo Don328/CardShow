@@ -50,6 +50,15 @@ namespace CardShow.Data
 
         public async Task DeleteCard(int id)
         {
+            var assessments = AssessmentTable.GetCardAssesments(conn, id);
+            if (assessments.Any())
+            {
+                foreach (var assessment in assessments)
+                {
+                    await AssessmentTable.Delete(conn, assessment.Id);
+                }
+            }
+
             await CardTable.Delete(conn, id);
         }
 
