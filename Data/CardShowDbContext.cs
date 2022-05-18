@@ -14,33 +14,32 @@ namespace CardShow.Data
         {
             this.conn = conn;
             conn.Open();
-            Sets = CardSetTable.TryReadSets(conn);
+            Sets = CardSetTable.TryReadSets(conn).Result;
         }
 
         public async Task<int> CreateSet(_CardSet set)
         {
             var id = await CardSetTable.Create(conn, set);
-
-            RefreshSetsList();
+            await RefreshSetsList();
             return await Task.FromResult(id);
         }
 
         public async Task DeleteSet(int id)
         {
             await CardSetTable.DeleteSet(conn, id);
-            RefreshSetsList();
+            await RefreshSetsList();
+        }
+
+        private async Task RefreshSetsList()
+        {
+            Sets = new List<_CardSet>();
+            Sets = await CardSetTable.ReadSets(conn);
             await Task.CompletedTask;
         }
 
-        private void RefreshSetsList()
+        public async Task<IEnumerable<_Card>> GetCardsBySetId(int setId)
         {
-            Sets = new List<_CardSet>();
-            Sets = CardSetTable.ReadSets(conn);
-        }
-
-        public IEnumerable<_Card> GetCardsBySetId(int setId)
-        {
-            return CardTable.GetCardsBySetId(conn, setId);
+            return await CardTable.GetCardsBySetId(conn, setId);
         }
 
         public async Task<int> CreateCard(_Card card)
@@ -62,14 +61,15 @@ namespace CardShow.Data
             await CardTable.Delete(conn, id);
         }
 
-        public bool CardExists(int id)
+        public async Task<bool> CardExists(int id)
         {
-            return CardTable.Exists(conn, id);
+            return await CardTable.Exists(conn, id);
         }
 
-        public IEnumerable<_Assessment> GetCardAssessments(int cardId)
+        public async Task<IEnumerable<_Assessment>> GetCardAssessments(int cardId)
         {
-            return AssessmentTable.GetCardAssesments(conn, cardId);
+            return await Task.FromResult(
+                AssessmentTable.GetCardAssesments(conn, cardId));
         }
 
         public async Task<int> CreateAssessment(_Assessment assessment)
@@ -82,9 +82,9 @@ namespace CardShow.Data
             await AssessmentTable.Delete(conn, id);
         }
 
-        public bool AssessmentExists(int id)
+        public async Task<bool> AssessmentExists(int id)
         {
-            return AssessmentTable.Exists(conn, id);
+            return await AssessmentTable.Exists(conn, id);
         }
 
         public void Dispose()

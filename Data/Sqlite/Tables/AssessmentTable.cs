@@ -81,7 +81,7 @@ namespace CardShow.Data.Sqlite.Tables
             await Task.CompletedTask;
         }
 
-        internal static bool Any(
+        internal static async Task<bool> Any(
             SqliteConnection conn,
             int cardId)
         {
@@ -91,13 +91,13 @@ namespace CardShow.Data.Sqlite.Tables
             using var reader = cmd.ExecuteReader();
             while (reader.Read())
             {
-                return true;
+                return await Task.FromResult(true);
             }
 
-            return false;
+            return await Task.FromResult(false);
         }
 
-        internal static bool Exists(
+        internal static async Task<bool> Exists(
             SqliteConnection conn,
             int id)
         {
@@ -106,10 +106,10 @@ namespace CardShow.Data.Sqlite.Tables
             using var reader = cmd.ExecuteReader();
             while (reader.Read())
             {
-                return true;
+                return await Task.FromResult(true);
             }
 
-            return false;
+            return await Task.FromResult(false);
         }
     }
 }

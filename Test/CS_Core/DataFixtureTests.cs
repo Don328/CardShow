@@ -27,9 +27,9 @@ namespace CardShow.Test.CS_Core
         }
 
         [Fact]
-        public void Test_DbEntryExists()
+        public async void Test_DbEntryExists()
         {
-            Assert.False(fixture.SetIsDeleted(1));
+            Assert.False(await fixture.SetIsDeleted(1));
         }
 
         [Fact]
@@ -49,18 +49,18 @@ namespace CardShow.Test.CS_Core
                 Sport = 3
             };
 
-            Assert.True(fixture.SetIsDeleted(7));
+            Assert.True(await fixture.SetIsDeleted(7));
             var id = await fixture.CreateSet(set);
-            Assert.False(fixture.SetIsDeleted(7));
+            Assert.False(await fixture.SetIsDeleted(7));
             await fixture.DeleteSet(id);
-            Assert.True(fixture.SetIsDeleted(7));
+            Assert.True(await fixture.SetIsDeleted(7));
         }
 
         [Fact]
-        public void Test_GetCardsBySet()
+        public async void Test_GetCardsBySet()
         {
-            Assert.NotEmpty(fixture.GetCardsBySet(1));
-            Assert.Empty(fixture.GetCardsBySet(6));
+            Assert.NotEmpty(await fixture.GetCardsBySet(1));
+            Assert.Empty(await fixture.GetCardsBySet(6));
         }
 
         [Fact]
@@ -73,22 +73,22 @@ namespace CardShow.Test.CS_Core
                 SetIndex = "1"
             };
 
-            Assert.True(fixture.CardIsDeleted(13));
+            Assert.True(await fixture.CardIsDeleted(13));
             await fixture.CreateCard(card);
-            Assert.False(fixture.CardIsDeleted(13));
+            Assert.False(await fixture.CardIsDeleted(13));
             await fixture.DeleteCard(13);
-            Assert.True(fixture.CardIsDeleted(13));
+            Assert.True(await fixture.CardIsDeleted(13));
         }
 
         [Fact]
         public async void Test_DeleteSetOrphanConstraint()
         {
-            Assert.False(fixture.SetIsDeleted(5));
-            var cards = fixture.GetCardsBySet(5);
+            Assert.False(await fixture.SetIsDeleted(5));
+            var cards = await fixture.GetCardsBySet(5);
             
             // Set should not delete if cards are orphaned
             await fixture.DeleteSet(5);
-            Assert.False(fixture.SetIsDeleted(5));
+            Assert.False(await fixture.SetIsDeleted(5));
             
             foreach(var card in cards)
             {
@@ -97,7 +97,7 @@ namespace CardShow.Test.CS_Core
 
             // Set should delete when no cards are attached
             await fixture.DeleteSet(5);
-            Assert.True(fixture.SetIsDeleted(5));
+            Assert.True(await fixture.SetIsDeleted(5));
         }
     }
 }

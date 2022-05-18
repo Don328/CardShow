@@ -54,7 +54,9 @@ namespace CardShow.Core.Controllers
             await fixture.DeleteSet(id);
 
             logger.LogInformation("Checking that delete was successful");
-            if(fixture.SetIsDeleted(id))
+            
+            var isDeleted = await fixture.SetIsDeleted(id);
+            if(isDeleted)
             {
                 logger.LogInformation("Returning 200 OK");
                 return StatusCode(200);

@@ -51,20 +51,20 @@ namespace CardShow.Core.Data
             }
         }
 
-        public bool SetIsDeleted(int id)
+        public async Task<bool> SetIsDeleted(int id)
         {
             logger.LogInformation($"Checking if Set (id:{id}) is deleted");
-            var isDeleted = !Context.Sets.Where(s =>
+            var exists = Context.Sets.Where(s =>
                 s.Id == id).Any();
-            logger.LogInformation($"set (id:{id}) isDeleted:{isDeleted}");
+            logger.LogInformation($"set (id:{id}) isDeleted:{!exists}");
 
-            return isDeleted;
+            return await Task.FromResult(!exists);
         }
 
-        public IEnumerable<_Card> GetCardsBySet(int setId)
+        public async Task<IEnumerable<_Card>> GetCardsBySet(int setId)
         {
             logger.LogInformation($"Requesting Cards from set (id:{setId})");
-            return Context.GetCardsBySetId(setId);
+            return await Context.GetCardsBySetId(setId);
         }
 
         public async Task<int> CreateCard(_Card card)
@@ -79,19 +79,20 @@ namespace CardShow.Core.Data
             await Context.DeleteCard(id);
         }
 
-        public bool CardIsDeleted(int id)
+        public async Task<bool> CardIsDeleted(int id)
         {
             logger.LogInformation($"Checking if Card (id:{id}) is deleted");
-            var isDeleted = !Context.CardExists(id);
+            var exists = await Context.CardExists(id);
 
-            logger.LogInformation($"Card (id:{id}) isDeleted:{isDeleted}");
-            return isDeleted;
+
+            logger.LogInformation($"Card (id:{id}) isDeleted:{!exists}");
+            return !exists;
         }
 
-        public IEnumerable<_Assessment> GetCardAssessments(int cardId)
+        public async Task<IEnumerable<_Assessment>> GetCardAssessments(int cardId)
         {
             logger.LogInformation($"Requesting assessments for card (id:{cardId})");
-            return Context.GetCardAssessments(cardId);
+            return await Context.GetCardAssessments(cardId);
         }
 
         public async Task<int> CreateAssessment(_Assessment assessment)
@@ -106,13 +107,13 @@ namespace CardShow.Core.Data
             await Context.DeleteAssessment(id);
         }
 
-        public bool AssessmentIsDeleted(int id)
+        public async Task<bool> AssessmentIsDeleted(int id)
         {
             logger.LogInformation($"Checking if Assessment (id:{id}) is deleted");
-            var isDeleted = !Context.AssessmentExists(id);
+            var exists = await Context.AssessmentExists(id);
 
-            logger.LogInformation($"Assessment (id:{id}) isDeleted:{isDeleted}");
-            return isDeleted;
+            logger.LogInformation($"Assessment (id:{id}) isDeleted:{!exists}");
+            return !exists;
         }
 
         public void Dispose()

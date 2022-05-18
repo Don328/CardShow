@@ -33,7 +33,8 @@ namespace CardShow.Data.Sqlite.Tables
         internal static async Task DeleteSet(
             SqliteConnection conn, int id)
         {
-            if (!CardTable.Any(conn, id))
+            var hasCards = await CardTable.Any(conn, id);
+            if (!hasCards)
             {
                 using var cmd = conn.CreateCommand();
                 cmd.CommandText = DeleteRow.Set;
@@ -44,22 +45,22 @@ namespace CardShow.Data.Sqlite.Tables
             await Task.CompletedTask;
         }
 
-        internal static IEnumerable<_CardSet> TryReadSets(
+        internal static async Task<IEnumerable<_CardSet>> TryReadSets(
             SqliteConnection conn)
         {
             try
             {
-                return ReadSets(conn);
+                return await ReadSets(conn);
             }
             catch
             {
                 DbPlant.CreateTable_CardSets(conn);
                 DbPlant.SeedData_CardSets(conn);
-                return ReadSets(conn);
+                return await ReadSets(conn);
             }
         }
 
-        internal static IEnumerable<_CardSet> ReadSets(
+        internal static async Task<IEnumerable<_CardSet>> ReadSets(
             SqliteConnection conn)
         {
             var sets = new List<_CardSet>();
@@ -82,7 +83,7 @@ namespace CardShow.Data.Sqlite.Tables
                 };
             }
 
-            return sets;
+            return await Task.FromResult(sets);
         }
     }
 }

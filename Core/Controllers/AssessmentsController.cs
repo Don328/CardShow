@@ -21,14 +21,13 @@ namespace CardShow.Core.Controllers
 
         [HttpGet]
         [Route("{cardId}")]
-        public IEnumerable<_Assessment> GetByCard([FromRoute] int cardId)
+        public async Task<IEnumerable<_Assessment>> GetByCard([FromRoute] int cardId)
         {
             logger.LogInformation(
                 $"Recieved request to get Assessment " +
                 $"list for card (id:{cardId})");
 
-            var assessments = fixture.GetCardAssessments(cardId);
-            return assessments;
+            return await fixture.GetCardAssessments(cardId);
        }
 
         [HttpPost]
@@ -51,7 +50,8 @@ namespace CardShow.Core.Controllers
             await fixture.DeleteAssessment(id);
 
             logger.LogInformation($"Checking that Assessment was deleted");
-            if (fixture.AssessmentIsDeleted(id))
+            var isDeleted = await fixture.AssessmentIsDeleted(id);
+            if (isDeleted)
             {
                 logger.LogInformation("Delete successful. Returning 200 OK");
                 return StatusCode(200);
