@@ -3,7 +3,7 @@
 @using CardShow.Web.Components.SubComponents.CardSets;
 
 <div class="row" style="min-width:fit-content;">
-    <SetList Sets=Sets
+    <ListSets Sets=Sets
              OnViewSet=ViewSet />
 
     <div class="col" style="min-width:fit-content">
@@ -97,7 +97,7 @@
                 }
                 else
                 {
-                    <CardList Cards=Cards
+                    <ListCards Cards=Cards
                       OnDelete=DeleteCard
                       CreateAssessment=CreateAssessment
                       DeleteAssessment=DeleteAssessment />

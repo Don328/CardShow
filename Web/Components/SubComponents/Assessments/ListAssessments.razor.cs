@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Components;
 
 namespace CardShow.Web.Components.SubComponents.Assessments
 {
-    public partial class AssessmentList : ComponentBase
+    public partial class ListAssessments: ComponentBase
     {
         [Parameter]
         public IEnumerable<Assessment> Assessments { get; set; }

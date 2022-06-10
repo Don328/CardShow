@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Components;
 
 namespace CardShow.Web.Components.SubComponents.Assessments
 {
-    public partial class AssessmentView : ComponentBase
+    public partial class ViewAssessment: ComponentBase
     {
         [Parameter]
         public Assessment Assessment { get; set; }
