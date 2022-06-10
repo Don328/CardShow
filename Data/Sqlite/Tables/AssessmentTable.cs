@@ -26,19 +26,17 @@ namespace CardShow.Data.Sqlite.Tables
                 {
                     while (reader.Read())
                     {
-                        assessments.Add(new _Assessment()
-                        {
-                            Id = reader.GetInt32(0),
-                            CardId = reader.GetInt32(1),
-                            Date = reader.GetDateTime(2),
-                            HighGrade = reader.GetInt32(3),
-                            LowGrade = reader.GetInt32(4),
-                            Text = reader.GetString(5),
-                            Corners = reader.GetString(6),
-                            Edges = reader.GetString(7),
-                            Centering = reader.GetString(8),
-                            Surface = reader.GetString(9)
-                        });
+                        assessments.Add(new _Assessment(
+                            id:         reader.GetInt32(0),
+                            cardId:     reader.GetInt32(1),
+                            date:       reader.GetDateTime(2),
+                            highGrade:  reader.GetInt32(3),
+                            lowGrade:   reader.GetInt32(4),
+                            text:       reader.GetString(5),
+                            corners:    reader.GetString(6),
+                            edges:      reader.GetString(7),
+                            centering:  reader.GetString(8),
+                            surface:    reader.GetString(9)));
                     }
                 }
             }
@@ -50,6 +48,8 @@ namespace CardShow.Data.Sqlite.Tables
             SqliteConnection conn,
             _Assessment assessment)
         {
+            int createdId;
+
             using (var cmd = conn.CreateCommand())
             {
                 cmd.CommandText = CreateRow.Assessment;
@@ -64,10 +64,10 @@ namespace CardShow.Data.Sqlite.Tables
                 ParamBuilder.Build(cmd, "@surface", assessment.Surface);
 
                 long rowid = (long)cmd.ExecuteScalar();
-                assessment.Id = (int)rowid;
+                createdId = (int)rowid;
             }
 
-            return await Task.FromResult(assessment.Id);
+            return await Task.FromResult(createdId);
         }
 
         internal static async Task Delete(

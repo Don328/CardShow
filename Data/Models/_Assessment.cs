@@ -8,20 +8,44 @@ namespace CardShow.Data.Models
 {
     public class _Assessment
     {
-        public int Id { get; set; }
-        public int CardId { get; set; }
-        public DateTime Date { get; set; }
-        public int HighGrade { get; set; }
-        public int LowGrade { get; set; }
-        public string Text { get; set; }
+        public _Assessment(
+            int cardId,
+            DateTime date,
+            int highGrade,
+            int lowGrade,
+            string text,
+            string corners,
+            string edges,
+            string centering,
+            string surface,
+            int id = 0)
+        {
+            Id = id;
+            CardId = cardId;
+            Date = date;
+            HighGrade = highGrade;
+            LowGrade = lowGrade;
+            Text = text;
+            Corners = corners;
+            Edges = edges;
+            Centering = centering;
+            Surface = surface;
+        }
+
+        public int Id { get; }
+        public int CardId { get; }
+        public DateTime Date { get; }
+        public int HighGrade { get; }
+        public int LowGrade { get; }
+        public string Text { get; }
             = string.Empty;
-        public string Corners { get; set; }
+        public string Corners { get; }
             = string.Empty;
-        public string Edges { get; set; }
+        public string Edges { get; }
             = string.Empty;
-        public string Centering { get; set; }
+        public string Centering { get; }
             = string.Empty;
-        public string Surface { get; set; }
+        public string Surface { get; }
             = string.Empty;
     }
 }

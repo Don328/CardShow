@@ -17,6 +17,8 @@ namespace CardShow.Data.Sqlite.Tables
         internal static async Task<int> Create(
             SqliteConnection conn, _CardSet set)
         {
+            int createdId;
+
             using (var cmd = conn.CreateCommand())
             {
                 cmd.CommandText = CreateRow.Set;
@@ -24,10 +26,10 @@ namespace CardShow.Data.Sqlite.Tables
                 ParamBuilder.Build(cmd, "@name", set.Name);
                 ParamBuilder.Build(cmd, "@sport", set.Sport);
                 long setId = (long)cmd.ExecuteScalar();
-                set.Id = (int)setId;
+                createdId = (int)setId;
             }
 
-            return await Task.FromResult(set.Id);
+            return await Task.FromResult(createdId);
         }
 
         internal static async Task DeleteSet(
@@ -72,13 +74,11 @@ namespace CardShow.Data.Sqlite.Tables
                 {
                     while (reader.Read())
                     {
-                        sets.Add(new _CardSet()
-                        {
-                            Id = reader.GetInt32(0),
-                            Year = reader.GetInt32(1),
-                            Name = reader.GetString(2),
-                            Sport = reader.GetInt32(3)
-                        });
+                        sets.Add(new _CardSet(
+                            id:     reader.GetInt32(0),
+                            year:   reader.GetInt32(1),
+                            name:   reader.GetString(2),
+                            sport:  reader.GetInt32(3)));
                     }
                 };
             }

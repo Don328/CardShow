@@ -24,16 +24,14 @@ namespace CardShow.Data.Sqlite.Tables
                 using var reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    cards.Add(new _Card()
-                    {
-                        Id = reader.GetInt32(0),
-                        SetId = reader.GetInt32(1),
-                        Name = reader.GetString(2),
-                        SetIndex = reader.GetString(3)
-                    });
+                    cards.Add(new _Card(
+                        id:         reader.GetInt32(0),
+                        setId:      reader.GetInt32(1),
+                        name:       reader.GetString(2),
+                        setIndex:   reader.GetString(3)));
                 }
             }
-
+            
             return await Task.FromResult(cards);
         }
 
@@ -41,6 +39,8 @@ namespace CardShow.Data.Sqlite.Tables
             SqliteConnection conn,
             _Card card)
         {
+            int createdId;
+
             using (var cmd = conn.CreateCommand())
             {
                 cmd.CommandText = CreateRow.Card;
@@ -49,10 +49,10 @@ namespace CardShow.Data.Sqlite.Tables
                 ParamBuilder.Build(cmd, "@setIndex", card.SetIndex);
 
                 long rowid = (long)cmd.ExecuteScalar();
-                card.Id = (int)rowid;
+                createdId = (int)rowid;
             }
 
-            return await Task.FromResult(card.Id);
+            return await Task.FromResult(createdId);
         }
 
         internal static async Task Delete(

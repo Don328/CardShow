@@ -2,11 +2,23 @@
 {
     public class _Card
     {
-        public int Id { get; set; }
-        public int SetId { get; set; }
-        public string Name { get; set; }
+        public _Card(
+            int setId,
+            string name,
+            string setIndex,
+            int id = 0)
+        {
+            Id = id;
+            SetId = setId;
+            Name = name;
+            SetIndex = setIndex;
+        }
+
+        public int Id { get; }
+        public int SetId { get; }
+        public string Name { get; }
             = string.Empty;
-        public string SetIndex { get; set; }
+        public string SetIndex { get; }
             = string.Empty;
     }
 }

@@ -42,12 +42,10 @@ namespace CardShow.Test.CS_Core
         [Fact]
         public async void Test_CreateAndDelteSet()
         {
-            var set = new _CardSet()
-            {
-                Name = "Fleer",
-                Year = 1989,
-                Sport = 3
-            };
+            var set = new _CardSet(
+                name:   "Fleer",
+                year:   1989,
+                sport:  3);
 
             Assert.True(await fixture.SetIsDeleted(7));
             var id = await fixture.CreateSet(set);
@@ -66,12 +64,10 @@ namespace CardShow.Test.CS_Core
         [Fact]
         public async void Test_CreateAndDeleteCard()
         {
-            var card = new _Card()
-            {
-                SetId = 1,
-                Name = "Test Card",
-                SetIndex = "1"
-            };
+            var card = new _Card(
+                setId:      1,
+                name:       "Test Card",
+                setIndex:   "1");
 
             Assert.True(await fixture.CardIsDeleted(13));
             await fixture.CreateCard(card);
