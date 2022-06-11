@@ -26,7 +26,10 @@ namespace CardShow.Web.Components.SubComponents.Assessments
         private void DefaultView() => viewMode = ViewMode.Default;
 
 
-        private async Task Delete() =>
+        private async Task Delete()
+        {
             await OnDelete.InvokeAsync(Assessment.Id);
+            DefaultView();
+        }
     }
 }

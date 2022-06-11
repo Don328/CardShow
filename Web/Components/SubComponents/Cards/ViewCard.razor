@@ -4,34 +4,37 @@
 
 @if (viewMode == ViewMode.Default)
 {
-    <div class="row" style="margin-bottom:2em">
-        <button type="button"
-            class="badge btn-outline-warning"
-            style="font-size:small;
+    <div class="col" style="width:fit-content">
+
+        <div class="row" style="margin-bottom:2em">
+            <button type="button"
+                class="badge btn-outline-warning"
+                style="font-size:small;
                         width:fit-content;
                         height:fit-content;"
-            @onclick=EnableDelete>
-            Delete
-        </button>
-    </div>
-    <div class="row">
-        <div class="col" style="width:fit-content;">
-            <strong style="color:dimgray;width:fit-content">Assessments </strong>
-        </div>
-        <div class="col" style="width:fit-content;">
-            <button type="button"
-                class="badge btn-outline-primary"
-                style="font-size:small;
-                            width:fit-content;
-                            height:fit-content"
-                @onclick=ShowNewAssessmentForm>
-                New
+                @onclick=EnableDelete>
+                Delete
             </button>
         </div>
+        <div class="row">
+            <div class="col" style="width:fit-content;">
+                <strong style="color:dimgray;width:fit-content">Assessments </strong>
+            </div>
+            <div class="col" style="width:fit-content;">
+                <button type="button"
+                    class="badge btn-outline-primary"
+                    style="font-size:small;
+                            width:fit-content;
+                            height:fit-content"
+                    @onclick=ShowNewAssessmentForm>
+                    New
+                </button>
+            </div>
+        </div>
+        <hr />
+        <ListAssessments Assessments=assessments
+                     OnDelete=DeleteAssessment />
     </div>
-    <hr />
-    <ListAssessments Assessments=assessments
-                 OnDelete=DeleteAssessment />
 }
 
 @if (viewMode == ViewMode.DeleteCard)

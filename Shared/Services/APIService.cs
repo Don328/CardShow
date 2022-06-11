@@ -15,7 +15,6 @@ namespace CardShow.Shared.Services
     public class APIService<T> : IAPIService<T>
     {
         private readonly Type type;
-        private APIRequestType reqType;
 
         public APIService()
         {
@@ -24,20 +23,19 @@ namespace CardShow.Shared.Services
 
         public async Task<IEnumerable<T>> Get()
         {
-            var url = UrlBuilder.Build(type, reqType);
+            var url = UrlBuilder.Build(type, APIRequestType.Get);
             return await SubmitGetRequest(url);
         }
 
         public async Task<IEnumerable<T>> Get(int parentId)
         {
-            var url = UrlBuilder.Build(type, reqType, (int)parentId);
+            var url = UrlBuilder.Build(type, APIRequestType.Get, (int)parentId);
             return await SubmitGetRequest(url);
         }
 
         public async Task<HttpResponseMessage> Add(T newEntry)
         {
-            reqType = APIRequestType.Add;
-            var url = UrlBuilder.Build(type, reqType);
+            var url = UrlBuilder.Build(type, APIRequestType.Add);
             using var client = new HttpClient();
 
             return await client.PostAsJsonAsync(url, newEntry);
@@ -45,8 +43,7 @@ namespace CardShow.Shared.Services
 
         public async Task<HttpResponseMessage> Delete(int id)
         {
-            reqType = APIRequestType.Delete;
-            var url = UrlBuilder.Build(type, reqType, id);
+            var url = UrlBuilder.Build(type, APIRequestType.Delete, id);
             using var client = new HttpClient();
             return await client.PostAsJsonAsync(url, id);
         }
@@ -54,7 +51,6 @@ namespace CardShow.Shared.Services
         private async Task<IEnumerable<T>> SubmitGetRequest(string url)
         {
             IEnumerable<T> list;
-            reqType = APIRequestType.Get;
 
             using var client = new HttpClient();
             using var response = await client.GetAsync(url);

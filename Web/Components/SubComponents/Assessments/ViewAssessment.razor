@@ -5,32 +5,51 @@
 
 <div class="col" style="min-width:fit-content">
     @Assessment.Date.ToString("MMM dd, yyyy")
-</div>
 
-@if (viewMode == ViewMode.Default)
-{
-    <div class="row">
-        <button type="button" class="badge btn-outline-secondary" style="width:fit-content" @onclick=ShowDetails>
-            Details
-        </button>
-    </div>
-}
-
-@if (viewMode == ViewMode.Detail)
-{
-    <AssessmentInfo Assessment=Assessment/>
-}
-
-@if (viewMode == ViewMode.Delete)
-{
-    <div class="row">
-        <div class="btn-group-sm">
-            <button type="button" class="badge btn-outline-secondary" @onclick=EnableDelete>
-                Cancel
-            </button>
-            <button type="button" class="badge btn-outline-danger" @onclick=Delete>
-                Delete
+    @if (viewMode == ViewMode.Default)
+    {
+        <div class="row">
+            <button type="button" class="badge btn-outline-secondary" style="width:fit-content" @onclick=ShowDetails>
+                Details
             </button>
         </div>
-    </div>
-}
+    }
+
+    @if (viewMode == ViewMode.Detail)
+    {
+        <div class="row">
+            <div class="btn-group-sm">
+                <button type="button" 
+                    class="badge btn-outline-secondary" 
+                    style="width:fit-content" 
+                    @onclick=DefaultView>
+                    Hide
+                </button>
+                <button type="button" 
+                    class="badge btn-outline-warning" 
+                    @onclick=EnableDelete>
+                    Delete
+                </button>
+            </div>
+        </div>
+        <AssessmentInfo Assessment=Assessment />
+    }
+
+    @if (viewMode == ViewMode.Delete)
+    {
+        <div class="row">
+            <div class="btn-group-sm">
+                <button type="button" 
+                    class="badge btn-outline-secondary" 
+                    @onclick=ShowDetails>
+                    Cancel
+                </button>
+                <button type="button" 
+                    class="badge btn-outline-danger" 
+                    @onclick=Delete>
+                    Delete
+                </button>
+            </div>
+        </div>
+    }
+</div>
