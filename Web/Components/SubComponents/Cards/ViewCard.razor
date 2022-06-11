@@ -44,20 +44,25 @@
     <div class="row btn-group">
         <button type="button"
             class="btn btn-secondary"
+            style="width:fit-content"
             @onclick=ShowCard>
             Cancel
         </button>
         <button type="button"
             class="btn btn-danger"
+            style="width:fit-content"
             @onclick=Delete>
             Confirm
         </button>
     </div>
     <div class="row">
-        <span style="color:red">Delete the selected Set?</span>
         @if (hasOrphans)
         {
             <span style="color:red">WARNING: Deleting this card will delete all attached assessments.</span>
+        }
+        else
+        {
+            <span style="color:red">Delete the selected card?</span>
         }
     </div>
 }

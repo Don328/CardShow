@@ -17,39 +17,38 @@
 
     @if (viewMode == ViewMode.Detail)
     {
-        <div class="row">
-            <div class="btn-group-sm">
-                <button type="button" 
-                    class="badge btn-outline-secondary" 
-                    style="width:fit-content" 
-                    @onclick=DefaultView>
-                    Hide
-                </button>
-                <button type="button" 
-                    class="badge btn-outline-warning" 
-                    @onclick=EnableDelete>
-                    Delete
-                </button>
-            </div>
+        <div class="row btn-group-sm">
+            <button type="button"
+                class="badge btn-outline-secondary"
+                style="width:fit-content"
+                @onclick=DefaultView>
+                Hide
+            </button>
+            <button type="button"
+                class="badge btn-outline-warning"
+                style="width:fit-content"
+                @onclick=EnableDelete>
+                Delete
+            </button>
         </div>
         <AssessmentInfo Assessment=Assessment />
     }
 
     @if (viewMode == ViewMode.Delete)
     {
-        <div class="row">
-            <div class="btn-group-sm">
-                <button type="button" 
-                    class="badge btn-outline-secondary" 
-                    @onclick=ShowDetails>
-                    Cancel
-                </button>
-                <button type="button" 
-                    class="badge btn-outline-danger" 
-                    @onclick=Delete>
-                    Delete
-                </button>
-            </div>
+        <div class="row btn-group-sm">
+            <button type="button"
+                class="badge btn-outline-secondary"
+                style="width:fit-content"
+                @onclick=ShowDetails>
+                Cancel
+            </button>
+            <button type="button"
+                class="badge btn-outline-danger"
+                style="width:fit-content"
+                @onclick=Delete>
+                Confirm
+            </button>
         </div>
     }
 </div>

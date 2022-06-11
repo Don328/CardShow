@@ -9,24 +9,30 @@
     <div class="row btn-group">
         <button type="button"
             class="btn btn-secondary"
-            @onclick=ShowSet>
+            @onclick=ShowSet
+            style="width:fit-content">
             Cancel
         </button>
         <button type="button"
             class="btn btn-danger"
-            disabled=@hasOrphans
-            @onclick=Delete>
+            hidden=@hasOrphans
+            @onclick=Delete
+            style="width:fit-content">
             Confirm
         </button>
     </div>
     <div class="row">
-        <span style="color:red">Delete the selected Set?</span>
         @if (hasOrphans)
         {
             <span style="color:red">You must delete all attached cards before set can be deleted.</span>
         }
+        else
+        {
+            <span style="color:red">Delete the selected Set?</span>
+        }
     </div>
 }
+
 @if (viewMode == ViewMode.Default)
 {
     <div class="row" style="margin-bottom:3em;">
@@ -66,9 +72,14 @@
 @if (viewMode == ViewMode.CardDetails)
 {
     <div class="container" style="margin-top:1.5em;">
+        <button type="button"
+            class="btn btn-light"
+            @onclick=ShowSet>
+            Select Card
+        </button>
         <CardInfo Card=selectedCard />
-        <ViewCard Card=selectedCard 
-            OnDelete=DeleteCard/>
+        <ViewCard Card=selectedCard
+              OnDelete=DeleteCard />
     </div>
 }
 
