@@ -75,6 +75,7 @@ public partial class ViewSet : ComponentBase
     {
         Logger.LogInformation($"Requesting to delete card (id:{id})");
         await Api.Delete(id);
-        await GetCards(SelectedSet.Id);
+        cards = await GetCards(SelectedSet.Id);
+        viewMode= ViewMode.Default;
     }
 }

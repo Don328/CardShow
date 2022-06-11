@@ -43,11 +43,6 @@ namespace CardShow.Web.Components.SubComponents.Cards
             assessments = await Api.Get(Card.Id);
         }
 
-        private async Task<IEnumerable<Assessment>> GetAssessments()
-        {
-            return await Api.Get(Card.Id);
-        }
-
         private async Task Delete()
         {
             await OnDelete.InvokeAsync(Card.Id);
