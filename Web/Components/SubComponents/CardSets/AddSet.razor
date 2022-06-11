@@ -2,34 +2,39 @@
 @using Microsoft.AspNetCore.Components.Web;
 @using Microsoft.AspNetCore.Components.Forms;
 
-<EditForm Model=NewSet OnValidSubmit=SubmitNewSet>
-    <DataAnnotationsValidator />
-    <ValidationSummary />
-    <div class="row">
-        <InputSelect id="sport" style="max-width:8em;" @bind-Value=NewSet.Sport>
-            @foreach(var sport in Enum.GetValues(typeof(Sport)))
-            {
-                <option value=@sport>@sport</option>
-            }
-        </InputSelect>
-    </div>
-    <div class="row">
-        <div class="col" style="max-width:3em;">
-            <label>Year</label>
+<div class="contianer" style="font-size:large">
+    <EditForm Model=NewSet OnValidSubmit=Submit>
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+        <div class="row" style="margin:.5em;">
+            <div class="col" style="max-width:3em;"></div>
+            <div class="col">
+                <InputSelect id="sport" style="max-width:8em;" @bind-Value=NewSet.Sport>
+                    @foreach (var sport in Enum.GetValues(typeof(Sport)))
+                    {
+                        <option value=@sport>@sport</option>
+                    }
+                </InputSelect>
+            </div>
         </div>
-        <div class="col">
-            <InputNumber id="year" @bind-Value=NewSet.Year style="width:4em"/>
+        <div class="row" style="margin:.5em;">
+            <div class="col" style="max-width:3em;">
+                <label>Year</label>
+            </div>
+            <div class="col" style="width:3em;">
+                <InputNumber id="year" @bind-Value=NewSet.Year style="width:4em" />
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col" style="max-width:3em;">
-            <label>Name</label>
+        <div class="row" style="margin:.5em;">
+            <div class="col" style="max-width:3em;">
+                <label>Name</label>
+            </div>
+            <div class="col">
+                <InputText id="name" @bind-Value=NewSet.Name style="width:20em;" />
+            </div>
         </div>
-        <div class="col">
-            <InputText id="name" @bind-Value=NewSet.Name style="width:20em;"/>
+        <div class="row" style="max-width:fit-content; margin:.5em">
+            <button id="newSet" type="submit" class="btn-success" @onsubmit=Submit>Submit</button>
         </div>
-    </div>
-    <div class="row" style="max-width:fit-content">
-        <button id="newSet" type="submit" class="btn-success" @onsubmit=SubmitNewSet>Submit</button>
-    </div>
-</EditForm>
+    </EditForm>
+</div>

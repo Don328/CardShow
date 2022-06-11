@@ -59,9 +59,7 @@ namespace CardShow.Web.Components
                 var content = await response.Content.ReadAsStringAsync();
                 var id = Int32.Parse(content);
                 sets = await Api.Get();
-                selectedSet = sets.Where(s =>
-                    s.Id == id).First();
-                StateHasChanged();
+                await ShowSet(id);
             }
         }
 

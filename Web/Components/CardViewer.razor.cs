@@ -62,8 +62,9 @@ namespace CardShow.Web.Components
                 sets = await Api.Get();
                 selectedSet = sets.Where(s =>
                     s.Id == id).First();
-                StateHasChanged();
             }
+            
+            ShowSetsList();
         }
 
         private async Task DeleteSet(int id)
