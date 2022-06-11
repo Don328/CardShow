@@ -1,10 +1,10 @@
 ﻿@using Microsoft.AspNetCore.Components.Forms;
 @using Microsoft.AspNetCore.Components.Web;
 
-<div class="col">
+<div class="container">
     <EditForm Model=Assessment OnValidSubmit=Create>
         <DataAnnotationsValidator />
-        <div class="row" style="margin:.1em;">
+        <div class="row" style="margin:.5em;">
             <div class="col" style="max-width:6em;">
                 <label>Grade (H)</label>
             </div>
@@ -12,7 +12,7 @@
                 <InputNumber @bind-Value=Assessment.HighGrade style="max-width:3em" />
             </div>
         </div>
-        <div class="row" style="margin:.1em;">
+        <div class="row" style="margin:.5em;">
             <div class="col" style="max-width:6em;">
                 <label>Grade (L)</label>
             </div>
@@ -20,7 +20,7 @@
                 <InputNumber @bind-Value=Assessment.LowGrade style="max-width:3em" />
             </div>
         </div>
-        <div class="row" style="margin:.1em;">
+        <div class="row" style="margin:.5em;">
             <div class="col" style="max-width:6em;">
                 <label>Corners</label>
             </div>
@@ -28,7 +28,7 @@
                 <InputText @bind-Value=Assessment.Corners />
             </div>
         </div>
-        <div class="row" style="margin:.1em;">
+        <div class="row" style="margin:.5em;">
             <div class="col" style="max-width:6em;">
                 <label>Edges</label>
             </div>
@@ -36,7 +36,7 @@
                 <InputText @bind-Value=Assessment.Edges />
             </div>
         </div>
-        <div class="row" style="margin:.1em;">
+        <div class="row" style="margin:.5em;">
             <div class="col" style="max-width:6em;">
                 <label>Centering</label>
             </div>
@@ -44,7 +44,7 @@
                 <InputText @bind-Value=Assessment.Centering />
             </div>
         </div>
-        <div class="row" style="margin:.1em;">
+        <div class="row" style="margin:.5em;">
             <div class="col" style="max-width:6em;">
                 <label>Surface</label>
             </div>
@@ -52,7 +52,7 @@
                 <InputText @bind-Value=Assessment.Surface />
             </div>
         </div>
-        <div class="row" style="margin:.1em;">
+        <div class="row" style="margin:.5em;">
             <div class="col" style="max-width:6em;">
                 <label>Summary</label>
             </div>
@@ -61,14 +61,19 @@
             </div>
 
         </div>
-        <button type="submit" class="badge btn-outline-success">
-            Submit
-        </button>
-        <button type="button" 
-            class="badge btn-outline-secondary"
-            @onclick=Cancel>
-            Cancel
-        </button>
+        <div class="row btn-group">
+            <button type="submit" 
+                class="badge btn-outline-success"
+                style="width:fit-content">
+                Submit
+            </button>
+            <button type="button" 
+                class="badge btn-outline-secondary"
+                style="width:fit-content"
+                @onclick=Cancel>
+                Cancel
+            </button>
+        </div>
         <ValidationSummary />
     </EditForm>
 </div>

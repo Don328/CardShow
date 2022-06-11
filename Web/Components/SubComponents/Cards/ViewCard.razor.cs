@@ -56,14 +56,17 @@ namespace CardShow.Web.Components.SubComponents.Cards
 
         private async Task CreateAssessment(Assessment assessment)
         {
+            assessment.CardId = Card.Id;
             await Api.Add(assessment);
+            assessments = await Api.Get(Card.Id);
+            viewMode = ViewMode.Default;
         }
 
         private async Task DeleteAssessment(int id)
         {
             await Api.Delete(id);
-            viewMode = ViewMode.Default;
             assessments = await Api.Get(Card.Id);
+            viewMode = ViewMode.Default;
         }
     }
 }

@@ -1,40 +1,45 @@
 ﻿@using Microsoft.AspNetCore.Components.Forms;
 @using Microsoft.AspNetCore.Components.Web;
 
-<EditForm Model=NewCard OnValidSubmit=Create>
-    <DataAnnotationsValidator/>
+<div class="container" style="font-size:large; margin-top:3em">
     <div class="row">
-        <div class="col" style="max-width:8em;">
-            <label>Player Name</label>
-        </div>
-        <div class="col">
-            <InputText 
-                id="name" 
-                @bind-Value=NewCard.Name />
-        </div>
+        <h3>New Card</h3>
     </div>
-    <div class="row">
-        <div class="col" style="max-width:8em;">
-            <label># In Set</label>
+    <EditForm Model=NewCard OnValidSubmit=Create>
+        <DataAnnotationsValidator />
+        <div class="row" style="margin:.5em">
+            <div class="col" style="max-width:8em;">
+                <label>Player Name</label>
+            </div>
+            <div class="col">
+                <InputText id="name"
+                           @bind-Value=NewCard.Name />
+            </div>
         </div>
-        <div class="col">
-            <InputText 
-                id="setIndex" 
-                @bind-Value=NewCard.SetIndex />
+        <div class="row" style="margin:.5em">
+            <div class="col" style="max-width:8em;">
+                <label># In Set</label>
+            </div>
+            <div class="col">
+                <InputText id="setIndex"
+                           @bind-Value=NewCard.SetIndex />
+            </div>
         </div>
-    </div>
-    <div class="row btn-group" style="max-width:fit-content;">
-        <button id="newCard" 
-            type="submit" 
-            class="btn-success" 
-            @onsubmit=Create>
-            Submit
-        </button>
-        <button type="button" 
-            class="btn-secondary" 
-            @onclick=Cancel>
-            Cancel
-        </button>
-    </div>
-    <ValidationSummary />
-</EditForm>
+        <div class="row btn-group" style="margin:.5em;">
+            <button type="button"
+                    class="btn-secondary"
+                    style="width:fit-content"
+                    @onclick=Cancel>
+                Cancel
+            </button>
+            <button id="newCard"
+                    type="submit"
+                    class="btn-success"
+                    style="width:fit-content"
+                    @onsubmit=Create>
+                Submit
+            </button>
+        </div>
+        <ValidationSummary />
+    </EditForm>
+</div>

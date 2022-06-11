@@ -14,7 +14,7 @@ namespace CardShow.Web.Components
         }
 
         [Inject]
-        public ILogger<CardViewer> Logger { get; set; }
+        public ILogger<CollectionView> Logger { get; set; }
 
         [Inject]
         public IAPIService<CardSet> Api { get; set; }

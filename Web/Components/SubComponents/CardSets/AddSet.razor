@@ -2,7 +2,10 @@
 @using Microsoft.AspNetCore.Components.Web;
 @using Microsoft.AspNetCore.Components.Forms;
 
-<div class="contianer" style="font-size:large">
+<div class="contianer" style="font-size:large; margin-top:3em">
+    <div class="row">
+        <h3>New Set</h3>
+    </div>
     <EditForm Model=NewSet OnValidSubmit=Submit>
         <DataAnnotationsValidator />
         <ValidationSummary />
@@ -33,8 +36,19 @@
                 <InputText id="name" @bind-Value=NewSet.Name style="width:20em;" />
             </div>
         </div>
-        <div class="row" style="max-width:fit-content; margin:.5em">
-            <button id="newSet" type="submit" class="btn-success" @onsubmit=Submit>Submit</button>
+        <div class="row btn-group" style="margin:.5em">
+            <button type="submit"
+                    class="btn-success"
+                    style="width:fit-content"
+                    @onsubmit=Submit>
+                Submit
+            </button>
+            <button type="button"
+                    class="btn btn-secondary"
+                    style="width:fit-content"
+                    @onclick=Cancel>
+                Cancel
+            </button>
         </div>
     </EditForm>
 </div>

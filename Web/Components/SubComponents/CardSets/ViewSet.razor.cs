@@ -67,7 +67,7 @@ public partial class ViewSet : ComponentBase
         card.SetId = SelectedSet.Id;
         Logger.LogInformation($"Requesting to Create new Card for {card.Name}");
         await Api.Add(card);
-        await GetCards(SelectedSet.Id);
+        cards = await GetCards(SelectedSet.Id);
         viewMode = ViewMode.Default;
     }
 
