@@ -18,62 +18,7 @@
 
 @if (viewMode == ViewMode.Detail)
 {
-    <div class="row">
-        <div class="btn-group-sm">
-            <button type="button" class="badge btn-outline-secondary" style="width:fit-content" @onclick=DefaultView>
-                Hide
-            </button>
-            <button type="button" class="badge btn-outline-warning" @onclick=EnableDelete>
-                Delete
-            </button>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col" style="color:green;max-width:fit-content;">
-            @Assessment.HighGrade
-        </div>
-        <div class="col" style="color:red;max-width:fit-content;">
-            @Assessment.LowGrade
-        </div>
-    </div>
-    <div class="row" style="margin-bottom:.5em;font-size:small;color:dimgray;">
-        <strong>Corners: </strong>@Assessment.Corners
-    </div>
-    <div class="row" style="margin-bottom:.5em;font-size:small;color:dimgray;">
-        <strong>Edges: </strong>@Assessment.Edges
-    </div>
-    <div class="row" style="margin-bottom:.5em;font-size:small;color:dimgray;">
-        <strong>Centering: </strong>@Assessment.Centering
-    </div>
-    <div class="row" style="margin-bottom:.5em;font-size:small;color:dimgray;">
-        <strong>Surface: </strong>@Assessment.Surface
-    </div>
-    <div class="row" style="margin-bottom:.5em;font-size:small;color:dimgray;">
-        <strong>Notes: </strong>@Assessment.Text
-    </div>
-    <div class="row">
-        <div class="col" style="color:green;max-width:fit-content;">
-            @Assessment.HighGrade
-        </div>
-        <div class="col" style="color:red;max-width:fit-content;">
-            @Assessment.LowGrade
-        </div>
-    </div>
-    <div class="row" style="margin-bottom:.5em;font-size:small;color:dimgray;">
-        <strong>Corners: </strong>@Assessment.Corners
-    </div>
-    <div class="row" style="margin-bottom:.5em;font-size:small;color:dimgray;">
-        <strong>Edges: </strong>@Assessment.Edges
-    </div>
-    <div class="row" style="margin-bottom:.5em;font-size:small;color:dimgray;">
-        <strong>Centering: </strong>@Assessment.Centering
-    </div>
-    <div class="row" style="margin-bottom:.5em;font-size:small;color:dimgray;">
-        <strong>Surface: </strong>@Assessment.Surface
-    </div>
-    <div class="row" style="margin-bottom:.5em;font-size:small;color:dimgray;">
-        <strong>Notes: </strong>@Assessment.Text
-    </div>
+    <AssessmentInfo Assessment=Assessment/>
 }
 
 @if (viewMode == ViewMode.Delete)
