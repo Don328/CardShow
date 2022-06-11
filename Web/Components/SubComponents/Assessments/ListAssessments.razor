@@ -1,11 +1,7 @@
 ﻿@using Microsoft.AspNetCore.Components.Web;
 
-<div class="row" style="margin-top:2em;">
-    <div class="col" style="max-width:fit-content;">
-        <div class="row">
-            <strong style="color:dimgray">Assessments </strong>
-        </div>
-    </div>
+<div class="row" >
+
     @if (Assessments.Count() > 0)
     {
         @foreach (var assessment in Assessments)

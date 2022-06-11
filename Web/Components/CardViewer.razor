@@ -5,14 +5,17 @@
 <div class="col">
     @if (viewMode == ViewMode.SetList)
     {
-        <div class="row">
-            <h2>Sets
-            <button type="button"
-                class="badge btn-sm btn-outline-primary"
-                style="width:fit-content;height:fit-content;font-size:small;"
-                @onclick=ShowAddSetForm>
-                Add
-            </button></h2>
+        <div class="row" style="margin:1em;width:fit-content">
+            <h2>
+                Sets
+                <button type="button"
+                    class="badge btn-sm btn-outline-primary"
+                    style="width:fit-content;height:fit-content;font-size:small;"
+                    @onclick=ShowAddSetForm>
+                    Add
+                </button>
+            </h2>
+            <hr>
         </div>
         <ListSets Sets=sets
               OnViewSet=ShowSet />
@@ -20,9 +23,9 @@
     else
     {
         <button type="button"
-            class="btn btn-primary"
+            class="btn btn-light"
             @onclick=ShowSetsList>
-            Show Sets List
+            Select Set
         </button>
     }
 </div>
@@ -35,11 +38,10 @@
 
     @if (viewMode == ViewMode.ShowSet)
     {
-        <h3>Selected Set</h3>
         <div class="col" style="max-width:fit-content;margin-bottom:2em;">
-            <SetInfo Set=selectedSet/>
+            <SetInfo Set=selectedSet />
             <ViewSet SelectedSet=selectedSet
-                OnDelete=DeleteSet/>
+                 OnDelete=DeleteSet />
         </div>
     }
 </div>

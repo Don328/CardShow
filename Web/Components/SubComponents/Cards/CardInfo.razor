@@ -1,11 +1,14 @@
-﻿    <div class="row" style="width:max-content;">
-        @Card.Name
-    </div>
-    <div class="row">
-        <div class="col">
+﻿
+<div class="col" style="font-size:1.25em;">
+    <div class="row" style="width:fit-content;">
+        <div class="col" style="width:fit-content;">
+            @Card.Name
+        </div>
+        <div class="col" style="width:fit-content;">
             #@Card.SetIndex
-            <div class="col" style="font-size:xx-small;">
-                Id: @Card.Id
-            </div>
         </div>
     </div>
+    <div class="row" style="font-size:xx-small;width:fit-content;">
+        Id: @Card.Id
+    </div>
+</div>

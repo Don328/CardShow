@@ -3,12 +3,12 @@
 <div class="col" style="margin:1em;max-width:fit-content;margin-right:5em;">
     @foreach (var set in Sets)
     {
-        <div class="col" style="margin-bottom:2em;width:fit-content;">
+        <div class="row" style="margin-bottom:2.5em;width:fit-content;">
             <SetInfo Set=@set />
             <button id=@set.Id
                 type="button"
                 class="badge btn-outline-success"
-                style="font-size:x-small;"
+                style="font-size:x-small;width:fit-content;height:fit-content;"
                 @onclick=@(() => ShowSet(set.Id))>
                 View
             </button>
