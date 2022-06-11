@@ -6,12 +6,13 @@
     @if (viewMode == ViewMode.SetList)
     {
         <div class="row">
+            <h2>Sets
             <button type="button"
-                class="badge btn-outline-primary"
+                class="badge btn-sm btn-outline-primary"
                 style="width:fit-content;height:fit-content;font-size:small;"
                 @onclick=ShowAddSetForm>
-                Add Set
-            </button>
+                Add
+            </button></h2>
         </div>
         <ListSets Sets=sets
               OnViewSet=ShowSet />
