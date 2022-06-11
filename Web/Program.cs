@@ -1,3 +1,6 @@
+using CardShow.Shared.Interfaces;
+using CardShow.Shared.Models;
+using CardShow.Shared.Services;
 using Serilog;
 
 namespace CardShow.Web;
@@ -9,6 +12,10 @@ public class Program
         var builder = WebApplication.CreateBuilder(args);
 
         AddLogging(builder);
+
+        builder.Services.AddTransient<IAPIService<Card>, APIService<Card>>();
+        builder.Services.AddTransient<IAPIService<CardSet>, APIService<CardSet>>();
+        builder.Services.AddTransient<IAPIService<Assessment>, APIService<Assessment>>();
 
         builder.Services.AddRazorPages();
         builder.Services.AddServerSideBlazor();

@@ -1,0 +1,44 @@
+﻿@using CardShow.Web.Components.SubComponents.Cards
+@using CardShow.Web.Components.SubComponents.CardSets
+@using Microsoft.AspNetCore.Components.Web;
+
+<div class="col">
+    @if (viewMode == ViewMode.SetList)
+    {
+        <div class="row">
+            <button type="button"
+                class="badge btn-outline-primary"
+                style="width:fit-content;height:fit-content;font-size:small;"
+                @onclick=ShowAddSetForm>
+                Add Set
+            </button>
+        </div>
+        <ListSets Sets=sets
+              OnViewSet=ShowSet />
+    }
+    else
+    {
+        <button type="button"
+            class="btn btn-primary"
+            @onclick=ShowSetsList>
+            Show Sets List
+        </button>
+    }
+</div>
+<div class="col">
+    @if (viewMode == ViewMode.AddSet)
+    {
+        <h3>New Set</h3>
+        <AddSet OnSubmit=CreateSet />
+    }
+
+    @if (viewMode == ViewMode.ShowSet)
+    {
+        <h3>Selected Set</h3>
+        <div class="col" style="max-width:fit-content;margin-bottom:2em;">
+            <SetInfo Set=selectedSet/>
+            <ViewSet SelectedSet=selectedSet
+                OnDelete=DeleteSet/>
+        </div>
+    }
+</div>

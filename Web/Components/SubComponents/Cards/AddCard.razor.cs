@@ -10,11 +10,15 @@ namespace CardShow.Web.Components.SubComponents.Cards
             = new();
 
         [Parameter]
-        public EventCallback<Card> CreateCard { get; set; }
+        public EventCallback<Card> OnCreate { get; set; }
 
-        private async Task OnCreate()
-        {
-            await CreateCard.InvokeAsync(NewCard);
-        }
+        [Parameter]
+        public EventCallback OnCancel { get; set; }
+
+        private async Task Create() =>
+            await OnCreate.InvokeAsync(NewCard);
+
+        private async Task Cancel() =>
+            await OnCancel.InvokeAsync();
     }
 }

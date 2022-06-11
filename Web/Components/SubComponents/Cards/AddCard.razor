@@ -1,14 +1,16 @@
 ﻿@using Microsoft.AspNetCore.Components.Forms;
 @using Microsoft.AspNetCore.Components.Web;
 
-<EditForm Model=NewCard OnValidSubmit=OnCreate>
+<EditForm Model=NewCard OnValidSubmit=Create>
     <DataAnnotationsValidator/>
     <div class="row">
         <div class="col" style="max-width:8em;">
             <label>Player Name</label>
         </div>
         <div class="col">
-            <InputText id="name" @bind-Value=NewCard.Name />
+            <InputText 
+                id="name" 
+                @bind-Value=NewCard.Name />
         </div>
     </div>
     <div class="row">
@@ -16,12 +18,22 @@
             <label># In Set</label>
         </div>
         <div class="col">
-            <InputText id="setIndex" @bind-Value=NewCard.SetIndex />
+            <InputText 
+                id="setIndex" 
+                @bind-Value=NewCard.SetIndex />
         </div>
     </div>
-    <div class="row" style="max-width:fit-content;">
-        <button id="newCard" type="submit" class="btn-success" @onsubmit=OnCreate>
+    <div class="row btn-group" style="max-width:fit-content;">
+        <button id="newCard" 
+            type="submit" 
+            class="btn-success" 
+            @onsubmit=Create>
             Submit
+        </button>
+        <button type="button" 
+            class="btn-secondary" 
+            @onclick=Cancel>
+            Cancel
         </button>
     </div>
     <ValidationSummary />

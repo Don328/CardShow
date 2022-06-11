@@ -5,43 +5,15 @@
         <div class="row">
             <strong style="color:dimgray">Assessments </strong>
         </div>
-        <div class="row">
-            <span style="font-size:x-small">Card Id: @CardId</span>
-        </div>
     </div>
-    @if(showForm)
-    {
-    <div class="col" style="float:left;">
-        <button type="button" 
-                class="badge btn-outline-secondary"
-                style="font-size:x-small;"
-                @onclick=ToggleForm>
-            Cancel
-        </button>
-    </div>        
-    }
-    else
-    {
-    <div class="col" style="float:left;">
-        <button type="button" 
-                class="badge btn-outline-primary"
-                style="font-size:x-small;"
-                @onclick=ToggleForm>
-            New
-        </button>
-    </div>
-        
-    }
-</div>
-@if(!showForm)
-{
-    @if(Assessments.Count() > 0)
+    @if (Assessments.Count() > 0)
     {
         @foreach (var assessment in Assessments)
         {
             <div class="row">
-                <ViewAssessment Assessment=assessment
-                    Delete=DeleteAssessment/>
+                <ViewAssessment 
+                    Assessment=assessment
+                    OnDelete=Delete />
             </div>
         }
     }
@@ -50,10 +22,4 @@
         <span style="margin-bottom:1em;">none</span>
     }
 
-}
-else
-{
-    <div class="row">
-        <AddAssessment CreateAssessment=OnCreateAssessment />
-    </div>
-}
+</div>

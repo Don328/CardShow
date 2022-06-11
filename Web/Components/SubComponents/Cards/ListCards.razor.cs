@@ -13,9 +13,11 @@ namespace CardShow.Web.Components.SubComponents.Cards
         public EventCallback<int> OnDelete { get; set; }
 
         [Parameter]
-        public EventCallback<Assessment> CreateAssessment { get; set; }
+        public EventCallback<int> OnShowCard { get; set; }
 
-        [Parameter]
-        public EventCallback<int> DeleteAssessment { get; set; }
+        private async Task ShowCard(int id)
+        {
+            await OnShowCard.InvokeAsync(id);
+        }
     }
 }

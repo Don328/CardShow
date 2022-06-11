@@ -1,70 +1,91 @@
 ﻿@using Microsoft.AspNetCore.Components;
 @using Microsoft.AspNetCore.Components.Web;
 
-<div class="col">
+
+
+<div class="col" style="min-width:fit-content">
+    @Assessment.Date.ToString("MMM dd, yyyy")
+</div>
+
+@if (viewMode == ViewMode.Default)
+{
     <div class="row">
-        <div class="col" style="min-width:fit-content">
-            @Assessment.Date.ToString("MMM dd, yyyy")
-        </div>
+        <button type="button" class="badge btn-outline-secondary" style="width:fit-content" @onclick=ShowDetails>
+            Details
+        </button>
     </div>
-    @if (showDetails)
-    {
-        @if (deleteEnabled)
-        {
-            <div class="row">
-                <div class="btn-group-sm">
-                    <button type="button" class="badge btn-outline-secondary" @onclick=EnableDelete>
-                        Cancel
-                    </button>
-                    <button type="button" class="badge btn-outline-danger" @onclick=OnDelete>
-                        Delete
-                    </button>
-                </div>
-            </div>
-        }
-        else
-        {
-            <div class="row">
-                <div class="btn-group-sm">
-                    <button type="button" class="badge btn-outline-secondary" style="width:fit-content" @onclick=ToggleDetails>
-                        Hide
-                    </button>
-                    <button type="button" class="badge btn-outline-warning" @onclick=EnableDelete>
-                        Delete
-                    </button>
-                </div>
-            </div>
-        }
-        <div class="row">
-            <div class="col" style="color:green;max-width:fit-content;">
-                @Assessment.HighGrade
-            </div>
-            <div class="col" style="color:red;max-width:fit-content;">
-                @Assessment.LowGrade
-            </div>
-        </div>
-        <div class="row" style="margin-bottom:.5em;font-size:small;color:dimgray;">
-            <strong>Corners: </strong>@Assessment.Corners
-        </div>
-        <div class="row" style="margin-bottom:.5em;font-size:small;color:dimgray;">
-            <strong>Edges: </strong>@Assessment.Edges
-        </div>
-        <div class="row" style="margin-bottom:.5em;font-size:small;color:dimgray;">
-            <strong>Centering: </strong>@Assessment.Centering
-        </div>
-        <div class="row" style="margin-bottom:.5em;font-size:small;color:dimgray;">
-            <strong>Surface: </strong>@Assessment.Surface
-        </div>
-        <div class="row" style="margin-bottom:.5em;font-size:small;color:dimgray;">
-            <strong>Notes: </strong>@Assessment.Text
-        </div>
-    }
-    else
-    {
-        <div class="row">
-            <button type="button" class="badge btn-outline-secondary" style="width:fit-content" @onclick=ToggleDetails>
-                Details
+}
+
+@if (viewMode == ViewMode.Detail)
+{
+    <div class="row">
+        <div class="btn-group-sm">
+            <button type="button" class="badge btn-outline-secondary" style="width:fit-content" @onclick=DefaultView>
+                Hide
+            </button>
+            <button type="button" class="badge btn-outline-warning" @onclick=EnableDelete>
+                Delete
             </button>
         </div>
-    }
-</div>
+    </div>
+    <div class="row">
+        <div class="col" style="color:green;max-width:fit-content;">
+            @Assessment.HighGrade
+        </div>
+        <div class="col" style="color:red;max-width:fit-content;">
+            @Assessment.LowGrade
+        </div>
+    </div>
+    <div class="row" style="margin-bottom:.5em;font-size:small;color:dimgray;">
+        <strong>Corners: </strong>@Assessment.Corners
+    </div>
+    <div class="row" style="margin-bottom:.5em;font-size:small;color:dimgray;">
+        <strong>Edges: </strong>@Assessment.Edges
+    </div>
+    <div class="row" style="margin-bottom:.5em;font-size:small;color:dimgray;">
+        <strong>Centering: </strong>@Assessment.Centering
+    </div>
+    <div class="row" style="margin-bottom:.5em;font-size:small;color:dimgray;">
+        <strong>Surface: </strong>@Assessment.Surface
+    </div>
+    <div class="row" style="margin-bottom:.5em;font-size:small;color:dimgray;">
+        <strong>Notes: </strong>@Assessment.Text
+    </div>
+    <div class="row">
+        <div class="col" style="color:green;max-width:fit-content;">
+            @Assessment.HighGrade
+        </div>
+        <div class="col" style="color:red;max-width:fit-content;">
+            @Assessment.LowGrade
+        </div>
+    </div>
+    <div class="row" style="margin-bottom:.5em;font-size:small;color:dimgray;">
+        <strong>Corners: </strong>@Assessment.Corners
+    </div>
+    <div class="row" style="margin-bottom:.5em;font-size:small;color:dimgray;">
+        <strong>Edges: </strong>@Assessment.Edges
+    </div>
+    <div class="row" style="margin-bottom:.5em;font-size:small;color:dimgray;">
+        <strong>Centering: </strong>@Assessment.Centering
+    </div>
+    <div class="row" style="margin-bottom:.5em;font-size:small;color:dimgray;">
+        <strong>Surface: </strong>@Assessment.Surface
+    </div>
+    <div class="row" style="margin-bottom:.5em;font-size:small;color:dimgray;">
+        <strong>Notes: </strong>@Assessment.Text
+    </div>
+}
+
+@if (viewMode == ViewMode.Delete)
+{
+    <div class="row">
+        <div class="btn-group-sm">
+            <button type="button" class="badge btn-outline-secondary" @onclick=EnableDelete>
+                Cancel
+            </button>
+            <button type="button" class="badge btn-outline-danger" @onclick=Delete>
+                Delete
+            </button>
+        </div>
+    </div>
+}

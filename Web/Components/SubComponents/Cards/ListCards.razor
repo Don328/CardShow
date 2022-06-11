@@ -1,9 +1,15 @@
-﻿@foreach (var card in Cards)
+﻿@using Microsoft.AspNetCore.Components.Web
+
+@foreach (var card in Cards)
 {
     <div class="row">
-            <ViewCard Card=card
-                DeleteCard=OnDelete
-                CreateAssessment=CreateAssessment
-                DeleteAssessment=DeleteAssessment />
+            <CardInfo Card=card/>
+            <button id="@card.Id"
+                type="button"
+                class="badge btn-outline-success"
+                style="font-size:x-small;"
+                @onclick=@(()=> ShowCard(card.Id))>
+                View
+            </button>
     </div>
 }

@@ -2,66 +2,56 @@
 @using Microsoft.AspNetCore.Components.Web;
 @using CardShow.Web.Components.SubComponents.Assessments;
 
-<div class="col" style="margin-bottom:1em;max-width:fit-content;">
-    <div class="row" style="width:max-content;">
-        @Card.Name
-    </div>
-    <div class="row">
-        <div class="col">
-            #@Card.SetIndex
-            <div class="col" style="font-size:xx-small;">
-                Id: @Card.Id
-            </div>
-        </div>
-    </div>
-    <div class="row" style="height:2em;">
-        @if (Card.Assessments.Count() > 0)
-        {
-            <lablel hidden=@deleteDisabled style="color:red">@deleteWarning</lablel>
-        }
-    </div>
-    <div class="row">
-        @if (!deleteDisabled)
-        {
-            <button id="delete"
-                type="button"
-                class="badge btn-outline-danger"
-                style="font-size:xx-small;
-                            padding:.2em;
-                            max-width:fit-content;"
-                @onclick=Delete>
-                Confirm
-            </button>
-            <button id="cancel_delete"
-                type="button"
-                class="badge btn-outline-secondary"
-                style="font-size:xx-small;
-                            padding:.2em;
-                            max-width:fit-content;"
-                @onclick=ToggleDeleteEnabled>
-                Cancel
-            </button>
-        }
-        else
-        {
-            <button id="enable_delete"
-                type="button"
-                class="badge btn-outline-warning"
-                style="font-size:xx-small;
-                            padding:.2em;
-                            max-width:fit-content;"
-                @onclick=ToggleDeleteEnabled>
-                Delete
-            </button>
-        }
-    </div>
-</div>
-<div class="col">
+@if (viewMode == ViewMode.DeleteCard)
+{
+    var hasOrphans = assessments.Any();
 
-    <div class="row">
-        <ListAssessments Assessments=Card.Assessments
-                        CardId=Card.Id
-                        CreateAssessment=CreateAssessment
-                        DeleteAssessment=DeleteAssessment />
+    <div class="row btn-group">
+        <button type="button"
+            class="btn btn-secondary"
+            @onclick=ShowCard>
+            Cancel
+        </button>
+        <button type="button"
+            class="btn btn-danger"
+            @onclick=Delete>
+            Confirm
+        </button>
     </div>
-</div>
+    <div class="row">
+        <span style="color:red">Delete the selected Set?</span>
+        @if (hasOrphans)
+        {
+            <span style="color:red">WARNING: Deleting this card will delete all attached assessments.</span>
+        }
+    </div>
+}
+
+@if (viewMode == ViewMode.Default)
+{
+    <div class="row btn-group">
+        <button type="button"
+            class="badge btn-outline-warning"
+            style="font-size:small;
+                            padding:.2em;
+                            max-width:fit-content;"
+            @onclick=EnableDelete>
+            Delete
+        </button>
+        <button type="button"
+            class="badge btn-outline-primary"
+            style="font-size:small;
+                            padding:.2em;
+                            max-width:fit-content;"
+            @onclick=ShowNewAssessmentForm>
+            New Assessment
+        </button>
+    </div>
+    <ListAssessments Assessments=assessments 
+            OnDelete=DeleteAssessment/>
+}
+@if (viewMode == ViewMode.AddAssessment)
+{
+    <AddAssessment OnCreate=CreateAssessment
+            OnCancel=ShowCard/>
+}

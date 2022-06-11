@@ -2,7 +2,7 @@
 @using Microsoft.AspNetCore.Components.Web;
 
 <div class="col">
-    <EditForm Model=Assessment OnValidSubmit=OnCreate>
+    <EditForm Model=Assessment OnValidSubmit=Create>
         <DataAnnotationsValidator />
         <div class="row" style="margin:.1em;">
             <div class="col" style="max-width:6em;">
@@ -63,6 +63,11 @@
         </div>
         <button type="submit" class="badge btn-outline-success">
             Submit
+        </button>
+        <button type="button" 
+            class="badge btn-outline-secondary"
+            @onclick=Cancel>
+            Cancel
         </button>
         <ValidationSummary />
     </EditForm>

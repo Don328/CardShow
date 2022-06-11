@@ -12,7 +12,7 @@ namespace CardShow.Web.Components.SubComponents.CardSets
         [Parameter]
         public EventCallback<int> OnViewSet { get; set; }
 
-        private async Task ViewSet(EventArgs e, int id)
+        private async Task ShowSet(int id)
         {
             await OnViewSet.InvokeAsync(id);
         }

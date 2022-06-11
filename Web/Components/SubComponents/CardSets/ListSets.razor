@@ -1,15 +1,15 @@
-﻿@using Microsoft.AspNetCore.Components.Web;
+﻿@using Microsoft.AspNetCore.Components.Web
 
 <div class="col" style="margin:1em;max-width:fit-content;margin-right:5em;">
     @foreach (var set in Sets)
     {
         <div class="col" style="margin-bottom:2em;width:fit-content;">
-            <ViewSet SelectedSet=@set />
+            <SetInfo Set=@set />
             <button id=@set.Id
                 type="button"
                 class="badge btn-outline-success"
                 style="font-size:x-small;"
-                @onclick=@(e => ViewSet(e, set.Id))>
+                @onclick=@(() => ShowSet(set.Id))>
                 View
             </button>
         </div>

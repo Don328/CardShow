@@ -1,36 +1,67 @@
-﻿using CardShow.Shared.Models;
+﻿using CardShow.Shared.Interfaces;
+using CardShow.Shared.Models;
+using CardShow.Shared.Services;
 using Microsoft.AspNetCore.Components;
 
 namespace CardShow.Web.Components.SubComponents.Cards
 {
+
     public partial class ViewCard : ComponentBase
     {
+        private enum ViewMode
+        {
+            Default,
+            AddAssessment,
+            AssessmentDetails,
+            DeleteCard
+        }
+
+        [Inject]
+        public ILogger<ViewCard> Logger { get; set; }
+
+        [Inject]
+        public IAPIService<Assessment> Api { get; set; }
+
         [Parameter]
         public Card Card { get; set; }
             = new();
 
         [Parameter]
-        public EventCallback<int> DeleteCard { get; set; }
+        public EventCallback<int> OnDelete { get; set; }
 
-        [Parameter]
-        public EventCallback<Assessment> CreateAssessment { get; set; }
+        private ViewMode viewMode = ViewMode.Default;
+        private Assessment selectedAssessment = new();
+        private IEnumerable<Assessment> assessments
+            = Enumerable.Empty<Assessment>();
+        
+        private void ShowCard() => viewMode = ViewMode.Default;
+        private void EnableDelete() => viewMode = ViewMode.DeleteCard;
+        private void ShowNewAssessmentForm() => viewMode = ViewMode.AddAssessment;
 
-        [Parameter]
-        public EventCallback<int> DeleteAssessment { get; set; }
-
-        private bool deleteDisabled = true;
-
-        private const string deleteWarning =
-            "Deleting card will delete attached assessments";
-
-        private void ToggleDeleteEnabled()
+        protected async override Task OnParametersSetAsync()
         {
-            deleteDisabled = !deleteDisabled;
+            assessments = await Api.Get(Card.Id);
         }
 
-        public async Task Delete()
+        private async Task Delete()
         {
-            await DeleteCard.InvokeAsync(Card.Id);
+            await OnDelete.InvokeAsync(Card.Id);
+        }
+
+        private void ShowAssessment(Assessment assessment)
+        {
+            selectedAssessment = assessment;
+            viewMode = ViewMode.AssessmentDetails;
+        }
+
+        private async Task CreateAssessment(Assessment assessment)
+        {
+            await Api.Add(assessment);
+        }
+
+        private async Task DeleteAssessment(int id)
+        {
+            await Api.Delete(id);
         }
     }
 }

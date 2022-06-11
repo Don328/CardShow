@@ -9,12 +9,18 @@ namespace CardShow.Web.Components.SubComponents.Assessments
             = new();
 
         [Parameter]
-        public EventCallback<Assessment> CreateAssessment { get; set; }
+        public EventCallback<Assessment> OnCreate { get; set; }
 
-        private async Task OnCreate()
+        [Parameter]
+        public EventCallback OnCancel { get; set; }
+
+        private async Task Create()
         {
             Assessment.Date = DateTime.Now;
-            await CreateAssessment.InvokeAsync(Assessment);
+            await OnCreate.InvokeAsync(Assessment);
         }
+
+        private async Task Cancel() =>
+            await OnCancel.InvokeAsync();
     }
 }

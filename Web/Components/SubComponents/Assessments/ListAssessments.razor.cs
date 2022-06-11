@@ -10,27 +10,14 @@ namespace CardShow.Web.Components.SubComponents.Assessments
             = new List<Assessment>();
 
         [Parameter]
-        public int CardId { get; set; }
+        public EventCallback<int> OnDelete { get; set; }
 
-        [Parameter]
-        public EventCallback<Assessment> CreateAssessment { get; set; }
+        private Assessment selectedAssessment = new();
 
-        [Parameter]
-        public EventCallback<int> DeleteAssessment { get; set; }
 
-        private bool showForm = false;
-
-        private void ToggleForm()
+        private async Task Delete(int id)
         {
-            showForm = !showForm;
-        }
-
-        private async Task OnCreateAssessment(Assessment assessment)
-        {
-            assessment.CardId = CardId;
-            await CreateAssessment.InvokeAsync(assessment);
-            ToggleForm();
-            await Task.CompletedTask;
+            await OnDelete.InvokeAsync(id);
         }
     }
 }

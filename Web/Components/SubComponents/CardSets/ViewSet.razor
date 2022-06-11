@@ -1,21 +1,66 @@
-﻿@if (SelectedSet.Id > 0)
+﻿@using Microsoft.AspNetCore.Components.Web;
+@using CardShow.Web.Components.SubComponents.Cards;
+
+
+@if (viewMode == ViewMode.DeleteSet)
 {
-    <div class="col">
-        <div class="row" style="width:fit-content">
-            <div class="col" style="width:fit-content">
-                @SelectedSet.Year
-            </div>
-            <div class="col" style="min-width:fit-content;">
-                @SelectedSet.Name
-            </div>
-        </div>
-        <div class="row" style="width:fit-content;">
-            <div class="col" style="width:fit-content">
-                @SelectedSet.Sport
-            </div>
-            <div class="col" style="font-size:xx-small;width:fit-content;margin-top:.5em;float:right">
-                Id: @SelectedSet.Id
-            </div>
-        </div>
+    var hasOrphans = cards.Any();
+
+    <div class="row btn-group">
+        <button type="button"
+            class="btn btn-secondary"
+            @onclick=ShowSet>
+            Cancel
+        </button>
+        <button type="button"
+            class="btn btn-danger"
+            disabled=@hasOrphans
+            @onclick=Delete>
+            Confirm
+        </button>
+    </div>
+    <div class="row">
+        <span style="color:red">Delete the selected Set?</span>
+        @if(hasOrphans)
+        {
+            <span style="color:red">You must delete all attached cards before set can be deleted.</span>
+        }
     </div>
 }
+@if (viewMode == ViewMode.Default)
+{
+    <div class="row btn-group">
+        <button type="button"
+            class="btn-sm btn-outline-warning"
+            style="font-size:x-small;padding:.3em;padding-top:.1em;padding-bottom:.1em"
+            @onclick=EnableDelete>
+            Delete
+        </button>
+        <button type="button"
+            class="btn-sm btn-outline-primary"
+            style="font-size:x-small;padding:.3em;padding-top:.1em;padding-bottom:.1em"
+            @onclick=ShowNewCardForm>
+            New
+        </button>
+    </div>
+    <div class="row">
+        <h4>Cards</h4>
+        <ListCards Cards=cards
+               OnDelete=DeleteCard
+               OnShowCard=ShowCard />
+    </div>
+}
+
+@if (viewMode == ViewMode.AddCard)
+{
+    <AddCard OnCreate=CreateCard 
+             OnCancel=ShowSet/>
+}
+
+@if (viewMode == ViewMode.CardDetails)
+{
+    <CardInfo Card=selectedCard />
+    <ViewCard Card=selectedCard />
+}
+
+
